@@ -1,0 +1,31 @@
+{
+  "name": "intellicademy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iklimardiana/intellicademy.git"
+  },
+  "author": "Auryno, Fajar, Iklima, Tzelginia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iklimardiana/intellicademy/issues"
+  },
+  "homepage": "https://github.com/Iklimardiana/intellicademy#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.5",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0",
+    "webpack-devserver": "^0.0.6"
+  }
+}
