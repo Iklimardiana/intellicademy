@@ -1,4 +1,19 @@
-$primary: red;
+.avatar {
+  width: 40px;
+}
 
-body {
+.navbar-brand span {
+  font-weight: bold;
+}
+
+.sidebar-link {
+  text-decoration: none;
+}
+
+.dashboard-info-description {
+  font-size: 1rem;
+}
+
+.dashboard-info-number {
+  font-size: 3rem;
 }
