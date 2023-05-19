@@ -2,8 +2,15 @@
   width: 40px;
 }
 
-.navbar-brand span {
-  font-weight: bold;
+.navbar-brand {
+  span {
+    font-weight: bold;
+  }
+
+  h1 {
+    font-weight: lighter;
+    font-size: 2rem;
+  }
 }
 
 .sidebar-link {
@@ -16,4 +23,8 @@
 
 .dashboard-info-number {
   font-size: 3rem;
+}
+
+.page-title {
+  font-size: 1.25rem;
 }
