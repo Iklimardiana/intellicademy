@@ -16,4 +16,14 @@ class Transaction extends Model
         'idUser',
     ];
 
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'idUser'); 
+    }
+
+    public function Course()
+    {
+        return $this->belongsTo(Course::class, 'idCourse');
+    }
+
 }

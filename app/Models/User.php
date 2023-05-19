@@ -44,4 +44,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Progres()
+    {
+        return $this->hasMany(Progres::class, 'idUser');
+    }
+
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class, 'idUser');
+    }
 }

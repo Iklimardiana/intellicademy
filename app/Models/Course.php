@@ -18,4 +18,19 @@ class Course extends Model
         'idUser',
     ];
 
+    public function Module()
+    {
+        return $this->hasMany(Module::class, 'idCourse');
+    }
+
+    public function Progres()
+    {
+        return $this->hasMany(Progres::class, 'idCourse');
+    }
+
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class, 'idCourse');
+    }
+
 }
