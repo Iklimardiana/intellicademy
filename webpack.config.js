@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template/student-dashboard.html',
+      template: './src/template/admin-dashboard-courses-add.html',
       //   filename: 'admin-dashboard.html',
     }),
     new MiniCssExtractPlugin(),
