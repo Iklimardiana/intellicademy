@@ -1,0 +1,35 @@
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./front-end/src/styles/main.scss ***!
+  \*************************************************************************************************************************/
+.avatar {
+  width: 40px;
+}
+
+.navbar-brand span {
+  font-weight: bold;
+}
+.navbar-brand h1 {
+  font-weight: lighter;
+  font-size: 2rem;
+}
+
+.dropdown-menu {
+  left: auto !important;
+  right: 0;
+}
+
+.sidebar-link {
+  text-decoration: none;
+}
+
+.dashboard-info-description {
+  font-size: 1rem;
+}
+
+.dashboard-info-number {
+  font-size: 3rem;
+}
+
+.page-title {
+  font-size: 1.25rem;
+}
