@@ -76,6 +76,10 @@ module.exports = {
             filename: "register.html",
             template: "./front-end/src/template/auth/register.html",
         }),
+        new HtmlWebpackPlugin({
+            filename: "landing-page.html",
+            template: "./front-end/src/template/landing-page.html",
+        }),
         new MiniCssExtractPlugin(),
     ],
 };
