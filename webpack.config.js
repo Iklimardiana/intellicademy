@@ -22,7 +22,7 @@ module.exports = {
     devtool: false,
     devServer: {
         static: {
-            directory: path.join(__dirname, "./front-end/dist/"),
+            directory: path.join(__dirname, "./front-end/src/"),
         },
         compress: true,
         port: 3000,
@@ -67,6 +67,14 @@ module.exports = {
             filename: "admin-dashboard-courses-add.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-courses-add.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "login.html",
+            template: "./front-end/src/template/auth/login.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "register.html",
+            template: "./front-end/src/template/auth/register.html",
         }),
         new MiniCssExtractPlugin(),
     ],
