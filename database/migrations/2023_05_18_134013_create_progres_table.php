@@ -21,10 +21,10 @@ class CreateProgresTable extends Migration
             $table->unsignedBigInteger('idUser');
             $table->unsignedBigInteger('idModule');
             $table->unsignedBigInteger('idCourse');
-            $table->foreign('idAttachment')->references('id')->on('attachments');
-            $table->foreign('idUser')->references('id')->on('users');
-            $table->foreign('idModule')->references('id')->on('modules');
-            $table->foreign('idCourse')->references('id')->on('courses');
+            $table->foreign('idAttachment')->references('id')->on('attachments')->onDelete('cascade');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idModule')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('idCourse')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }
