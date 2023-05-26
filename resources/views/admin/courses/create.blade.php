@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section
+@section('content')
 <div aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
