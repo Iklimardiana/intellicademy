@@ -29,8 +29,8 @@ class CourseController extends Controller
     public function create()
     {
         $course = Course::all();
-        $teachers = User::where('role', 2)->get(['id', 'username']);
-        // return response()->json($course);
+        $teachers = User::where('role', '1')->get(['id', 'username']);
+        
         return view('admin.courses.create',compact('course', 'teachers'));
 
     }
@@ -106,7 +106,7 @@ class CourseController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required|max:255',
-            'thumbnail' => 'required|mimes:png,jpeg,jpg|max:2048',
+            'thumbnail' => 'mimes:png,jpeg,jpg|max:2048',
             'idUser' => 'required',
         ],[
             'idUser.required' => 'The Teacher field is required.',
@@ -137,8 +137,6 @@ class CourseController extends Controller
         
             $course->thumbnail = $thumbnailName;
         }
-        // $course->thumbnail = $thumbnailName;
-        // $course->thumbnail = $request->thumbnail;
 
         $course->save();
         

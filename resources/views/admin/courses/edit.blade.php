@@ -50,7 +50,7 @@
                         <h2 class="page-title text-center mt-1">Admin Dashboard</h2>
                     </div>
                     <div class="list-group p-3">
-                        <a href="/" class="list-group-item list-group-item-action sidebar-link">
+                        <a href="/dashboard" class="list-group-item list-group-item-action sidebar-link">
                             <i data-feather="activity"></i>
                             <span>Dashboard</span>
                         </a>
@@ -124,6 +124,7 @@
                             <div class="mb-3">
                                 <label for="thumbnail" class="form-label">Thumbnail</label>
                                 <input class="form-control" type="file" id="thumbnail" name="thumbnail">
+                                <span id="file-name">{{ $course->thumbnail ?: 'No file chosen' }}</span>
                                 @error('thumbnail')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -153,8 +154,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
+
     <script>
-      feather.replace()
+        feather.replace();
+        const thumbnailInput = document.getElementById('thumbnail');
+        const fileNameSpan = document.getElementById('file-name');
+        const previousThumbnail = "{{ $course->thumbnail }}";
+    
+        thumbnailInput.addEventListener('change', function() {
+            if (this.files.length === 0) {
+            fileNameSpan.textContent = previousThumbnail ? previousThumbnail : 'No file chosen';
+            } else {
+                fileNameSpan.textContent = this.files[0].name;
+            }
+        });
     </script>
   </body>
 </html>

@@ -33,6 +33,7 @@
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li>
                         <a class="dropdown-item" href="#">
+                            <!-- <i data-feather="log-out"></i> -->
                             Sign Out
                         </a>
                     </li>
@@ -49,7 +50,7 @@
                         <h2 class="page-title text-center mt-1">Admin Dashboard</h2>
                     </div>
                     <div class="list-group p-3">
-                        <a href="/dashboard" class="list-group-item list-group-item-action sidebar-link">
+                        <a href="/" class="list-group-item list-group-item-action sidebar-link">
                             <i data-feather="activity"></i>
                             <span>Dashboard</span>
                         </a>
@@ -72,71 +73,75 @@
             <main class="col mt-3 mt-lg-0">
                     <div aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="/admin-dashboard-courses.html">Courses</a>
-                            </li>
-                            <li class="breadcrumb-item active">add</li>
+                            <li class="breadcrumb-item active">Students</li>
                         </ol>
                     </div>
 
                     <div class="card p-4">
-                        <h2>Add a course</h2>
-
-                        <form action="/course" method="POST" class="col-md-6" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" name="name" id="name">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="price" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="price" name="price">
-                                @error('price')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" name="description"></textarea>
-                                @error('description')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="idUser" class="form-label">Teacher</label>
-                                <select class="form-control" name="idUser" id="idUser">
-                                    <option value="">--Please Select The Teacher--</option>
-                                    @forelse ($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher->username}}</option>    
+                        <div class="col-md-4">
+                            <a href="/admin-dashboard-students-add.html" class="btn btn-success">
+                                <i data-feather="plus"></i>
+                                <span>Add Students</span>
+                            </a>
+                        </div>
+                        <div class="col mt-3">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>E-Mail</th>
+                                        <th>Phone</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($students as $key => $item)
+                                        <tr>
+                                            <td>{{$key+1}}</td>
+                                            <td>{{$item->username}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->phone}}</td>
+                                            <td>
+                                                <a href="#" class="badge bg-warning">
+                                                    <i data-feather="edit"></i>
+                                                </a>
+                                                <a href="#" class="badge bg-danger" onclick="lib.test()">
+                                                    <i data-feather="trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @empty
-                                        <option value="">Tidak ada Kategori</option>
+                                        <tr>
+                                            <td>Teachers are Empty</td>
+                                        </tr>   
                                     @endforelse
-                                </select>
-                                @error('idUser')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="thumbnail" class="form-label">Thumbnail</label>
-                                <input class="form-control" type="file" id="thumbnail" name="thumbnail">
-                                @error('thumbnail')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <a href="/course" class="btn btn-warning">
-                                    <i data-feather="corner-down-left"></i>
-                                    <span>Back</span>
-                                </a>
-                                <button type="submit" class="btn btn-primary">
-                                    <i data-feather="save"></i>
-                                    <span>Save</span>
-                                </button>
-                            </div>
-                        </form>
+                                </tbody>
+                            </table>
+
+                            <nav aria-label="...">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link">Previous</a>
+                                    </li>
+
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item" aria-current="page">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        
                     </div>
             </main>
         </div>

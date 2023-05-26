@@ -33,6 +33,7 @@
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li>
                         <a class="dropdown-item" href="#">
+                            <!-- <i data-feather="log-out"></i> -->
                             Sign Out
                         </a>
                     </li>
@@ -49,7 +50,7 @@
                         <h2 class="page-title text-center mt-1">Admin Dashboard</h2>
                     </div>
                     <div class="list-group p-3">
-                        <a href="/dashboard" class="list-group-item list-group-item-action sidebar-link">
+                        <a href="/" class="list-group-item list-group-item-action sidebar-link">
                             <i data-feather="activity"></i>
                             <span>Dashboard</span>
                         </a>
@@ -72,71 +73,58 @@
             <main class="col mt-3 mt-lg-0">
                     <div aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="/admin-dashboard-courses.html">Courses</a>
-                            </li>
-                            <li class="breadcrumb-item active">add</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
 
                     <div class="card p-4">
-                        <h2>Add a course</h2>
-
-                        <form action="/course" method="POST" class="col-md-6" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" name="name" id="name">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                    <div class="row gap-3">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-evenly align-items-center dashboard-info">
+                                        <div class="text-center dashboard-info-label">
+                                            <i data-feather="user" class="dashboard-info-icon" ></i>
+                                            <span class="d-block dashboard-info-description">Teacher</span>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="dashboard-info-number">{{ $teacherCount }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="price" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="price" name="price">
-                                @error('price')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-evenly align-items-center dashboard-info">
+                                        <div class="text-center dashboard-info-label">
+                                            <i data-feather="users" class="dashboard-info-icon" ></i>
+                                            <span class="d-block dashboard-info-description">Students</span>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="dashboard-info-number">{{ $studentCount }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" name="description"></textarea>
-                                @error('description')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-evenly align-items-center dashboard-info">
+                                        <div class="text-center dashboard-info-label">
+                                            <i data-feather="archive" class="dashboard-info-icon" ></i>
+                                            <span class="d-block dashboard-info-description">Courses</span>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="dashboard-info-number">{{ $courseCount }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="idUser" class="form-label">Teacher</label>
-                                <select class="form-control" name="idUser" id="idUser">
-                                    <option value="">--Please Select The Teacher--</option>
-                                    @forelse ($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher->username}}</option>    
-                                    @empty
-                                        <option value="">Tidak ada Kategori</option>
-                                    @endforelse
-                                </select>
-                                @error('idUser')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="thumbnail" class="form-label">Thumbnail</label>
-                                <input class="form-control" type="file" id="thumbnail" name="thumbnail">
-                                @error('thumbnail')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <a href="/course" class="btn btn-warning">
-                                    <i data-feather="corner-down-left"></i>
-                                    <span>Back</span>
-                                </a>
-                                <button type="submit" class="btn btn-primary">
-                                    <i data-feather="save"></i>
-                                    <span>Save</span>
-                                </button>
-                            </div>
-                        </form>
+                        </div>
+                    </div>
                     </div>
             </main>
         </div>
