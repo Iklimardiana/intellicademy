@@ -23,10 +23,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Courses</a>
-                </li>        
+                </li>
             </ul>
             <div class="nav-item dropdown d-flex">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i data-feather="user"></i>
                 </a>
                 <ul class="dropdown-menu">
