@@ -1,4 +1,3 @@
-var lib;
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -8,7 +7,17 @@ var lib;
   \***************************************/
 /***/ ((module) => {
 
-const main = () => {};
+const main = () => {
+    const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
+
+    sidebarDrawer.addEventListener("click", () => {
+        const sidebar = document.querySelector(".sidebar-course");
+        const main = document.querySelector("main");
+
+        main.classList.toggle("sidebar-opened");
+        sidebar.classList.toggle("hide");
+    });
+};
 
 module.exports = main;
 
@@ -84,6 +93,5 @@ main();
 
 })();
 
-lib = __webpack_exports__;
 /******/ })()
 ;

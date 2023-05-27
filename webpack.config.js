@@ -5,10 +5,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: "./front-end/src/index.js",
     output: {
-        path: path.resolve(__dirname, "front-end/dist"),
+        path: path.resolve(__dirname, "front-end/dist/"),
         filename: "main.js",
         clean: true,
-        library: "lib",
     },
     mode: "development",
     module: {
@@ -22,7 +21,7 @@ module.exports = {
     devtool: false,
     devServer: {
         static: {
-            directory: path.join(__dirname, "./front-end/src/"),
+            directory: path.join(__dirname, "./front-end/dist/"),
         },
         compress: true,
         port: 3000,
@@ -30,41 +29,41 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard.html",
+            filename: "admin-dashboard/index.html",
             template: "./front-end/src/template/admin-dashboard/index.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-courses.html",
+            filename: "admin-dashboard/admin-dashboard-courses.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-courses.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-students.html",
+            filename: "admin-dashboard/admin-dashboard-students.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-students.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-teachers.html",
+            filename: "admin-dashboard/admin-dashboard-teachers.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-teachers.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-courses-add.html",
+            filename: "admin-dashboard/admin-dashboard-courses-add.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-courses-add.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-teachers-add.html",
+            filename: "admin-dashboard/admin-dashboard-teachers-add.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-teachers-add.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-students-add.html",
+            filename: "admin-dashboard/admin-dashboard-students-add.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-students-add.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "admin-dashboard-courses-add.html",
+            filename: "admin-dashboard/admin-dashboard-courses-add.html",
             template:
                 "./front-end/src/template/admin-dashboard/admin-dashboard-courses-add.html",
         }),
@@ -77,8 +76,25 @@ module.exports = {
             template: "./front-end/src/template/auth/register.html",
         }),
         new HtmlWebpackPlugin({
-            filename: "landing-page.html",
-            template: "./front-end/src/template/landing-page.html",
+            filename: "student-dashboard/index.html",
+            template: "./front-end/src/template/student-dashboard/index.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "student-dashboard/student-course.html",
+            template:
+                "./front-end/src/template/student-dashboard/student-course.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "teacher-dashboard/index.html",
+            template: "./front-end/src/template/teacher-dashboard/index.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "courses.html",
+            template: "./front-end/src/template/courses.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: "./front-end/src/template/index.html",
         }),
         new MiniCssExtractPlugin(),
     ],

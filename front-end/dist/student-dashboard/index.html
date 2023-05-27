@@ -8,7 +8,7 @@
 
     <script src="https://unpkg.com/feather-icons"></script>
 
-  </head>
+  <script defer src="../main.js"></script><link href="../main.css" rel="stylesheet"></head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
@@ -19,10 +19,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Courses</a>
+                    <a class="nav-link" href="../courses.html">Courses</a>
                 </li>        
             </ul>
             <div class="nav-item dropdown d-flex">
@@ -31,6 +31,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="index.html">Dashboard</a></li>
                     <li>
                         <a class="dropdown-item" href="#">
                             <!-- <i data-feather="log-out"></i> -->
@@ -60,57 +61,65 @@
             <main class="col mt-3 mt-lg-0">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Sedang Dipelajari</button>
+                            <button class="nav-link active" id="on-going-tab" data-bs-toggle="tab" data-bs-target="#on-going-tab-pane" type="button" role="tab" aria-controls="on-going-tab-pane" aria-selected="true">Sedang Dipelajari</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Telah Diselesaikan</button>
+                            <button class="nav-link" id="finished-tab" data-bs-toggle="tab" data-bs-target="#finished-tab-pane" type="button" role="tab" aria-controls="finished-tab-pane" aria-selected="false">Telah Diselesaikan</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="on-going-tab-pane" role="tabpanel" aria-labelledby="on-going-tab" tabindex="0">
                             <div class="row gap-2 mt-3 " style="margin-left: 2rem!important">
-                                <div class="card col-12 col-md-5">
+                                <div class="card col-12 col-md-5 pt-2">
                                     <img src="https://placeimg.com/640/480/any" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="/student-dashboard/student-course.html" class="btn btn-primary">Lanjutkan Belajar</a>
                                     </div>
                                 </div>
-                                <div class="card col-12 col-md-5">
+                                <div class="card col-12 col-md-5 pt-2">
                                     <img src="https://placeimg.com/640/480/any" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="/student-dashboard/student-course.html" class="btn btn-primary">Lanjutkan Belajar</a>
                                     </div>
                                 </div>
-                                <div class="card col-12 col-md-5">
+                                <div class="card col-12 col-md-5 pt-2">
                                     <img src="https://placeimg.com/640/480/any" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="/student-dashboard/student-course.html" class="btn btn-primary">Lanjutkan Belajar</a>
                                     </div>
                                 </div>
-                                <div class="card col-12 col-md-5">
+                                <div class="card col-12 col-md-5 pt-2">
                                     <img src="https://placeimg.com/640/480/any" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="/student-dashboard/student-course.html" class="btn btn-primary">Lanjutkan Belajar</a>
+                                    </div>
+                                </div>
+                                <div class="card col-12 col-md-5 pt-2">
+                                    <img src="https://placeimg.com/640/480/any" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="/student-dashboard/student-course.html" class="btn btn-primary">Lanjutkan Belajar</a>
                                     </div>
                                 </div>
                             </div>       
                         </div>
-                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                        <div class="tab-pane fade" id="finished-tab-pane" role="tabpanel" aria-labelledby="finished-tab" tabindex="0">
                             <div class="row gap-2 mt-3 " style="margin-left: 2rem!important">
-                                <div class="card col-12 col-md-5">
+                                <div class="card col-12 col-md-5 pt-2">
                                     <img src="https://placeimg.com/640/480/any" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="/student-dashboard/student-course.html" class="btn btn-primary">Lanjutkan Belajar</a>
                                     </div>
                                 </div>
                             </div>
