@@ -19,12 +19,14 @@
 
     <div class="container mt-4">
         <div class="row">
+        {{-- @auth --}}
             @include('partials.aside')
-
+        {{-- @endauth --}}
             <main class="col mt-3 mt-lg-0">
                 @yield('content')
             </main>
         </div>
+       
     </div>
 
 
