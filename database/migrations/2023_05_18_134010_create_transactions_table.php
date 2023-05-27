@@ -18,8 +18,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('verification');
             $table->unsignedBigInteger('idCourse');
             $table->unsignedBigInteger('idUser');
-            $table->foreign('idCourse')->references('id')->on('courses');
-            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreign('idCourse')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

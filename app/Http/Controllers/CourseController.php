@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Illuminate\Support\Facades\File;
+use App\Models\User;
 
 class CourseController extends Controller
 {
@@ -15,7 +17,8 @@ class CourseController extends Controller
     public function index()
     {
         $course = Course::get();
-        return response()->json($course);
+        // return response()->json($course);
+        return view('admin.courses.view', ['course' => $course]);
     }
 
     /**
@@ -26,7 +29,10 @@ class CourseController extends Controller
     public function create()
     {
         $course = Course::all();
-        return response()->json($course);
+        $teachers = User::where('role', '1')->get(['id', 'username']);
+        
+        return view('admin.courses.create',compact('course', 'teachers'));
+
     }
 
     /**
@@ -40,20 +46,20 @@ class CourseController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'description' => 'required',
-            'thumbnail' => 'mimes:png,jpeg,jpg|max:2048',
+            'description' => 'required|max:255',
+            'thumbnail' => 'required|mimes:png,jpeg,jpg|max:2048',
             'idUser' => 'required',
         ]);
     
-        // $thumbnailName = time().'.'.$request->thumbnail->extension();
-        // $request->thumbnail->move(public_path('images'), $thumbnailName);
+        $thumbnailName = time().'.'.$request->thumbnail->extension();
+        $request->thumbnail->move(public_path('images'), $thumbnailName);
     
         $course = new Course;
     
         $course->name = $request->name;
         $course->price = $request->price;
         $course->idUser = $request->idUser;
-        $course->thumbnail = $request->thumbnail;
+        $course->thumbnail = $thumbnailName;
         $course->description = $request->description;
     
         $course->save();
@@ -82,7 +88,9 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-        return response()->json($course);
+        $teachers = User::where('role', 2)->get(['id', 'username']);
+        // return response()->json($course);
+        return view('admin.courses.edit', compact('course', 'teachers'));
     }
 
     /**
@@ -94,20 +102,46 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required|max:255',
+            'thumbnail' => 'mimes:png,jpeg,jpg|max:2048',
+            'idUser' => 'required',
+        ],[
+            'idUser.required' => 'The Teacher field is required.',
+        ]);
+
         $course = Course::findOrFail($id);
 
-        //Validasi data yang dikirimkan oleh pengguna
+        if ($request->input('name') !== $course->name) {
+            $course->name = $request->input('name');
+        }
+        if ($request->input('price') !== $course->price) {
+            $course->price = $request->input('price');
+        }
+        if ($request->input('description') !== $course->description) {
+            $course->description = $request->input('description');
+        }
+        if ($request->input('idUser') !== $course->idUser) {
+            $course->idUser = $request->input('idUser');
+        }
 
-        $course->name = $request->name;
-        $course->price = $request->price;
-        $course->idUser = $request->idUser;
-        $course->thumbnail = $request->thumbnail;
-        $course->description = $request->description;
+        if($request->has('thumbnail')) {
+            $path = "images/";
+            file::delete($path . $course->thumbnail);
+        
+            $thumbnailName = time().'.'.$request->thumbnail->extension();  
+           
+            $request->thumbnail->move(public_path('images'), $thumbnailName);  
+        
+            $course->thumbnail = $thumbnailName;
+        }
 
         $course->save();
         
-        return response()->json($course);
-        // return redirect('/course');
+        // return response()->json($course);
+        return redirect('/course');
     }
 
     /**
@@ -119,7 +153,9 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $course = Course::findOrFail($id);
-        $course_id = $course->id;
+
+        $path = "images/";
+        file::delete($path . $course->thumbnail);
 
         $course->delete();
 

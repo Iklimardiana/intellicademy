@@ -20,8 +20,8 @@ class CreateAttachmentsTable extends Migration
             $table->enum('type', [0, 1])->default(0);
             $table->unsignedBigInteger('idModule');
             $table->unsignedBigInteger('idCourse');
-            $table->foreign('idModule')->references('id')->on('modules');
-            $table->foreign('idCourse')->references('id')->on('courses');
+            $table->foreign('idModule')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('idCourse')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }

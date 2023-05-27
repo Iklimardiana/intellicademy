@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +20,18 @@ use App\Http\Controllers\AttachmentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::resource('/course', CourseController::class);
 Route::resource('/module', ModuleController::class);
 Route::resource('/attachment', AttachmentController::class);
+Route::get('/dashboard', [AdminController::class, 'dashboard']);
+Route::get('/teachers', [AdminController::class, 'teachers']);
+Route::get('/students', [AdminController::class, 'students']);
+
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
