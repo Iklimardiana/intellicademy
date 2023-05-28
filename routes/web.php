@@ -35,6 +35,8 @@ Route::middleware('admin')->group(function () {
     Route::resource('/admin/course', CourseController::class);
 });
 
+route::get('/course', [CourseController::class, 'indexGeneral']);
+
 route::get('/teacher', [TeacherController::class, 'dashboard']);
 route::get('/teacher/students', [TeacherController::class, 'students']);
 route::get('/teacher/courses/{id}', [TeacherController::class, 'courses']);

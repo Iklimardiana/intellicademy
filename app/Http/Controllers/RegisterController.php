@@ -30,6 +30,6 @@ class RegisterController extends Controller
 
         $user->save();
         
-        redirect('/login');
+        return redirect('/login');
     }
 }

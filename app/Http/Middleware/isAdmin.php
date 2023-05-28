@@ -17,7 +17,10 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() || Auth::user()->role !== '0') {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+        if (Auth::user()->role !== '0') {
             abort(403);
         }
 
