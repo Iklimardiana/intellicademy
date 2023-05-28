@@ -19,7 +19,7 @@ class CourseSeeder extends Seeder
             'price' => 50000,
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam similique officia ipsum facilis a sint excepturi reiciendis doloremque eum iusto.',
             'thumbnail' => null,
-            'idUser' => 2,
+            'idUser' => 3,
         ]);
 
         Course::create([
@@ -27,7 +27,7 @@ class CourseSeeder extends Seeder
             'price' => 50000,
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam similique officia ipsum facilis a sint excepturi reiciendis doloremque eum iusto.',
             'thumbnail' => null,
-            'idUser' => 2,
+            'idUser' => 4,
         ]);
     }
 }
