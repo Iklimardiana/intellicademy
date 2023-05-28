@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('aside')
+@include('partials.aside')
+@endsection
 @section('content')
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
