@@ -1,19 +1,15 @@
 @extends('layouts.master')
-
+@section('aside')
+    @include('partials.aside')
+@endsection
 @section('content')
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Students</li>
+            <li class="breadcrumb-item active">List Students</li>
         </ol>
     </div>
 
     <div class="card p-4">
-        <div class="col-md-4">
-            <a href="/admin-dashboard-students-add.html" class="btn btn-success">
-                <i data-feather="plus"></i>
-                <span>Add Students</span>
-            </a>
-        </div>
         <div class="col mt-3">
             <table class="table table-bordered">
                 <thead>
@@ -22,7 +18,7 @@
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>Phone</th>
-                        <th>#</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,18 +28,11 @@
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
-                            <td>
-                                <a href="#" class="badge bg-warning">
-                                    <i data-feather="edit"></i>
-                                </a>
-                                <a href="#" class="badge bg-danger" onclick="lib.test()">
-                                    <i data-feather="trash"></i>
-                                </a>
-                            </td>
+                            <td>Complete</td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Teachers are Empty</td>
+                            <td>Students are Empty</td>
                         </tr>
                     @endforelse
                 </tbody>
