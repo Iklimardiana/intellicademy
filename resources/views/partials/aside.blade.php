@@ -38,7 +38,7 @@
                          <span>Dashboard</span>
                      </a>
                      <a href="/teacher/courses/{{ auth()->user()->id }}"
-                         class="list-group-item list-group-item-action sidebar-link{{ request()->is('teacher/courses/*') ? ' active' : '' }}">
+                         class="list-group-item list-group-item-action sidebar-link{{ request()->is('teacher/*') ? ' active' : '' }}">
                          <i data-feather="archive"></i>
                          <span>Courses</span>
                      </a>
