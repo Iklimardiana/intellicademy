@@ -27,7 +27,7 @@ class TeacherController extends Controller
 
     public function courses($id)
     {
-        $courses = User::where('idUser', 'id')->get();
+        $courses = Course::where('idUser', $id)->get();
 
         return view('teacher.course.view', compact('courses'));
     }
