@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Course;
 
 class TeacherController extends Controller
 {
-    public function dashboard($id)
+    public function dashboard()
     {
+        $id = Auth::user()->id;
         $courseCount = Course::where('idUser', 'id')->count();
         $studentCount = User::where('role', '2') ->count();
 
