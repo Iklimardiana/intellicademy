@@ -35,11 +35,13 @@ Route::middleware('admin')->group(function () {
     Route::resource('/admin/course', CourseController::class);
 });
 
-route::get('/course', [CourseController::class, 'indexGeneral']);
+route::get('/courses', [CourseController::class, 'indexGeneral']);
 
-route::get('/teacher', [TeacherController::class, 'dashboard']);
-route::get('/teacher/students', [TeacherController::class, 'students']);
-route::get('/teacher/courses/{id}', [TeacherController::class, 'courses']);
+Route::middleware('teacher')->group(function () {
+    route::get('/teacher', [TeacherController::class, 'dashboard']);
+    route::get('/teacher/students', [TeacherController::class, 'students']);
+    route::get('/teacher/courses/{id}', [TeacherController::class, 'courses']);
+});
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store']);
