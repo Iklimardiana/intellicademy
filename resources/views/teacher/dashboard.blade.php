@@ -5,13 +5,13 @@
 @section('content')
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Dashboard Teacher</li>
         </ol>
     </div>
 
     <div class="card p-4">
         <div class="row gap-3">
-            <div class="col">
+            {{-- <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-evenly align-items-center dashboard-info">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col">
                 <div class="card">
                     <div class="card-body">

@@ -23,6 +23,7 @@
                         <i data-feather="user"></i>
                     </a>
                     <ul class="dropdown-menu">
+
                         <form action="/profile">
                             <button class="dropdown-item" type="submit">
                                 <!-- <i data-feather="log-out"></i> -->
