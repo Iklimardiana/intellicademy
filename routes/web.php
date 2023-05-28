@@ -26,10 +26,14 @@ Route::get('/', function () {
 
 Route::resource('/module', ModuleController::class);
 Route::resource('/attachment', AttachmentController::class);
-Route::get('/admin', [AdminController::class, 'dashboard']);
-Route::get('/admin/teachers', [AdminController::class, 'teachers']);
-Route::get('/admin/students', [AdminController::class, 'students']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'dashboard']);
+    Route::get('/admin/teachers', [AdminController::class, 'teachers']);
+    Route::get('/admin/students', [AdminController::class, 'students']);
+});
 Route::resource('/admin/course', CourseController::class);
+
 
 route::get('/teacher', [TeacherController::class, 'dashboard']);
 route::get('/teacher/students', [TeacherController::class, 'students']);
@@ -38,6 +42,6 @@ route::get('/teacher/courses/{id}', [TeacherController::class, 'courses']);
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
