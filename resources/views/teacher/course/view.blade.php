@@ -34,7 +34,7 @@
         <h5 class="card-title">Nama Course</h5>
         <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est earum, sequi tempore nostrum non voluptatibus porro ipsum amet maxime consectetur.</p>
         <div class="text-center">
-             <a href="#" class="btn btn-info">Students</a>
+             <a href="/teacher/students" class="btn btn-info">Students</a>
         <a href="#" class="btn btn-primary">Modul</a>
         <a href="#" class="btn btn-info">Assignment</a>
         </div>
