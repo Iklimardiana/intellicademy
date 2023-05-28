@@ -25,7 +25,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/logout">
                                 <!-- <i data-feather="log-out"></i> -->
                                 Sign Out
                             </a>
