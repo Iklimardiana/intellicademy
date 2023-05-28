@@ -12,7 +12,7 @@ class TeacherController extends Controller
     public function dashboard()
     {
         $id = Auth::user()->id;
-        $courseCount = Course::where('idUser', 'id')->count();
+        $courseCount = Course::where('idUser', $id)->count();
         $studentCount = User::where('role', '2') ->count();
 
         return view('teacher.dashboard', compact('courseCount', 'studentCount'));
