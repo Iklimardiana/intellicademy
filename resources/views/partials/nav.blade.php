@@ -10,10 +10,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Courses</a>
+                    <a class="nav-link" href="/courses">Courses</a>
                 </li>
             </ul>
             @auth
@@ -23,22 +23,32 @@
                         <i data-feather="user"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <a class="dropdown-item" href="/logout">
+
+                        <form action="/profile">
+                            <button class="dropdown-item" type="submit">
                                 <!-- <i data-feather="log-out"></i> -->
-                                Sign Out
-                            </a>
+                                Profile
+                            </button>
+                        </form>
+                        <li>
+                            <form action="/logout">
+                                <button class="dropdown-item" type="submit">
+                                    <!-- <i data-feather="log-out"></i> -->
+                                    Sign Out
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
             @endauth
-            <div class="nav-item dropdown d-flex">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="login" href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
+            @guest
+                <div class="nav-item dropdown d-flex">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="login" href="/login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            @endguest
         </div>
 </nav>
