@@ -13,7 +13,7 @@
     <div class="card p-4">
         <h2>Edit a course</h2>
 
-        <form action="/course/{{ $course->id }}" method="POST" class="col-md-6" enctype="multipart/form-data">
+        <form action="admin/course/{{ $course->id }}" method="POST" class="col-md-6" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="mb-3">
@@ -61,7 +61,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <a href="/course" class="btn btn-warning">
+                <a href="admin/course" class="btn btn-warning">
                     <i data-feather="corner-down-left"></i>
                     <span>Back</span>
                 </a>

@@ -27,13 +27,12 @@ Route::get('/', function () {
 Route::resource('/module', ModuleController::class);
 Route::resource('/attachment', AttachmentController::class);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard']);
     Route::get('/admin/teachers', [AdminController::class, 'teachers']);
     Route::get('/admin/students', [AdminController::class, 'students']);
+    Route::resource('/admin/course', CourseController::class);
 });
-Route::resource('/admin/course', CourseController::class);
-
 
 route::get('/teacher', [TeacherController::class, 'dashboard']);
 route::get('/teacher/students', [TeacherController::class, 'students']);
