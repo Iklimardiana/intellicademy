@@ -64,7 +64,7 @@ class CourseController extends Controller
     
         $course->save();
         // return response()->json($course);
-        return redirect('/course');
+        return redirect('/admin/course');
     }
 
     /**
@@ -141,7 +141,7 @@ class CourseController extends Controller
         $course->save();
         
         // return response()->json($course);
-        return redirect('/course');
+        return redirect('/admin/course');
     }
 
     /**
@@ -159,6 +159,6 @@ class CourseController extends Controller
 
         $course->delete();
 
-        return redirect('/course');
+        return redirect('/admin/course');
     }
 }
