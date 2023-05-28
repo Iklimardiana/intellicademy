@@ -5,19 +5,19 @@
             <h2 class="page-title text-center mt-1">Admin Dashboard</h2>
         </div>
         <div class="list-group p-3">
-            <a href="/dashboard" class="list-group-item list-group-item-action sidebar-link{{ request()->is('dashboard') ? ' active' : '' }}">
+            <a href="/admin" class="list-group-item list-group-item-action sidebar-link{{ request()->is('dashboard') ? ' active' : '' }}">
                 <i data-feather="activity"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="/teachers" class="list-group-item list-group-item-action sidebar-link{{ request()->is('teachers') ? ' active' : '' }}">
+            <a href="/admin/teachers" class="list-group-item list-group-item-action sidebar-link{{ request()->is('teachers') ? ' active' : '' }}">
                 <i data-feather="user"></i>
                 <span>Teachers</span>
             </a>
-            <a href="/students" class="list-group-item list-group-item-action sidebar-link{{ request()->is('students') ? ' active' : '' }}">
+            <a href="/admin/students" class="list-group-item list-group-item-action sidebar-link{{ request()->is('students') ? ' active' : '' }}">
                 <i data-feather="users"></i>
                 <span>Students</span>
             </a>
-            <a href="/course" class="list-group-item list-group-item-action sidebar-link{{ request()->is('course') ? ' active' : '' }}">
+            <a href="/admin/course" class="list-group-item list-group-item-action sidebar-link{{ request()->is('course') ? ' active' : '' }}">
                 <i data-feather="archive"></i>
                 <span>Courses</span>
             </a>
