@@ -16,6 +16,8 @@ class UserSeeder extends Seeder
     {
         User::create([
             'username' => 'Andi',
+            'firstName' => 'Andi',
+            'lastName' => 'Andrea',
             'password' => bcrypt('pelajar'),
             'email' => 'andi@gmail.com',
             'phone' => '082222222222',
@@ -24,6 +26,8 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'username' => 'Dian',
+            'firstName' => 'Dian',
+            'lastName' => 'Pratama',
             'password' => bcrypt('pelajar'),
             'email' => 'pelajar@gmail.com',
             'phone' => '082222222222',
@@ -33,6 +37,8 @@ class UserSeeder extends Seeder
 
         User::create([
             'username' => 'Iklima',
+            'firstName' => 'Iklima',
+            'lastName' => 'Mardiana',
             'password' => bcrypt('iklima'),
             'email' => 'iklima@gmail.com',
             'phone' => '082222222222',
@@ -42,6 +48,8 @@ class UserSeeder extends Seeder
 
         User::create([
             'username' => 'Mardiana',
+            'firstName' => 'Iklima',
+            'lastName' => 'Mardiana',
             'password' => bcrypt('iklima'),
             'email' => 'diana@gmail.com',
             'phone' => '082222222222',
@@ -51,6 +59,8 @@ class UserSeeder extends Seeder
 
         User::create([
             'username' => 'Admin',
+            'firstName' => 'admin',
+            'lastName' => 'intellycode',
             'password' => bcrypt('admin'),
             'email' => 'admin@gmail.com',
             'phone' => '082222222222',
