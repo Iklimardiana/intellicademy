@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -38,5 +39,13 @@ class TeacherController extends Controller
         $modules = Module::where('idCourse', $id)->get();
 
         return view('teacher.module.view', compact('modules'));
+    }
+
+    public function assigments($id)
+    {
+        $attachments = Attachment::where('idModules', $id)
+                        ->where('type', 1)->get();
+
+        return view('teacher.assigment.view', compact('attachments'));
     }
 }
