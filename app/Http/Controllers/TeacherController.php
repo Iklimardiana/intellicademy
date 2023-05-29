@@ -80,8 +80,7 @@ class TeacherController extends Controller
 
     public function assigments($id)
     {
-        $attachments = Attachment::where('idModule', $id)
-                        ->where('type', 1)->get();
+        $attachments = Attachment::where('idModule', $id)->where('type', 1)->get();
 
         return view('teacher.assignment.view', compact('attachments'));
     }
