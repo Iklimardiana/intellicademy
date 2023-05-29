@@ -16,7 +16,7 @@
                 <span>Add Teacher</span>
             </a>
         </div>
-        <div class="col mt-3">
+        <div class="col mt-3 table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>

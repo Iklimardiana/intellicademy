@@ -10,7 +10,7 @@
     </div>
 
     <div class="card p-4">
-        <div class="col mt-3">
+        <div class="col mt-3 table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
