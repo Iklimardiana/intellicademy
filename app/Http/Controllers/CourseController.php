@@ -95,7 +95,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-        $teachers = User::where('role', 2)->get(['id', 'username']);
+        $teachers = User::where('role', '1')->get(['id', 'username']);
         // return response()->json($course);
         return view('admin.courses.edit', compact('course', 'teachers'));
     }
