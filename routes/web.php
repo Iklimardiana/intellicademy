@@ -41,6 +41,7 @@ Route::middleware('teacher')->group(function () {
     route::get('/teacher', [TeacherController::class, 'dashboard']);
     route::get('/teacher/students', [TeacherController::class, 'students']);
     route::get('/teacher/courses/{id}', [TeacherController::class, 'courses']);
+    route::get('/teacher/modules/{id}', [TeacherController::class, 'modules']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Module;
 
 class TeacherController extends Controller
 {
@@ -30,5 +31,12 @@ class TeacherController extends Controller
         $courses = Course::where('idUser', $id)->get();
 
         return view('teacher.course.view', compact('courses'));
+    }
+
+    public function modules($id)
+    {
+        $modules = Module::where('idCourse', $id)->get();
+
+        return view('teacher.module.view', compact('modules'));
     }
 }
