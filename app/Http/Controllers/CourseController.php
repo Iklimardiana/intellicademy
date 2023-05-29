@@ -21,6 +21,13 @@ class CourseController extends Controller
         return view('admin.courses.view', ['course' => $course]);
     }
 
+    public function indexGeneral()
+    {
+        $course = Course::get();
+
+        return view('courseGeneral.view', ['course' => $course]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,7 +71,7 @@ class CourseController extends Controller
     
         $course->save();
         // return response()->json($course);
-        return redirect('/course');
+        return redirect('/admin/course');
     }
 
     /**
@@ -141,7 +148,7 @@ class CourseController extends Controller
         $course->save();
         
         // return response()->json($course);
-        return redirect('/course');
+        return redirect('/admin/course');
     }
 
     /**
@@ -159,6 +166,6 @@ class CourseController extends Controller
 
         $course->delete();
 
-        return redirect('/course');
+        return redirect('/admin/course');
     }
 }

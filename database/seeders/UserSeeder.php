@@ -48,5 +48,14 @@ class UserSeeder extends Seeder
             'role' => '1',
             'avatar' => null
         ]);
+
+        User::create([
+            'username' => 'Admin',
+            'password' => bcrypt('admin'),
+            'email' => 'admin@gmail.com',
+            'phone' => '082222222222',
+            'role' => '0',
+            'avatar' => null
+        ]);
     }
 }

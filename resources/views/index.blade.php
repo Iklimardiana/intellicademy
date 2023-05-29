@@ -1,4 +1,9 @@
 @extends('layouts.master')
+@section('aside')
+@include('partials.aside')
+@endsection
 @section('content')
-    <img src="/images/landingpage.png" alt="landing page" class="img-thumbnail w-75">
+<div class="text-center">
+    <img src="/images/landingpage.png" alt="landing page" class="w-75">
+</div>
 @endsection
