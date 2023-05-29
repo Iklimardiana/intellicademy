@@ -21,8 +21,7 @@
                             <p class="card-text">{{ $item->description }}</p>
                             <div class="text-center">
                                 <a href="#" class="btn btn-info">Students</a>
-                                <a href="#" class="btn btn-primary">Modul</a>
-                                <a href="#" class="btn btn-info">Assignment</a>
+                                <a href="/teacher/modules/{{  $item->id }}" class="btn btn-primary">Modul</a>
                             </div>
                         </div>
                     </div>
