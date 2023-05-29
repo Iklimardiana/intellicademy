@@ -1,9 +1,11 @@
 @extends('layouts.master')
-
+@section('aside')
+    @include('partials.aside')
+@endsection
 @section('content')
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Nama Course</li>
+            <li class="breadcrumb-item active">Nama Modules</li>
         </ol>
     </div>
 
@@ -22,7 +24,7 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Attachment</th>
-                        <th>#</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,46 +32,59 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td>{{ $item->attachment }}</td>
+                            <td>{{ $item->body }}</td>
+                            @forelse ($item->attachment as  $a)
+                                @if ($a->type == 0)
+                                    <td>{{ $a->link }}</td>
+                                @break
+                            @endif
+                        @empty
                             <td>
-                                <a href="#" class="badge bg-warning">
-                                    <i data-feather="edit"></i>
-                                </a>
-                                <a href="#" class="badge bg-danger" onclick="lib.test()">
-                                    <i data-feather="trash"></i>
-                                </a>
+                                null
                             </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td>Modul are Empty</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                        @endforelse
 
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                    </li>
+                        <td>
+                            <a href="#" class="badge bg-warning">
+                                <i data-feather="edit"></i>
+                            </a>
+                            <a href="#" class="badge bg-danger" onclick="lib.test()">
+                                <i data-feather="trash"></i>
+                            </a>
+                             <a href="/teacher/assigment/{{ $item->id }}" class="badge bg-primary">
+                                <i data-feather="book-open"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td>Modul are Empty</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
 
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item" aria-current="page">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
 
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
+</div>
 @endsection
