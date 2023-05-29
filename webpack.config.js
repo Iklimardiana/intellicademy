@@ -89,6 +89,21 @@ module.exports = {
             template: "./front-end/src/template/teacher-dashboard/index.html",
         }),
         new HtmlWebpackPlugin({
+            filename: "teacher-dashboard/teacher-dashboard-courses.html",
+            template:
+                "./front-end/src/template/teacher-dashboard/teacher-dashboard-courses.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "teacher-dashboard/teacher-dashboard-course-detail.html",
+            template:
+                "./front-end/src/template/teacher-dashboard/teacher-dashboard-course-detail.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "teacher-dashboard/teacher-dashboard-module-add.html",
+            template:
+                "./front-end/src/template/teacher-dashboard/teacher-dashboard-module-add.html",
+        }),
+        new HtmlWebpackPlugin({
             filename: "courses.html",
             template: "./front-end/src/template/courses.html",
         }),
