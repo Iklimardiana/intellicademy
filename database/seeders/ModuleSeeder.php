@@ -15,11 +15,11 @@ class ModuleSeeder extends Seeder
     public function run()
     {
         $module = [
-            ['name' => 'Apa itu AI', 'desciption' => 'lorem', 'idCourse' => 1],
-            ['name' => 'Manfaat AI', 'desciption' => 'lorem', 'idCourse' => 1],
-            ['name' => 'Skenario AI', 'desciption' => 'lorem', 'idCourse' => 1],
-            ['name' => 'AI Lebih Jauh', 'desciption' => 'lorem', 'idCourse' => 2],
-            ['name' => 'Cara Merancang AI AI', 'desciption' => 'lorem', 'idCourse' => 2],
+            ['name' => 'Apa itu AI', 'body' => 'lorem', 'idCourse' => 1],
+            ['name' => 'Manfaat AI', 'body' => 'lorem', 'idCourse' => 1],
+            ['name' => 'Skenario AI', 'body' => 'lorem', 'idCourse' => 1],
+            ['name' => 'AI Lebih Jauh', 'body' => 'lorem', 'idCourse' => 2],
+            ['name' => 'Cara Merancang AI AI', 'body' => 'lorem', 'idCourse' => 2],
         ];
 
         DB::table('modules')->insert($module);
