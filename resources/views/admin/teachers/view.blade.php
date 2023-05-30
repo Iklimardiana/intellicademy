@@ -25,6 +25,7 @@
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>Phone</th>
+                        <th>Avatar</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -36,6 +37,9 @@
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
+                            <td>
+                                <img src="{{ asset($item->avatar) }}" alt="Avatar" class="rounded-circle" width="40">
+                            </td>
                             <td>
                                 <a href="#" class="badge bg-warning">
                                     <i data-feather="edit"></i>

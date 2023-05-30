@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('role', [0, 1, 2])->default(2);
             $table->string('phone');
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('images/avatar/avatarDefault.png');
             $table->rememberToken();
             $table->timestamps();
         });

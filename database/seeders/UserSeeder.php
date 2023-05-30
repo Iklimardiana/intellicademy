@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'andi@gmail.com',
             'phone' => '082222222222',
             'role' => '2',
-            'avatar' => null
+            'avatar' => 'images/avatar/avatarDefault.png',
         ]);
         User::create([
             'username' => 'Dian',
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'email' => 'pelajar@gmail.com',
             'phone' => '082222222222',
             'role' => '2',
-            'avatar' => null
+            'avatar' => 'images/avatar/avatarDefault.png',
         ]);
 
         User::create([
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             'email' => 'iklima@gmail.com',
             'phone' => '082222222222',
             'role' => '1',
-            'avatar' => null
+            'avatar' => 'images/avatar/avatarDefault.png',
         ]);
 
         User::create([
@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
             'email' => 'diana@gmail.com',
             'phone' => '082222222222',
             'role' => '1',
-            'avatar' => null
+            'avatar' => 'images/avatar/avatarDefault.png',
         ]);
 
         User::create([
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'phone' => '082222222222',
             'role' => '0',
-            'avatar' => null
+            'avatar' => 'images/avatar/avatarDefault.png',
         ]);
     }
 }
