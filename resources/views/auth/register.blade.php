@@ -85,6 +85,28 @@
                         </div>
                         <div class="row g-3 align-items-center mb-3">
                             <div class="col-md-4">
+                                <label for="inputFirstName" class="col-form-label">First Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="inputUsername" class="form-control" name="firstName" value="{{ old ('firstName')}}">
+                            </div>
+                            @error('firstName')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label for="inputLastName" class="col-form-label">Last Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="inputLastName" class="form-control" name="lastName" value="{{ old ('lastName')}}">
+                            </div>
+                            @error('lastName')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-md-4">
                                 <label for="inputPhone" class="col-form-label">Phone</label>
                             </div>
                             <div class="col-md-8">

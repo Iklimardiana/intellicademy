@@ -17,6 +17,8 @@ class RegisterController extends Controller
     {
         $request->validate([
             'username' => 'required|unique:users',
+            'firstName' => 'required',
+            'lastName',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'phone' => 'required',
@@ -24,6 +26,8 @@ class RegisterController extends Controller
 
         $user = new User;
         $user->username = $request->username;
+        $user->firstName = $request->firstName;
+        $user->lastName = $request->lastName;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->phone = $request->phone;
