@@ -18,7 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->string('description');
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail')->default('images/thumbnail/defaultThumbnail.png');
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

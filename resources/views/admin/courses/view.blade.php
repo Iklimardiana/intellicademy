@@ -36,7 +36,7 @@
                         <td>{{$item->price}}</td>
                         <td>{{$item->description}}</td>
                         <td>
-                            <img src="{{asset('/images/'. $item->thumbnail)}}"
+                            <img src="{{ asset($item->thumbnail) }}"
                                 class="img-fluid" width="100px">
                         </td>
                         <td>

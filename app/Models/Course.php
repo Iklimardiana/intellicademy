@@ -18,6 +18,10 @@ class Course extends Model
         'idUser',
     ];
 
+    protected $attributes = [
+        'thumbnail' => 'images/thumbnail/defaultThumbnail.png',
+    ];
+
     public function Module()
     {
         return $this->hasMany(Module::class, 'idCourse');
