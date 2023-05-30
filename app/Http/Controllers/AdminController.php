@@ -24,10 +24,36 @@ class AdminController extends Controller
         return view('admin.teachers.view', compact('teachers'));
     }
 
+    public function destroyTeacher($id)
+    {
+        $teachers = User::findOrFail($id);
+
+        if ($teachers->avatar != 'images/avatar/avatarDefault.png') {
+            File::delete(public_path($teachers->avatar));
+        }
+
+        $teachers->delete();
+
+        return redirect('/admin/teachers');
+    }
+
     public function students()
     {
         $students = User::where('role','2')->get();
 
         return view('admin.students.view', compact('students'));
+    }
+
+    public function destroyStudent($id)
+    {
+        $students = User::findOrFail($id);
+
+        if ($students->avatar != 'images/avatar/avatarDefault.png') {
+            File::delete(public_path($students->avatar));
+        }
+
+        $students->delete();
+
+        return redirect('/admin/students');
     }
 }

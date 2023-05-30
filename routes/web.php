@@ -31,7 +31,11 @@ Route::resource('/attachment', AttachmentController::class);
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard']);
     Route::get('/admin/teachers', [AdminController::class, 'teachers']);
+    Route::delete('/admin/teachers/{id}', [AdminController::class, 'destroyTeacher']);
+
     Route::get('/admin/students', [AdminController::class, 'students']);
+    Route::delete('/admin/students/{id}', [AdminController::class, 'destroyStudent']);
+    
     Route::resource('/admin/course', CourseController::class);
 });
 

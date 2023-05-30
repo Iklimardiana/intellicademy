@@ -41,12 +41,16 @@
                                 <img src="{{ asset($item->avatar) }}" alt="Avatar" class="rounded-circle" width="40">
                             </td>
                             <td>
-                                <a href="#" class="badge bg-warning">
+                                <a href="/admin/students/{{$item->id}}/edit" class="badge bg-warning p-1">
                                     <i data-feather="edit"></i>
                                 </a>
-                                <a href="#" class="badge bg-danger" onclick="lib.test()">
-                                    <i data-feather="trash"></i>
-                                </a>
+                                <form action="/admin/students/{{$item->id}}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="badge bg-danger p-1" style="border: none; background: none; padding: 0;">
+                                        <i data-feather="trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty
