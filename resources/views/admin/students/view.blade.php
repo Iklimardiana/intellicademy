@@ -21,6 +21,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Full Name</th>
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>Phone</th>
@@ -31,6 +32,7 @@
                     @forelse($students as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $item->firstName . ' ' . $item->lastName }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
