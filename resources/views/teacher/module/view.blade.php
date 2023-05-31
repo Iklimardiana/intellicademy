@@ -11,9 +11,14 @@
 
     <div class="card p-4">
         <div class="col-md-4">
-            <a href="/admin-dashboard-Modules-add.html" class="btn btn-success">
+            <a href="/teacher/modules/create" class="btn btn-success">
                 <i data-feather="plus"></i>
                 <span>Add Modules</span>
+            </a>
+
+            <a href="/teacher/courses/{{ Auth::user()->id }}" class="btn btn-warning">
+                <i data-feather="corner-down-left"></i>
+                <span>Back</span>
             </a>
         </div>
         <div class="col mt-3 table-responsive">

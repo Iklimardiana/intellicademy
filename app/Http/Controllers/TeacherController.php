@@ -78,6 +78,11 @@ class TeacherController extends Controller
         return view('teacher.module.view', compact('modules'));
     }
 
+    public function createModule()
+    {
+        return view('teacher.module.create');
+    }
+
     public function assigments($id)
     {
         $attachments = Attachment::where('idModule', $id)->where('type', 1)->get();
