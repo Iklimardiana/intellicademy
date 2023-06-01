@@ -57,6 +57,7 @@ Route::middleware('teacher')->group(function () {
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register/{key}', [RegisterController::class, 'verify'])->name('verify');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);

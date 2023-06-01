@@ -23,6 +23,8 @@ class UserSeeder extends Seeder
             'phone' => '082222222222',
             'role' => '2',
             'avatar' => 'images/avatar/avatarDefault.png',
+            'key' => null,
+            'active' => '1',
         ]);
         User::create([
             'username' => 'Dian',
@@ -33,6 +35,8 @@ class UserSeeder extends Seeder
             'phone' => '082222222222',
             'role' => '2',
             'avatar' => 'images/avatar/avatarDefault.png',
+            'key' => null,
+            'active' => '1',
         ]);
 
         User::create([
@@ -44,6 +48,8 @@ class UserSeeder extends Seeder
             'phone' => '082222222222',
             'role' => '1',
             'avatar' => 'images/avatar/avatarDefault.png',
+            'key' => null,
+            'active' => '1',
         ]);
 
         User::create([
@@ -55,6 +61,8 @@ class UserSeeder extends Seeder
             'phone' => '082222222222',
             'role' => '1',
             'avatar' => 'images/avatar/avatarDefault.png',
+            'key' => null,
+            'active' => '1',
         ]);
 
         User::create([
@@ -66,6 +74,8 @@ class UserSeeder extends Seeder
             'phone' => '082222222222',
             'role' => '0',
             'avatar' => 'images/avatar/avatarDefault.png',
+            'key' => null,
+            'active' => '1',
         ]);
     }
 }

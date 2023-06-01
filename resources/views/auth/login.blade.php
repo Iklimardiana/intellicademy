@@ -1,5 +1,11 @@
     @extends('layouts.master')
     @section('content')
+    @if (session()->has('message'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('message') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="card col-11 col-md-6 col-lg-4 pb-4">

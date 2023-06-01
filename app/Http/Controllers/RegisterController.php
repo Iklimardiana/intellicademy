@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\MailSend;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -15,6 +18,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        $str = Str::random(100);
         $request->validate([
             'username' => 'required|unique:users',
             'firstName' => 'required',
@@ -31,9 +35,38 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->phone = $request->phone;
+        $user->key = $str;
 
         $user->save();
+
+        $details = [
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'username' => $request->username,
+            'website' => 'IntelliCademy',
+            'role' => 'Student',
+            'datetime' => date('Y-m-d H:i:s'),
+            'url' => request()->getHttpHost() . '/register/' . $str
+        ];
+
+        Mail::to($request->email)->send(new MailSend($details));
         
-        return redirect('/login');
+        return redirect('/register')->with('message', 'Link verifikasi telah dikirim ke email Anda. Silahkan cek email untuk memverifikasi');
+    }
+
+    public function verify($key)
+    {
+        $keyCheck = User::select('key')
+            ->where('key', $key)
+            ->exists();
+
+            if($keyCheck){
+                $user = User::where('key', $key)->first();
+                $user->active = '1';
+                $user->save();
+                return redirect('/login')->with('message', 'Akun anda sudah aktif, silahkan login');;
+            }else{
+                return "Keys Tidak Valid";
+            }
     }
 }
