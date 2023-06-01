@@ -10,39 +10,29 @@
 const Quill = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
 
 const main = () => {
-    // const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
-    // sidebarDrawer.addEventListener("click", () => {
-    //     const sidebar = document.querySelector(".sidebar-course");
-    //     const main = document.querySelector("main");
-    //     main.classList.toggle("sidebar-opened");
-    //     sidebar.classList.toggle("hide");
-    // });
-
-    // const container = document.getElementById("editor");
-    // console.log(container);
-    // const editor = new Quill(container);
+  document.addEventListener("DOMContentLoaded", function() {
 
     var quill = new Quill("#editor-container", {
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, false] }],
-                ["bold", "italic", "underline"],
-                ["image", "code-block"],
-            ],
-        },
-        placeholder: "Compose an epic...",
-        theme: "snow", // or 'bubble'
+      modules: {
+        toolbar: [
+          [{ header: [1, 2, false] }],
+          ["bold", "italic", "underline"],
+          ["image", "code-block"],
+        ],
+      },
+      placeholder: "Compose an epic...",
+      theme: "snow", 
     });
 
-  //   var bodyInput = document.getElementById('body-input');
+    var form = document.getElementById("FormId");
 
-  //   document.querySelector('form').addEventListener('submit', function(e) {
-  //     e.preventDefault();
-
-  //     var delta = quill.getContents();
-  //     bodyInput.value = JSON.stringify(delta);
-  //     document.querySelector('form').submit();
-  // });
+    form.onsubmit = function() {
+      var textarea = document.getElementById('body-input');
+      // textarea.value = JSON.stringify(quill.getContents());
+      textarea.value = quill.root.innerHTML;
+      return true;
+    };
+  });
 };
 
 module.exports = main;

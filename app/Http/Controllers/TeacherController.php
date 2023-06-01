@@ -96,12 +96,14 @@ class TeacherController extends Controller
         $module = new Module;
 
         $module->name = $request->name;
-        $module->body = $request->body;
+        // $module->body = $request->body;
+        $module->body = $request->input('body');
+        // $module->body = json_encode($request->input('body'));
         $module->sequence = $request->sequence;
         $module->idCourse = $idCourse;
 
         $module->save();
-        dd($request->all());
+        // dd($request->all());
         return redirect('/teacher/modules/' . $idCourse);
     }
 

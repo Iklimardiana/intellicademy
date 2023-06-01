@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,7 @@ Route::middleware('teacher')->group(function () {
     route::post('/teacher/profile', [TeacherController::class, 'storeProfile']);
     route::get('/teacher/profile', [TeacherController::class, 'indexProfile']);
     route::get('/teacher/profile', [TeacherController::class, 'indexProfile']);
+    route::post('/upload-image', [ImageController::class, 'upload']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);
