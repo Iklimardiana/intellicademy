@@ -29,6 +29,7 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Attachment</th>
+                        <th>Sequence</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -48,7 +49,7 @@
                                 null
                             </td>
                         @endforelse
-
+                        <td>{{ $item->sequence}}</td>
                         <td>
                             <a href="#" class="badge bg-warning">
                                 <i data-feather="edit"></i>

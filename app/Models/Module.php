@@ -14,6 +14,7 @@ class Module extends Model
         'name',
         'body',
         'idCourse',
+        'sequence',
     ];
 
     public function Progres()

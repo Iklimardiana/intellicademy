@@ -10,12 +10,6 @@
     </div>
 
     <div class="card p-4">
-        <div class="col-md-4">
-            <a href="/admin-dashboard-students-add.html" class="btn btn-success">
-                <i data-feather="plus"></i>
-                <span>Add Students</span>
-            </a>
-        </div>
         <div class="col mt-3 table-responsive">
             <table class="table table-bordered">
                 <thead>
