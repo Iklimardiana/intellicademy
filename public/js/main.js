@@ -34,15 +34,15 @@ const main = () => {
         theme: "snow", // or 'bubble'
     });
 
-    var bodyInput = document.getElementById('body-input');
+  //   var bodyInput = document.getElementById('body-input');
 
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
+  //   document.querySelector('form').addEventListener('submit', function(e) {
+  //     e.preventDefault();
 
-      var delta = quill.getContents();
-      bodyInput.value = JSON.stringify(delta);
-      document.querySelector('form').submit();
-  });
+  //     var delta = quill.getContents();
+  //     bodyInput.value = JSON.stringify(delta);
+  //     document.querySelector('form').submit();
+  // });
 };
 
 module.exports = main;
