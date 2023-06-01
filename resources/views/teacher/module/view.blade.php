@@ -27,7 +27,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Description</th>
+                        {{-- <th>Description</th> --}}
                         <th>Attachment</th>
                         <th>Sequence</th>
                         <th>Action</th>
@@ -38,7 +38,7 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->body }}</td>
+                            {{-- <td>{{ $item->body }}</td> --}}
                             @forelse ($item->attachment as  $a)
                                 @if ($a->type == 0)
                                     <td>{{ $a->link }}</td>

@@ -26,7 +26,7 @@
             <div class="col mt-3">
                 <h3>Add a module on {{ $course->name }}</h3>
 
-                <form action="/teacher/modules/{{$course->id}}" method="POST" class="col-md-6">
+                <form id="FormId" action="/teacher/modules/{{$course->id}}" method="POST" class="col-md-6">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Sequence</label>
@@ -39,7 +39,7 @@
 
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <textarea id="body-input" name="body" style="display:none"></textarea>
+                        <textarea id="body-input" name="body" style="display: none"></textarea>
                         <div id="editor-container" style="min-height: 15rem; min-width:24.4rem"></div>
                     </div>
 
@@ -59,4 +59,3 @@
         </div>
     </div>
 @endsection
-
