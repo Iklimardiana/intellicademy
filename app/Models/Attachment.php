@@ -14,8 +14,10 @@ class Attachment extends Model
         'link',
         'category',
         'type',
+        'score',
         'idModule',
         'idCourse',
+        'idUser',
     ];
 
     public function Progres()
@@ -26,5 +28,10 @@ class Attachment extends Model
     public function Module()
     {
         return $this->belongsTo(Module::class, 'idModule'); 
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'idUser'); 
     }
 }

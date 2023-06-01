@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'idUser');
     }
+
+    public function Attachment()
+    {
+        return $this->hasMany(Attachment::class, 'idUser');
+    }
 }
