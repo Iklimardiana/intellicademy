@@ -11,7 +11,7 @@
 
     <div class="card p-4">
         <div class="col-md-4">
-            <a href="/teacher/modules/create" class="btn btn-success">
+            <a href="/teacher/modules/create/{{$course->id}}" class="btn btn-success">
                 <i data-feather="plus"></i>
                 <span>Add Modules</span>
             </a>

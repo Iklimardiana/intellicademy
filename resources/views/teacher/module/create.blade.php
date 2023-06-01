@@ -24,35 +24,27 @@
 
         <div class="card p-4">
             <div class="col mt-3">
-                <h3>Add a module on {Course Name}</h3>
+                <h3>Add a module on {{ $course->name }}</h3>
 
-                <form action="#" class="col-md-6">
+                <form action="/teacher/modules/{{$course->id}}" method="POST" class="col-md-6">
+                    @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Sequent</label>
-                        <input type="number" min=1 class="form-control" id="name" value="1">
-                        {{-- <input type="number" min=1 class="form-control is-invalid" id="name" value="1"> --}}
-                        {{-- <div id="validationServer03Feedback" class="invalid-feedback">
-                            Sequent 1 sudah ada
-                        </div> --}}
+                        <label for="name" class="form-label">Sequence</label>
+                        <input type="number" min=1 class="form-control" id="name" name="sequence" value="1">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Module Name</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="attachments" class="form-label">Attachments</label>
-                        <input class="form-control" id="attachments" type="file" id="formFileMultiple" multiple>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
 
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <div name="" id="editor-container" style="min-height: 15rem;"></div>
-                        <input type="text" name="editor" hidden>
+                        <textarea id="body-input" name="body" style="display:none"></textarea>
+                        <div id="editor-container" style="min-height: 15rem; min-width:24.4rem"></div>
                     </div>
 
                     <div class="mb-3">
-                        <a href="/teacher-dashboard/teacher-dashboard-course-detail.html" class="btn btn-warning">
+                        <a href="/teacher/modules/{{$course->id}}" class="btn btn-warning">
                             <i data-feather="corner-down-left"></i>
                             <span>Back</span>
                         </a>
@@ -67,3 +59,4 @@
         </div>
     </div>
 @endsection
+

@@ -13,6 +13,7 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <script defer src="{{asset ('js/main.js')}}"></script>
+    
     <link href="{{asset ('css/main.css')}}" rel="stylesheet">
 </head>
 

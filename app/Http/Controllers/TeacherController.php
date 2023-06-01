@@ -74,13 +74,35 @@ class TeacherController extends Controller
     public function modules($id)
     {
         $modules = Module::where('idCourse', $id)->get();
+        $course = Course::find($id);
 
-        return view('teacher.module.view', compact('modules'));
+        return view('teacher.module.view', compact('modules', 'course'));
     }
 
-    public function createModule()
+    public function createModule($idCourse)
     {
-        return view('teacher.module.create');
+        $course = Course::find($idCourse);
+        return view('teacher.module.create', compact('course'));
+    }
+
+    public function storeModule(Request $request, $idCourse)
+    {
+        $request->validate([
+            'sequence' => 'required',
+            'name'=> 'required',
+            'body'=> 'required'
+        ]);
+
+        $module = new Module;
+
+        $module->name = $request->name;
+        $module->body = $request->body;
+        $module->sequence = $request->sequence;
+        $module->idCourse = $idCourse;
+
+        $module->save();
+        dd($request->all());
+        return redirect('/teacher/modules/' . $idCourse);
     }
 
     public function assigments($id)
