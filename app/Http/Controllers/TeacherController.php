@@ -125,8 +125,51 @@ class TeacherController extends Controller
     public function editModule($id)
     {
         $module = Module::findOrFail($id);
+        $course = Course::findOrFail($module->idCourse);
         
-        return view('teacher.module.edit');
+        return view('teacher.module.edit', compact('module', 'course'));
+    }
+
+    public function updateModule(Request $request, $id)
+    {
+        $request->validate([
+            'sequence' => 'required',
+            'name' => 'required',
+            'body' => 'required'
+        ]);
+    
+        $module = Module::findOrFail($id);
+    
+        $newSequence = $request->sequence;
+    
+        $existingModule = Module::where('idCourse', $module->idCourse)
+            ->where('sequence', $newSequence)
+            ->where('id', '!=', $id) // Menambahkan kondisi agar tidak memeriksa modul yang sedang diperbarui
+            ->first();
+    
+        if ($existingModule) {
+            Module::where('idCourse', $module->idCourse)
+                ->where('sequence', '>=', $newSequence)
+                ->where('id', '!=', $id) // Menambahkan kondisi agar tidak memperbarui modul yang sedang diperbarui
+                ->increment('sequence');
+        }
+    
+        $module->sequence = $request->sequence;
+        $module->name = $request->name;
+        $module->body = $request->input('body');
+    
+        $module->save();
+    
+        return redirect('/teacher/modules/'.$module->idCourse);
+    }
+
+    public function destroyModule($id)
+    {
+        $module = Module::findOrFail($id);
+
+        $module->delete();
+
+        return redirect('/teacher/modules/'.$module->idCourse);
     }
 
     public function assigments($id)

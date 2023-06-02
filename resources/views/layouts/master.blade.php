@@ -16,6 +16,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/quill-image-upload@0.1.3/image-upload.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module"></script>
+
     <script defer src="{{asset ('js/main.js')}}"></script>
     
     <link href="{{asset ('css/main.css')}}" rel="stylesheet">

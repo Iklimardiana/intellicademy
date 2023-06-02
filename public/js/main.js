@@ -28,10 +28,10 @@ const main = () => {
 
     form.onsubmit = function() {
       var textarea = document.getElementById('body-input');
-      // textarea.value = JSON.stringify(quill.getContents());
       textarea.value = quill.root.innerHTML;
       return true;
     };
+
   });
 
   const sidebarDrawer = document.querySelector(".sidebar-course-drawer");

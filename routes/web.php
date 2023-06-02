@@ -50,9 +50,11 @@ Route::middleware('teacher')->group(function () {
 
     route::get('/teacher/modules/create/{idCourse}', [TeacherController::class, 'createModule']);
     route::get('/teacher/modules/{id}', [TeacherController::class, 'modules']);
+    route::put('/teacher/modules/{idCourse}', [TeacherController::class, 'updateModule']);
     route::post('/teacher/modules/{idCourse}', [TeacherController::class, 'storeModule']);
     route::get('/teacher/modules/{id}/edit', [TeacherController::class, 'editModule']);
     route::get('/teacher/modules/{id}/detail', [TeacherController::class, 'showModule']);
+    route::delete('/teacher/modules/{idCourse}', [TeacherController::class, 'destroyModule']);
 
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);
     

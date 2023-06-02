@@ -52,9 +52,13 @@
                             <a href="/teacher/modules/{{ $item->id }}/edit" class="badge bg-warning">
                                 <i data-feather="edit"></i>
                             </a>
-                            <a href="#" class="badge bg-danger" onclick="lib.test()">
-                                <i data-feather="trash"></i>
-                            </a>
+                            <form action="/teacher/modules/{{$item->id}}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="badge bg-danger p-1" style="border: none; background: none; padding: 0;">
+                                    <i data-feather="trash"></i>
+                                </button>
+                            </form>
                             <a href="/teacher/assigment/{{ $item->id }}" class="badge bg-primary">
                                 <i data-feather="book-open"></i>
                             </a>
