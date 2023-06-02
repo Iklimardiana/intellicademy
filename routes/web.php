@@ -45,16 +45,20 @@ route::get('/courses', [CourseController::class, 'indexGeneral']);
 Route::middleware('teacher')->group(function () {
     route::get('/teacher', [TeacherController::class, 'dashboard']);
     route::get('/teacher/students', [TeacherController::class, 'students']);
+
     route::get('/teacher/courses/{id}', [TeacherController::class, 'courses']);
+
     route::get('/teacher/modules/create/{idCourse}', [TeacherController::class, 'createModule']);
     route::get('/teacher/modules/{id}', [TeacherController::class, 'modules']);
     route::post('/teacher/modules/{idCourse}', [TeacherController::class, 'storeModule']);
+    route::get('/teacher/modules/{id}/detail', [TeacherController::class, 'showModule']);
+
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);
+    
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
     route::post('/teacher/profile', [TeacherController::class, 'storeProfile']);
     route::get('/teacher/profile', [TeacherController::class, 'indexProfile']);
     route::get('/teacher/profile', [TeacherController::class, 'indexProfile']);
-    route::post('/upload-image', [ImageController::class, 'upload']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);

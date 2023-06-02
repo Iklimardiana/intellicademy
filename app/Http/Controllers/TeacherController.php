@@ -96,15 +96,19 @@ class TeacherController extends Controller
         $module = new Module;
 
         $module->name = $request->name;
-        // $module->body = $request->body;
         $module->body = $request->input('body');
-        // $module->body = json_encode($request->input('body'));
         $module->sequence = $request->sequence;
         $module->idCourse = $idCourse;
 
         $module->save();
-        // dd($request->all());
+
         return redirect('/teacher/modules/' . $idCourse);
+    }
+
+    public function showModule($id)
+    {
+        $module = Module::findOrFail($id);
+        return view('teacher.module.show', compact('module'));
     }
 
     public function assigments($id)

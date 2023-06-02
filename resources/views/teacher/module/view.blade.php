@@ -5,7 +5,7 @@
 @section('content')
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Nama Modules</li>
+            <li class="breadcrumb-item active">Modules of {{ $course->name }}</li>
         </ol>
     </div>
 
@@ -22,12 +22,11 @@
             </a>
         </div>
         <div class="col mt-3 table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        {{-- <th>Description</th> --}}
                         <th>Attachment</th>
                         <th>Sequence</th>
                         <th>Action</th>
@@ -38,7 +37,6 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->name }}</td>
-                            {{-- <td>{{ $item->body }}</td> --}}
                             @forelse ($item->attachment as  $a)
                                 @if ($a->type == 0)
                                     <td>{{ $a->link }}</td>
@@ -57,8 +55,11 @@
                             <a href="#" class="badge bg-danger" onclick="lib.test()">
                                 <i data-feather="trash"></i>
                             </a>
-                             <a href="/teacher/assigment/{{ $item->id }}" class="badge bg-primary">
+                            <a href="/teacher/assigment/{{ $item->id }}" class="badge bg-primary">
                                 <i data-feather="book-open"></i>
+                            </a>
+                            <a href="/teacher/modules/{{ $item->id }}/detail" class="badge bg-success">
+                                <i data-feather="eye"></i>
                             </a>
                         </td>
                     </tr>
