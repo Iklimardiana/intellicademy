@@ -51,6 +51,7 @@ Route::middleware('teacher')->group(function () {
     route::get('/teacher/modules/create/{idCourse}', [TeacherController::class, 'createModule']);
     route::get('/teacher/modules/{id}', [TeacherController::class, 'modules']);
     route::post('/teacher/modules/{idCourse}', [TeacherController::class, 'storeModule']);
+    route::get('/teacher/modules/{id}/edit', [TeacherController::class, 'editModule']);
     route::get('/teacher/modules/{id}/detail', [TeacherController::class, 'showModule']);
 
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);

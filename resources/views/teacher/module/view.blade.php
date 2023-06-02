@@ -49,7 +49,7 @@
                         @endforelse
                         <td>{{ $item->sequence}}</td>
                         <td>
-                            <a href="#" class="badge bg-warning">
+                            <a href="/teacher/modules/{{ $item->id }}/edit" class="badge bg-warning">
                                 <i data-feather="edit"></i>
                             </a>
                             <a href="#" class="badge bg-danger" onclick="lib.test()">

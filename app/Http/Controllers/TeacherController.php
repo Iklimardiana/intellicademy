@@ -93,6 +93,17 @@ class TeacherController extends Controller
             'body'=> 'required'
         ]);
 
+        $newSequence = $request->sequence;
+
+        $existingModule = Module::where('idCourse', $idCourse)
+            ->where('sequence', $newSequence)->first();
+
+        if ($existingModule) {
+            Module::where('idCourse', $idCourse)
+                ->where('sequence', '>=', $newSequence)
+                ->increment('sequence');
+        }
+
         $module = new Module;
 
         $module->name = $request->name;
@@ -109,6 +120,13 @@ class TeacherController extends Controller
     {
         $module = Module::findOrFail($id);
         return view('teacher.module.show', compact('module'));
+    }
+
+    public function editModule($id)
+    {
+        $module = Module::findOrFail($id);
+        
+        return view('teacher.module.edit');
     }
 
     public function assigments($id)
