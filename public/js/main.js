@@ -10,29 +10,37 @@
 const Quill = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
 
 const main = () => {
-    // const container = document.getElementById("editor");
-    // console.log(container);
-    // const editor = new Quill(container);
+  document.addEventListener("DOMContentLoaded", function() {
 
     var quill = new Quill("#editor-container", {
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, false] }],
-                ["bold", "italic", "underline"],
-                ["image", "code-block"],
-            ],
-        },
-        placeholder: "Compose an epic...",
-        theme: "snow", // or 'bubble'
+      modules: {
+        toolbar: [
+          [{ header: [1, 2, false] }],
+          ["bold", "italic", "underline"],
+          ["image", "code-block"],
+        ],
+      },
+      placeholder: "Compose an epic...",
+      theme: "snow", 
     });
 
-    const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
-    sidebarDrawer.addEventListener("click", () => {
-        const sidebar = document.querySelector(".sidebar-course");
-        const main = document.querySelector("main");
-        main.classList.toggle("sidebar-opened");
-        sidebar.classList.toggle("hide");
-    });
+    var form = document.getElementById("FormId");
+
+    form.onsubmit = function() {
+      var textarea = document.getElementById('body-input');
+      textarea.value = quill.root.innerHTML;
+      return true;
+    };
+
+  });
+
+  const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
+  sidebarDrawer.addEventListener("click", () => {
+      const sidebar = document.querySelector(".sidebar-course");
+      const main = document.querySelector("main");
+      main.classList.toggle("sidebar-opened");
+      sidebar.classList.toggle("hide");
+  });
 };
 
 module.exports = main;

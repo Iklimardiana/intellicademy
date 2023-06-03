@@ -5,13 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IntelliCode</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <script defer src="main.js"></script>
-    <link href="main.css" rel="stylesheet">
+    <!-- Editor CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-upload@0.1.3/image-upload.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module"></script>
+
+    <script defer src="{{asset ('js/main.js')}}"></script>
+    
+    <link href="{{asset ('css/main.css')}}" rel="stylesheet">
 </head>
 
 <body>

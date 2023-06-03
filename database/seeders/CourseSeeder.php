@@ -18,7 +18,7 @@ class CourseSeeder extends Seeder
             'name' => 'AI for Beginner',
             'price' => 50000,
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam similique officia ipsum facilis a sint excepturi reiciendis doloremque eum iusto.',
-            'thumbnail' => null,
+            'thumbnail' => 'defaultThumbnail.png',
             'idUser' => 3,
         ]);
 
@@ -26,7 +26,7 @@ class CourseSeeder extends Seeder
             'name' => 'AI for Intermediate',
             'price' => 50000,
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam similique officia ipsum facilis a sint excepturi reiciendis doloremque eum iusto.',
-            'thumbnail' => null,
+            'thumbnail' => 'defaultThumbnail.png',
             'idUser' => 4,
         ]);
     }

@@ -11,19 +11,21 @@
 
     <div class="card p-4">
         <div class="col-md-4">
-            <a href="/admin-dashboard-teachers-add.html" class="btn btn-success">
+            <a href="/admin/teachers/create" class="btn btn-success">
                 <i data-feather="plus"></i>
                 <span>Add Teacher</span>
             </a>
         </div>
-        <div class="col mt-3">
+        <div class="col mt-3 table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Full Name</th>
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>Phone</th>
+                        <th>Avatar</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -31,16 +33,24 @@
                     @forelse($teachers as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $item->firstName . ' ' . $item->lastName }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>
-                                <a href="#" class="badge bg-warning">
+                                <img src="{{ asset($item->avatar) }}" alt="Avatar" class="rounded-circle" width="40">
+                            </td>
+                            <td>
+                                <a href="/admin/teachers/{{$item->id}}/edit" class="badge bg-warning p-1">
                                     <i data-feather="edit"></i>
                                 </a>
-                                <a href="#" class="badge bg-danger" onclick="lib.test()">
-                                    <i data-feather="trash"></i>
-                                </a>
+                                <form action="/admin/teachers/{{$item->id}}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="badge bg-danger p-1" style="border: none; background: none; padding: 0;">
+                                        <i data-feather="trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty

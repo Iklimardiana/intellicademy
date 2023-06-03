@@ -19,21 +19,21 @@
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Course Name</label>
-            <input type="text" class="form-control" name="name" id="name">
+            <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" name="price">
+            <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
             @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
+            <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
             @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -45,7 +45,7 @@
                 @forelse ($teachers as $teacher)
                     <option value="{{ $teacher->id }}">{{ $teacher->username }}</option>
                 @empty
-                    <option value="">Tidak ada Kategori</option>
+                    <option value="">There Are No Teachers</option>
                 @endforelse
             </select>
             @error('idUser')

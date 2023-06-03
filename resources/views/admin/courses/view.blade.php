@@ -16,7 +16,7 @@
             <span>Add Course</span>
         </a>
     </div>
-    <div class="col mt-3">
+    <div class="col mt-3 table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -36,7 +36,7 @@
                         <td>{{$item->price}}</td>
                         <td>{{$item->description}}</td>
                         <td>
-                            <img src="{{asset('/images/'. $item->thumbnail)}}"
+                            <img src="{{ asset('images/thumbnail/'.$item->thumbnail) }}"
                                 class="img-fluid" width="100px">
                         </td>
                         <td>

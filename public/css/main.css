@@ -1,0 +1,124 @@
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./front-end/src/styles/main.scss ***!
+  \*************************************************************************************************************************/
+.avatar {
+  width: 40px;
+}
+
+.navbar {
+  z-index: 99999;
+}
+.navbar .navbar-brand span {
+  font-weight: bold;
+}
+.navbar .navbar-brand h1 {
+  font-weight: lighter;
+  font-size: 2rem;
+}
+
+.dropdown-menu {
+  left: auto !important;
+  right: 0;
+}
+
+.sidebar-link {
+  text-decoration: none;
+}
+
+.dashboard-info-description {
+  font-size: 1rem;
+}
+
+.dashboard-info-number {
+  font-size: 3rem;
+}
+
+.page-title {
+  font-size: 1.25rem;
+}
+
+main.sidebar-opened {
+  margin-left: 20rem;
+}
+@media screen and (max-width: 1024px) {
+  main.sidebar-opened {
+    margin-left: 15rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  main.sidebar-opened {
+    margin-left: 0;
+  }
+}
+
+.footer-class {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.course-wrapper {
+  background-color: red;
+}
+
+.sidebar-course {
+  background-color: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 4.5rem;
+  bottom: 0;
+  z-index: 10;
+  transition: all 0.4s;
+  width: 22.5%;
+}
+.sidebar-course.hide {
+  left: -22.5%;
+}
+@media screen and (max-width: 768px) {
+  .sidebar-course {
+    width: 40%;
+  }
+  .sidebar-course.hide {
+    left: -40%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .sidebar-course {
+    width: 90%;
+  }
+  .sidebar-course.hide {
+    left: -90%;
+  }
+}
+.sidebar-course .sidebar-title {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.sidebar-course .sidebar-course-link {
+  text-decoration: none;
+  color: #363636;
+  padding: 10px;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.sidebar-course .sidebar-course-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.sidebar-course .sidebar-course-drawer {
+  position: absolute;
+  top: 5rem;
+  right: -2rem;
+}
+
+.btn-footer-course {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 5px 10px;
+}
+.btn-footer-course:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
