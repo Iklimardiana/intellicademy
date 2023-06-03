@@ -111,6 +111,10 @@ module.exports = {
             filename: "index.html",
             template: "./front-end/src/template/index.html",
         }),
+        new HtmlWebpackPlugin({
+            filename: "profile.html",
+            template: "./front-end/src/template/profile.html",
+        }),
         new MiniCssExtractPlugin(),
     ],
 };
