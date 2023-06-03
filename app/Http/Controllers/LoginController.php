@@ -21,7 +21,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if (Auth::user()->active == 0) {
+            if (Auth::user()->role == 2 && Auth::user()->active == 0) {
                 Auth::logout();
                 return back()->with('loginError', 'Silahkan verifikasi email anda terlebih dahulu');
             }

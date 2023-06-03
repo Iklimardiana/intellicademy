@@ -19,7 +19,7 @@ class Course extends Model
     ];
 
     protected $attributes = [
-        'thumbnail' => 'images/thumbnail/defaultThumbnail.png',
+        'thumbnail' => 'defaultThumbnail.png',
     ];
 
     public function Module()

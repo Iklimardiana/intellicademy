@@ -27,7 +27,7 @@
                     </div>
                 </div>
             @empty
-                <p>Tidak ada course yang tersedia.</p>
+                <p>There Are No Courses For You</p>
             @endforelse
         @endauth
     </div>

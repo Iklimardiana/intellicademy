@@ -11,7 +11,7 @@
 
     <div class="card p-4">
         <div class="col-md-4">
-            <a href="/admin-dashboard-teachers-add.html" class="btn btn-success">
+            <a href="/admin/teachers/create" class="btn btn-success">
                 <i data-feather="plus"></i>
                 <span>Add Teacher</span>
             </a>

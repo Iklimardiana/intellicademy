@@ -43,7 +43,6 @@
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
                         <textarea id="body-input" name="body" style="display: none">{{ $module->body }}</textarea>
-                        {{-- <textarea id="body-input" name="body">{{ $module->body }}</textarea> --}}
                         <div id="editor-container" style="min-height: 15rem; min-width:24.4rem">{!! $module->body !!}</div>
                     </div>
 

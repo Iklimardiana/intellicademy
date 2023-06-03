@@ -59,7 +59,7 @@ class CourseController extends Controller
         ]);
     
         $thumbnailName = time().'.'.$request->thumbnail->extension();
-        $request->thumbnail->move(public_path('images'), $thumbnailName);
+        $request->thumbnail->move(public_path('images/thumbnail/'), $thumbnailName);
     
         $course = new Course;
     
@@ -135,12 +135,12 @@ class CourseController extends Controller
         }
 
         if($request->has('thumbnail')) {
-            $path = "images/";
+            $path = "images/thumbnail/";
             file::delete($path . $course->thumbnail);
         
             $thumbnailName = time().'.'.$request->thumbnail->extension();  
            
-            $request->thumbnail->move(public_path('images'), $thumbnailName);  
+            $request->thumbnail->move(public_path('images/thumbnail/'), $thumbnailName);  
         
             $course->thumbnail = $thumbnailName;
         }
@@ -161,8 +161,9 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        $path = "images/";
-        file::delete($path . $course->thumbnail);
+        if ($course->thumbnail != 'thumbnailDefault.png') {
+            File::delete(public_path($course->thumbnail));
+        }
 
         $course->delete();
 
