@@ -61,9 +61,8 @@ Route::middleware('teacher')->group(function () {
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);
     
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
-    route::post('/teacher/profile', [TeacherController::class, 'storeProfile']);
-    route::get('/teacher/profile', [TeacherController::class, 'indexProfile']);
-    route::get('/teacher/profile', [TeacherController::class, 'indexProfile']);
+    route::put('/teacher/profile/{id}', [TeacherController::class, 'updateProfile']);
+    route::get('/teacher/profile/{id}', [TeacherController::class, 'indexProfile']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);

@@ -136,7 +136,10 @@ class CourseController extends Controller
 
         if($request->has('thumbnail')) {
             $path = "images/thumbnail/";
-            file::delete($path . $course->thumbnail);
+
+            if ($course->thumbnail && $course->thumbnail !== 'defaultThumbnail.png') {
+                File::delete($path . $course->thumbnail);
+            }
         
             $thumbnailName = time().'.'.$request->thumbnail->extension();  
            

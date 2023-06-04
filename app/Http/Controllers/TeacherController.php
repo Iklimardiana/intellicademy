@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Intervention\Image\Facades\Image;
 
 use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\Helper;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
@@ -34,41 +36,66 @@ class TeacherController extends Controller
         return view('teacher.course.view', compact('courses'));
     }
 
-    public function indexProfile()
+    public function indexProfile($id)
     {
-        $profile = User::where('idUser', $id)->get();
+        $profile = User::findOrFail($id);
 
-        return view('teacher.profile');
+        return view('profile.view', compact('profile'));
     }
 
     public function editProfile($id)
     {
         $profile = User::findOrFail($id);
 
-        return ('teacher.edit-profile');
+        return view('profile.edit-profile', compact('profile'));
     }
 
-    public function storeProfile(Request $request)
+    public function updateProfile(Request $request, $id)
     {
         $request->validate([
-            'username',
-            'email',
-            'avatar' => 'mimes:png,jpeg,jpg|max:2048',
-            'phone'
+            'username'=>'required',
+            'firstName'=>'required',
+            'lastName'=>'required',
+            'email'=>'required',
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'phone'=>'required'
         ]);
+    
+        $profile = User::findOrFail($id);
+    
+        if ($request->input('username') !== $profile->username) {
+            $profile->username = $request->input('username');
+        }
+        if ($request->input('firstName') !== $profile->firstName) {
+            $profile->firstName = $request->input('firstName');
+        }
+        if ($request->input('lastName') !== $profile->lastName) {
+            $profile->lastName = $request->input('lastName');
+        }
+        if ($request->input('email') !== $profile->email) {
+            $profile->email = $request->input('email');
+        }
+        if ($request->input('phone') !== $profile->phone) {
+            $profile->phone = $request->input('phone');
+        }
 
-        $avatarName = time().'.'.$request->avatar->extension();
-        $request->thumbnail->move(public_path('images/avatar/'), $avatarName);
+        if($request->has('avatar')) {
+            $path = "images/avatar/";
+
+            if ($profile->avatar && $profile->avatar !== 'avatarDefault.png') {
+                File::delete($path . $profile->avatar);
+            }
+        
+            $avatarName = time().'.'.$request->avatar->extension();  
+           
+            $request->avatar->move(public_path('images/avatar/'), $avatarName);  
+        
+            $profile->avatar = $avatarName;
+        }
     
-        $user = new User;
-    
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->avatar = $avatarName;
-        $user->phone = $phone;
-    
-        $user->save();
-        return redirect('/teacher/profile');
+        $profile->save();
+
+        return redirect('/teacher/profile/'.$profile->id);
     }
 
     public function modules($id)
@@ -108,6 +135,7 @@ class TeacherController extends Controller
 
         $module->name = $request->name;
         $module->body = $request->input('body');
+        // $module->name = Helper::processBase64Images($request->input('body'));
         $module->sequence = $request->sequence;
         $module->idCourse = $idCourse;
 

@@ -10,6 +10,7 @@
 const Quill = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
 
 const main = () => {
+  
   document.addEventListener("DOMContentLoaded", function() {
 
     var quill = new Quill("#editor-container", {
