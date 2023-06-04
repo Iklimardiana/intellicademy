@@ -8,7 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AttachmentController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +63,10 @@ Route::middleware('teacher')->group(function () {
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
     route::put('/teacher/profile/{id}', [TeacherController::class, 'updateProfile']);
     route::get('/teacher/profile/{id}', [TeacherController::class, 'indexProfile']);
+});
+
+Route::middleware('student')->group(function () {
+    Route::get('/student', [StudentController::class, 'dashboard']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);
