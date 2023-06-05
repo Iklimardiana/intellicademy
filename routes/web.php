@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\StudentController;
 
 /*
@@ -76,3 +77,8 @@ Route::get('/register/{key}', [RegisterController::class, 'verify'])->name('veri
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::get('/forgot', [ResetPasswordController::class, 'forgot_password']);
+Route::post('/forgot', [ResetPasswordController::class, 'store']);
+Route::get('/reset/{key}', [ResetPasswordController::class, 'verify'])->name('verify');
+Route::post('/reset', [ResetPasswordController::class, 'reset']);

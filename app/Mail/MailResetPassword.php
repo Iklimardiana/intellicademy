@@ -7,11 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailSend extends Mailable
+class MailResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
-
     /**
      * Create a new message instance.
      *
@@ -29,8 +28,8 @@ class MailSend extends Mailable
      */
     public function build()
     {
-        return $this->subject('Verifikasi Akun')
-                    ->view('mail.verifikasiAkunTemplate');
+        return $this->subject('Reset Password')
+                    ->view('mail.resetPasswordTemplate');
     }
 
     public function attachments()

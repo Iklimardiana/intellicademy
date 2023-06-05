@@ -53,6 +53,7 @@
                         </div>
                     </div>
                     <div class="d-grid text-center">
+                        <a href="/forgot" class="my-3">Forgot password ?</a>
                         <button type="submit" class="btn btn-primary">Login</button>
                         <p class="my-2">or</p>
                         <a href="/register" class="btn btn-warning">Register</a>

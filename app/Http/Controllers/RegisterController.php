@@ -19,25 +19,6 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $str = Str::random(100);
-        $request->validate([
-            'username' => 'required|unique:users',
-            'firstName' => 'required',
-            'lastName',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'required',
-        ]);
-
-        $user = new User;
-        $user->username = $request->username;
-        $user->firstName = $request->firstName;
-        $user->lastName = $request->lastName;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->phone = $request->phone;
-        $user->key = $str;
-
-        $user->save();
 
         $details = [
             'firstName' => $request->firstName,
@@ -50,8 +31,33 @@ class RegisterController extends Controller
         ];
 
         Mail::to($request->email)->send(new MailSend($details));
+
+        if(Mail::failures()){
+            return back()->with('eror', 'Terjadi kesalahan silahkan coba lagi');
+        }else{
+            $request->validate([
+                'username' => 'required|unique:users',
+                'firstName' => 'required',
+                'lastName',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string|min:8|confirmed',
+                'phone' => 'required',
+            ]);
+    
+            $user = new User;
+            $user->username = $request->username;
+            $user->firstName = $request->firstName;
+            $user->lastName = $request->lastName;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->phone = $request->phone;
+            $user->key = $str;
+    
+            $user->save();
+            return redirect('/register')->with('message', 'Link verifikasi telah dikirim ke email Anda. Silahkan cek email untuk memverifikasi');
+        }
         
-        return redirect('/register')->with('message', 'Link verifikasi telah dikirim ke email Anda. Silahkan cek email untuk memverifikasi');
+        
     }
 
     public function verify($key)

@@ -32,7 +32,7 @@ class LoginController extends Controller
             }elseif(Auth::user()->role == 1){
                 return redirect()->intended('/teacher');
             }else{
-                return redirect()->intended('/student');
+                return redirect()->intended('/');
             }
         }
 
