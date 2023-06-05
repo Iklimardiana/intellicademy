@@ -20,7 +20,7 @@
                             <label for="inputEmail" class="col-form-label">Email</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" id="inputEmail" class="form-control" name="email" value="{{ $resetPassword->email }}">
+                            <input type="text" id="inputEmail" class="form-control" name="email" value="{{ $resetPassword->email }}" disabled>
                         </div>
                     </div>
                 </div>

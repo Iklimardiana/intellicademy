@@ -53,6 +53,10 @@ class ResetPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
         $user->password = bcrypt($request->password);
         $user->save();
+
+        $resetPassword = ResetPassword::where('email', $request->email)->first();
+        $resetPassword->delete();
+
         return redirect('/login')->with('message','Password berhsail direset');
     }
 }
