@@ -38,7 +38,7 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>
-                                <img src="{{ asset($item->avatar) }}" alt="Avatar" class="rounded-circle" width="40">
+                                <img src="{{ asset('images/avatar/'.$item->avatar) }}" alt="Avatar" class="rounded-circle" width="40">
                             </td>
                             <td>
                                 <a href="/admin/teachers/{{$item->id}}/edit" class="badge bg-warning p-1">
@@ -47,7 +47,7 @@
                                 <form action="/admin/teachers/{{$item->id}}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="badge bg-danger p-1" style="border: none; background: none; padding: 0;">
+                                    <button type="submit" class="badge bg-danger p-1" onclick="deleteData(event, '/admin/teachers/{{$item->id}}')" style="border: none; background: none; padding: 0;">
                                         <i data-feather="trash"></i>
                                     </button>
                                 </form>

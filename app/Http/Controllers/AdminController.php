@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Course;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 
@@ -62,7 +63,7 @@ class AdminController extends Controller
     {
         $teachers = User::findOrFail($id);
 
-        if ($teachers->avatar != 'images/avatar/avatarDefault.png') {
+        if ($teachers->avatar != 'avatarDefault.png') {
             File::delete(public_path($teachers->avatar));
         }
 
@@ -82,7 +83,7 @@ class AdminController extends Controller
     {
         $students = User::findOrFail($id);
 
-        if ($students->avatar != 'images/avatar/avatarDefault.png') {
+        if ($students->avatar != 'avatarDefault.png') {
             File::delete(public_path($students->avatar));
         }
 

@@ -50,7 +50,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'avatar' => 'images/avatar/avatarDefault.png',
+        'avatar' => 'avatarDefault.png',
     ];
 
     public function Progres()

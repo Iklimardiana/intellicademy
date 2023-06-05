@@ -46,7 +46,7 @@
                             <form action="/admin/course/{{$item->id}}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="badge bg-danger p-1" style="border: none; background: none; padding: 0;">
+                                <button type="submit" class="badge bg-danger p-1" onclick="deleteData(event, '/admin/course/{{$item->id}}')" style="border: none; background: none; padding: 0;">
                                     <i data-feather="trash"></i>
                                 </button>
                             </form>
