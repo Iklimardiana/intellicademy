@@ -10,6 +10,14 @@
 const Quill = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
 
 const main = () => {
+    // const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
+    // sidebarDrawer.addEventListener("click", () => {
+    //     const sidebar = document.querySelector(".sidebar-course");
+    //     const main = document.querySelector("main");
+    //     main.classList.toggle("sidebar-opened");
+    //     sidebar.classList.toggle("hide");
+    // });
+
     // const container = document.getElementById("editor");
     // console.log(container);
     // const editor = new Quill(container);
@@ -24,14 +32,6 @@ const main = () => {
         },
         placeholder: "Compose an epic...",
         theme: "snow", // or 'bubble'
-    });
-
-    const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
-    sidebarDrawer.addEventListener("click", () => {
-        const sidebar = document.querySelector(".sidebar-course");
-        const main = document.querySelector("main");
-        main.classList.toggle("sidebar-opened");
-        sidebar.classList.toggle("hide");
     });
 };
 
