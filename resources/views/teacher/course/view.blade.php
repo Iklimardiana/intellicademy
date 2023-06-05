@@ -14,7 +14,7 @@
             @forelse ($courses as $item)
                 <div class="col-sm-6 mb-3">
                     <div class="card">
-                        <img src="{{ asset( $item->thumbnail) }}" class="card-img-top" alt="landingpage"
+                        <img src="{{ asset('images/thumbnail/'.$item->thumbnail) }}" class="card-img-top" alt="landingpage"
                             style="max-height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->name }}</h5>

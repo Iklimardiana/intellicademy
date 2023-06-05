@@ -44,6 +44,18 @@
                      </a>
                  </div>
              @endif
+             @if (auth()->user()->role==2)
+                <div class="bg-body-tertiary rounded-3 p-4">
+                    <figure class="text-center">
+                        <blockquote class="blockquote">
+                            <p>“Kalau mau menunggu sampai siap, kita akan menghabiskan sisa hidup kita hanya untuk menunggu.”</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mt-2">
+                            <cite title="Source Title">Lemony Snicket</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+             @endif
          </div>
      </aside>
  @endauth

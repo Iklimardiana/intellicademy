@@ -23,13 +23,21 @@
                         <i data-feather="user"></i>
                     </a>
                     <ul class="dropdown-menu">
-
-                        <form action="/profile">
-                            <button class="dropdown-item" type="submit">
-                                <!-- <i data-feather="log-out"></i> -->
-                                Profile
-                            </button>
-                        </form>
+                        <li>
+                            @if (Auth::user()->role == '1')
+                            <form action="/teacher/profile/{{ Auth::user()->id }}">
+                                <button class="dropdown-item">
+                                    Profile
+                                </button>
+                            </form>
+                        @elseif (Auth::user()->role == '2')
+                            <form action="/student/profile/{{ Auth::user()->id }}">
+                                <button class="dropdown-item">
+                                    Profile
+                                </button>
+                            </form>
+                        @endif
+                        </li>
                         <li>
                             <form action="/logout">
                                 <button class="dropdown-item" type="submit">
