@@ -20,7 +20,7 @@
                             <label for="inputEmail" class="col-form-label">Email</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" id="inputEmail" class="form-control" name="email" value="{{ $resetPassword->email }}" disabled>
+                            <input type="text" id="inputEmail" class="form-control" name="email" value="{{ $resetPassword->email }}" readonly>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,14 @@
                             <label for="inputPassword" class="col-form-label">Password</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="password" id="inputPassword" class="form-control" name="password">
+                            <input type="password" id="password" class="form-control @error('password') is-invalid                        
+                            @enderror" name="password"  placeholder="Password" />
+                        
+                            @error('password')
+                                <div class="invalid-feedback">
+                                {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
