@@ -60,10 +60,17 @@
                     </div>
                 </div>
                 <div class="row my-3">
-                    <a href="/teacher/profile/{{$profile->id}}/edit" class="btn btn-success">
-                        <i data-feather="edit"></i>
-                        <span>Edit Profile</span>
-                    </a>
+                    @if (Auth::user()->role == '1')
+                        <a href="/teacher/profile/{{$profile->id}}/edit" class="btn btn-success">
+                            <i data-feather="edit"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                    @else
+                        <a href="/student/profile/{{$profile->id}}/edit" class="btn btn-success">
+                            <i data-feather="edit"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                    @endif
                 </div>
 
             </div>

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Intervention\Image\Facades\Image;
 
 use App\Models\Attachment;
 use Illuminate\Http\Request;

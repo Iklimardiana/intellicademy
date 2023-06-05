@@ -10,7 +10,7 @@
                 <img src="{{ asset('images/avatar/'.$profile->avatar) }}" alt="Avatar" class="img-fluid">
             </div>
             <div class="col-7">
-                <form action="/teacher/profile/{{$profile->id}}" method="POST" enctype="multipart/form-data">
+                <form action="@if (Auth::user()->role == '1') /teacher/profile/{{$profile->id}} @else /student/profile/{{$profile->id}} @endif" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="row my-3">
