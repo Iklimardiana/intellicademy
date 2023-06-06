@@ -11,15 +11,17 @@ class MailSend extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
+    public $url;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $url)
     {
         $this->details = $details;
+        $this->url = $url;
     }
 
     /**
@@ -30,7 +32,7 @@ class MailSend extends Mailable
     public function build()
     {
         return $this->subject('Verifikasi Akun')
-                    ->view('mail.verifikasiAkunTemplate');
+                    ->markdown('mail.verifikasiAkunTemplate');
     }
 
     public function attachments()

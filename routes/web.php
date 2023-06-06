@@ -83,5 +83,5 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/forgot', [ResetPasswordController::class, 'forgot_password']);
 Route::post('/forgot', [ResetPasswordController::class, 'store']);
-Route::get('/reset/{key}', [ResetPasswordController::class, 'verify'])->name('verify');
+Route::get('/reset/{token}', [ResetPasswordController::class, 'verify'])->name('verify');
 Route::post('/reset', [ResetPasswordController::class, 'reset']);

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,4 +21,21 @@
         Terima kasih 
     </p>
 </body>
-</html>
+</html> --}}
+
+@component('mail::message')
+<p>
+    <b> Hello !!</b>  
+</p> 
+<p>
+    Your are receiving this email because we received a password reset request for your account
+</p>
+
+@component('mail::button', ['url' => 'http://127.0.0.1:8000/reset/'.$details['key'] ])
+    Reset Password
+@endcomponent
+
+Thanks, <br>
+IntelliCademy
+
+@endcomponent

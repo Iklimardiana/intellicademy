@@ -27,10 +27,13 @@ class RegisterController extends Controller
             'website' => 'IntelliCademy',
             'role' => 'Student',
             'datetime' => date('Y-m-d H:i:s'),
-            'url' => request()->getHttpHost() . '/register/' . $str
+            'url' => request()->getHttpHost() . '/register/' . $str,
+            'key' => $str
         ];
 
-        Mail::to($request->email)->send(new MailSend($details));
+        $url = request()->getHttpHost() . '/register/' . $str;
+
+        Mail::to($request->email)->send(new MailSend($details, $url));
 
         if(Mail::failures()){
             return back()->with('eror', 'Terjadi kesalahan silahkan coba lagi');
@@ -69,6 +72,7 @@ class RegisterController extends Controller
             if($keyCheck){
                 $user = User::where('key', $key)->first();
                 $user->active = '1';
+                $user->email_verified_at = date('Y-m-d H:i:s');
                 $user->save();
                 return redirect('/login')->with('message', 'Akun anda sudah aktif, silahkan login');;
             }else{

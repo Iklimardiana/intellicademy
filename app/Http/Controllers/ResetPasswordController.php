@@ -22,7 +22,8 @@ class ResetPasswordController extends Controller
         $details = [
             'website' => 'IntelliCademy',
             'datetime' => date('Y-m-d H:i:s'),
-            'url' => request()->getHttpHost() . '/reset/' . $str
+            'url' => request()->getHttpHost() . '/reset/' . $str,
+            'key' => $str
         ];
 
         Mail::to($request->email)->send(new MailResetPassword($details));
