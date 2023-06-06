@@ -39,12 +39,22 @@
                             <td>{{ $item->name }}</td>
                             @forelse ($item->attachment as  $a)
                                 @if ($a->type == 0)
-                                    <td>{{ $a->link }}</td>
+                                    <td>
+                                        @if ($a->category==0)
+                                        <a href="{{ $a->link }}" class="badge bg-danger">
+                                     <i data-feather="file"></i>
+                                     @elseif ($a->category==1)
+                                      <a href="{{ $a->link }}" class="badge bg-danger">
+                                     <i data-feather="youtube"></i>
+                                        @endif
+                                    </td>
                                 @break
                             @endif
                         @empty
                             <td>
-                                null
+                                 <a href="#" class="badge bg-success">
+                                <i data-feather="file-plus"></i>
+                            </a>
                             </td>
                         @endforelse
                         <td>{{ $item->sequence}}</td>
@@ -60,7 +70,7 @@
                                 </button>
                             </form>
                             <a href="/teacher/assigment/{{ $item->id }}" class="badge bg-primary">
-                                <i data-feather="book-open"></i>
+                                <i data-feather="file-text"></i>
                             </a>
                             <a href="/teacher/modules/{{ $item->id }}/detail" class="badge bg-success">
                                 <i data-feather="eye"></i>
