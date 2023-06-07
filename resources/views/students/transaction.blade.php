@@ -3,19 +3,22 @@
     <div class="container">
         <div class="row gap-4">
             <h1 class="mt-4">Transaksi</h1>
-            @forelse ($course as $item)
+            @foreach ( $transaction as $t )
                 <div class="card col-12 col-md-5 col-lg-3 pt-2">
-                    <img src="{{asset('/images/'. $item->thumbnail)}}" class="card-img-top" alt="course image">
+                    {{-- {{ dd($t->Course) }} --}}
+                    @if($t->Course->thumbnail == null)
+                        <img src="{{asset('/images/landingpage.png')}}" class="card-img-top" alt="course image">
+                    @else
+                        <img src="{{asset('/images/'. $t->Course->thumbnail)}}" class="card-img-top" alt="course image">
+                    @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{$item->name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{$item->price}}</h6>
-                        <p class="card-text">{{$item->description}}</p>
+                        <h5 class="card-title">{{$t->Course->name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{$t->Course->price}}</h6>
+                        <p class="card-text">{{$t->Course->description}}</p>
                         <a href="#" class="btn btn-primary">Pay!</a>
                     </div>
                 </div>
-            @empty
-                <h1 class="mt-4 text-center">There Are No Transaction</h1>
-            @endforelse
+            @endforeach
         </div>
 
         <nav class="mt-4">

@@ -38,6 +38,16 @@
                             </form>
                         @endif
                         </li>
+                        @if (Auth::user()->role == '2')
+                            <li>
+                                <form action="/student/transaction">
+                                    <button class="dropdown-item">
+                                        Transaction
+                                    </button>
+                                </form>
+                            </li>
+                        @endif
+                        <hr>
                         <li>
                             <form action="/logout">
                                 <button class="dropdown-item" type="submit">

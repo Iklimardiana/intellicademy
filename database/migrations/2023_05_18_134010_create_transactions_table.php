@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('verification');
+            $table->enum('verification', [0,1])->default('0');
             $table->unsignedBigInteger('idCourse');
             $table->unsignedBigInteger('idUser');
             $table->foreign('idCourse')->references('id')->on('courses')->onDelete('cascade');

@@ -5,11 +5,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,7 @@ Route::middleware('student')->group(function () {
     Route::get('student/profile/{id}', [StudentController::class, 'indexProfile']);
     Route::put('student/profile/{id}', [StudentController::class, 'updateProfile']);
     Route::get('student/profile/{id}/edit', [StudentController::class, 'editProfile']);
+    Route::get('student/transaction', [TransactionController::class, 'index']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);
@@ -85,3 +87,4 @@ Route::get('/forgot', [ResetPasswordController::class, 'forgot_password']);
 Route::post('/forgot', [ResetPasswordController::class, 'store']);
 Route::get('/reset/{token}', [ResetPasswordController::class, 'verify'])->name('verify');
 Route::post('/reset', [ResetPasswordController::class, 'reset']);
+
