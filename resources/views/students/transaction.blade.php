@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row gap-4">
-            <h1 class="mt-4">Transaksi</h1>
+            <h1 class="mt-4">Transaction</h1>
             @foreach ( $transaction as $t )
                 <div class="card col-12 col-md-5 col-lg-3 pt-2">
                     {{-- {{ dd($t->Course) }} --}}
@@ -15,7 +15,7 @@
                         <h5 class="card-title">{{$t->Course->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{$t->Course->price}}</h6>
                         <p class="card-text">{{$t->Course->description}}</p>
-                        <a href="#" class="btn btn-primary">Pay!</a>
+                        <button class="btn btn-success">Print Invoice</button>
                     </div>
                 </div>
             @endforeach
@@ -36,4 +36,6 @@
         </nav>
 
     </div>
+
+
 @endsection
