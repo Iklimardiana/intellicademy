@@ -30,10 +30,17 @@
     <div class="container mt-4">
         <div class="row">
             @yield('aside')
-            {{-- @include('partials.aside') --}}
-            <main class="col mt-3 mt-lg-0">
-                @yield('content')
-            </main>
+            @if (Request::is('student/learning-page'))
+                <div class="row justify-content-center">
+                    <main class="col-md-10 mt-3 px-4 with-sidebar">
+                        @yield('content')
+                    </main>
+                </div>
+            @else
+                <main class="col mt-3 mt-lg-0">
+                    @yield('content')
+                </main>
+            @endif
         </div>
 
     </div>

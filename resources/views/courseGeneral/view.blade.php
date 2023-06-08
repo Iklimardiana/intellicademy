@@ -6,7 +6,7 @@
             <h1 class="mt-4">Courses</h1>
             @forelse ($course as $item)
                 <div class="card col-12 col-md-5 col-lg-3 pt-2">
-                    <img src="{{asset('/images/'. $item->thumbnail)}}" class="card-img-top" alt="course image">
+                    <img src="{{asset('/images/thumbnail/'. $item->thumbnail)}}" class="card-img-top" alt="course image">
                     <div class="card-body">
                         <h5 class="card-title">{{$item->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{$item->price}}</h6>

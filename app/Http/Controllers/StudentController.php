@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\File;
+use App\Controllers\CourseController;
+
+use App\Models\User;
+use App\Models\Course;
 
 class StudentController extends Controller
 {
     public function dashboard()
     {
         $id = Auth::user()->id;
+        $courses = Course::get();
 
-        return view('students.dashboard');
+        return view('students.dashboard', compact('courses'));
     }
 
     public function indexProfile($id)
@@ -76,5 +80,10 @@ class StudentController extends Controller
         $profile->save();
 
         return redirect('/student/profile/'.$profile->id);
+    }
+
+    public function learningPage()
+    {
+        return view('students.learningPage');
     }
 }

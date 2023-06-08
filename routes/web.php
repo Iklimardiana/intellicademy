@@ -73,6 +73,7 @@ Route::middleware('student')->group(function () {
     Route::put('student/profile/{id}', [StudentController::class, 'updateProfile']);
     Route::get('student/profile/{id}/edit', [StudentController::class, 'editProfile']);
     Route::get('student/transaction', [TransactionController::class, 'index']);
+    Route::get('student/learning-page', [StudentController::class, 'learningPage']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);
