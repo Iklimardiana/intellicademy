@@ -11,7 +11,10 @@
                         <h5 class="card-title">{{$item->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{$item->price}}</h6>
                         <p class="card-text">{{$item->description}}</p>
-                        <a href="#" class="btn btn-primary">Beli Kelas</a>
+                        <form action="/checkout/{{ $item->id }}" method="post">
+                            @csrf
+                            <button class="btn btn-primary" type="submit">Beli Kelas</button>
+                        </form> 
                     </div>
                 </div>
             @empty

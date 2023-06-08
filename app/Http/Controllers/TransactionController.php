@@ -5,14 +5,61 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class TransactionController extends Controller
 {
-public function index()
+    public function index()
     {
         $id = Auth::user()->id;
         $transaction = Transaction::where('idUser', $id)->get();
         // dd($transaction);
         return view('students.transaction', compact('transaction'));
     }
+    
+    public function checkout($id){
+        $id_user = Auth::user()->id;
+
+        $transaction = new Transaction;
+        $transaction->idCourse = $id;
+        $transaction->idUSer = $id_user;
+        $transaction->save();
+
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $transaction->id,
+                'gross_amount' => $transaction->Course->price,
+            ),
+            'customer_details' => array(
+                'first_name' => Auth::user()->firstName,
+                'last_name' => Auth::user()->lastName,
+                'email' => Auth::user()->email,
+                'phone' => Auth::user()->phone,
+            ),
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        return view('students.checkout', compact('transaction', 'snapToken'));
+    }
+
+    public function callback(Request $request){
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        if($hashed == $request->signature_key){
+            if($request->transaction_status == 'capture'){
+                $transaction = Transaction::find($request->order_id);
+                $transaction->update(['verification' => '1']);
+            }
+        }
+    }
 }
+

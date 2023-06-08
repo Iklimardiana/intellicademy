@@ -69,10 +69,12 @@ Route::middleware('teacher')->group(function () {
 
 Route::middleware('student')->group(function () {
     Route::get('/student', [StudentController::class, 'dashboard']);
-    Route::get('student/profile/{id}', [StudentController::class, 'indexProfile']);
-    Route::put('student/profile/{id}', [StudentController::class, 'updateProfile']);
-    Route::get('student/profile/{id}/edit', [StudentController::class, 'editProfile']);
-    Route::get('student/transaction', [TransactionController::class, 'index']);
+    Route::get('/student/profile/{id}', [StudentController::class, 'indexProfile']);
+    Route::put('/student/profile/{id}', [StudentController::class, 'updateProfile']);
+    Route::get('/student/profile/{id}/edit', [StudentController::class, 'editProfile']);
+    Route::get('/student/transaction', [TransactionController::class, 'index']);
+    Route::post('/checkout/{id}', [TransactionController::class, 'checkout']);
+    
     Route::get('student/learning-page', [StudentController::class, 'learningPage']);
 });
 
