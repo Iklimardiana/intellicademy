@@ -6,18 +6,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Controllers\CourseController;
+use App\Controllers\TeacherController;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Module;
 
 class StudentController extends Controller
 {
     public function dashboard()
     {
         $id = Auth::user()->id;
-        $courses = Course::get();
+
+        $courses = Course::with('Module')->get();
 
         return view('students.dashboard', compact('courses'));
+
+        // return view('students.dashboard', compact('courses', 'modules'));
     }
 
     public function indexProfile($id)
@@ -82,8 +87,16 @@ class StudentController extends Controller
         return redirect('/student/profile/'.$profile->id);
     }
 
-    public function learningPage()
+    public function learningPage(Request $request, $id)
     {
-        return view('students.learningPage');
+        $user = Auth::user();
+        $sequence = $request->input('sequence', 1);
+
+        $course = Course::findOrFail($id);
+        $module = $course->Module()->where('sequence', $sequence)->first();
+
+        $currentSequence = $module ? $module->sequence : null;
+    
+        return view('students.learningPage', compact('module', 'course', 'currentSequence'));
     }
 }

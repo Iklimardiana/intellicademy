@@ -35,7 +35,7 @@
     <div class="container mt-4">
         <div class="row">
             @yield('aside')
-            @if (Request::is('student/learning-page'))
+            @if (Request::is('student/learning-page/*'))
                 <div class="row justify-content-center">
                     <main class="col-md-10 mt-3 px-4 with-sidebar">
                         @yield('content')
