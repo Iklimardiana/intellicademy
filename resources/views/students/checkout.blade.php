@@ -8,7 +8,7 @@
                     @if($transaction->Course->thumbnail == null)
                         <img src="{{asset('/images/landingpage.png')}}" class="card-img-top" alt="course image">
                     @else
-                        <img src="{{asset('/images/'. $transaction->Course->thumbnail)}}" class="card-img-top" alt="course image">
+                        <img src="{{asset('/images/thumbnail/'. $transaction->Course->thumbnail)}}" class="card-img-top" alt="course image">
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{$transaction->Course->name}}</h5>
