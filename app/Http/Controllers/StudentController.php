@@ -11,6 +11,7 @@ use App\Controllers\TeacherController;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Transaction;
 
 class StudentController extends Controller
 {
@@ -18,9 +19,10 @@ class StudentController extends Controller
     {
         $id = Auth::user()->id;
 
-        $courses = Course::with('Module')->get();
+        $transaction = Transaction::where('idUser', $id)->get();
+        $courses = Course::get();
 
-        return view('students.dashboard', compact('courses'));
+        return view('students.dashboard', compact('transaction'));
 
         // return view('students.dashboard', compact('courses', 'modules'));
     }

@@ -99,7 +99,8 @@ class TeacherController extends Controller
 
     public function modules($id)
     {
-        $modules = Module::where('idCourse', $id)->get();
+        $modules = Module::where('idCourse', $id)
+                ->orderBy('sequence', 'ASC')->get();
         $course = Course::find($id);
 
         return view('teacher.module.view', compact('modules', 'course'));

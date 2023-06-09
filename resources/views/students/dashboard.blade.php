@@ -20,13 +20,13 @@
         <div class="tab-pane fade show active" id="on-going-tab-pane" role="tabpanel" aria-labelledby="on-going-tab"
             tabindex="0">
             <div class="row gap-2 mt-3 " style="margin-left: 2rem!important">
-                @forelse ($courses as $course)
+                @forelse ($transaction as $t)
                     <div class="card col-12 col-md-5 pt-2">
-                        <img src="{{asset ('/images/thumbnail/'.$course->thumbnail)}}" class="card-img-top" alt="...">
+                        <img src="{{asset ('/images/thumbnail/'.$t->Course->thumbnail)}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{$course->name}}</h5>
-                            <p class="card-text">{{$course->description}}</p>
-                            <a href="/student/learning-page/{{ $course->id }}?sequence=1" class="btn btn-primary">Lanjutkan Belajar</a>
+                            <h5 class="card-title">{{$t->Course->name}}</h5>
+                            <p class="card-text">{{$t->Course->description}}</p>
+                            <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Lanjutkan Belajar</a>
                         </div>
                     </div>
                 @empty
