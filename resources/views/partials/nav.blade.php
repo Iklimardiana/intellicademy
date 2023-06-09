@@ -25,6 +25,27 @@
                     <ul class="dropdown-menu">
                         <li>
                             @if (Auth::user()->role == '1')
+                                <form action="/teacher">
+                                <button class="dropdown-item">
+                                    Dashboard
+                                </button>
+                            </form>
+                            @elseif (Auth::user()->role == '2')
+                                <form action="/student">
+                                <button class="dropdown-item">
+                                    Dashboard
+                                </button>
+                            </form>
+                            @else
+                                <form action="/admin">
+                                <button class="dropdown-item">
+                                    Dashboard
+                                </button>
+                            </form>
+                            @endif
+                        </li>
+                        <li>
+                            @if (Auth::user()->role == '1')
                             <form action="/teacher/profile/{{ Auth::user()->id }}">
                                 <button class="dropdown-item">
                                     Profile
