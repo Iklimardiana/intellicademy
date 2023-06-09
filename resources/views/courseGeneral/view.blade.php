@@ -6,15 +6,26 @@
             <h1 class="mt-4">Courses</h1>
             @forelse ($course as $item)
                 <div class="card col-12 col-md-5 col-lg-3 pt-2">
+
                     <img src="{{asset('/images/thumbnail/'. $item->thumbnail)}}" class="card-img-top" alt="course image">
                     <div class="card-body">
                         <h5 class="card-title">{{$item->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{$item->price}}</h6>
                         <p class="card-text">{{$item->description}}</p>
-                        <form action="/checkout/{{ $item->id }}" method="post">
-                            @csrf
-                            <button class="btn btn-primary" type="submit">Beli Kelas</button>
-                        </form> 
+                        @auth
+                            @if (Auth::user()->role == '2')
+
+                                @if ( $item->Transaction->isEmpty() ) 
+                                    <form action="/checkout/{{ $item->id }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-primary" type="submit">Beli Kelas</button>
+                                    </form>
+                                @else
+                                <button class="btn btn-secondary" disabled>Sudah dibeli</button>
+                                @endif
+
+                            @endif
+                        @endauth 
                     </div>
                 </div>
             @empty

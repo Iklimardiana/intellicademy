@@ -22,7 +22,7 @@
             <div class="row gap-2 mt-3 " style="margin-left: 2rem!important">
                 @forelse ($transaction as $t)
                     <div class="card col-12 col-md-5 pt-2">
-                        <img src="{{asset ('/images/thumbnail/'.$t->Course->thumbnail)}}" class="card-img-top" alt="...">
+                        <img src="{{asset ('/images/thumbnail/'.$t->Course->thumbnail)}}" class="card-img-top" alt="thumbnail {{ $t->Course->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{$t->Course->name}}</h5>
                             <p class="card-text">{{$t->Course->description}}</p>
