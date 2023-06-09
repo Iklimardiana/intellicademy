@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -23,6 +25,17 @@ class CourseController extends Controller
 
     public function indexGeneral()
     {
+        
+        if(Auth::check()){
+            $id = Auth::user()->id;
+            $course = Course::get();
+            $transaction = Transaction::where('idUser', $id)->get();
+
+            return view('courseGeneral.view', [
+                'course' => $course,
+                'transaction' => $transaction,
+            ]);
+        }
         $course = Course::get();
 
         return view('courseGeneral.view', ['course' => $course]);
