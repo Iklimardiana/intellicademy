@@ -47,7 +47,10 @@
                         @if ($currentSequence < $course->module->count())
                         <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
                            class="btn-footer-course">Selanjutnya</a>
-                    @endif
+                        @elseif($currentSequence == $course->module->count())
+                        <a href="/student"
+                            class="btn-footer-course">Kembali ke Dashboard</a>
+                        @endif
                     </div>
                 </div>
             </div>

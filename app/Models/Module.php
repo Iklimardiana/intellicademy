@@ -17,11 +17,6 @@ class Module extends Model
         'sequence',
     ];
 
-    public function Progres()
-    {
-        return $this->hasOne(Progres::class, 'idModule');
-    }
-
     public function Attachment()
     {
         return $this->hasMany(Attachment::class, 'idModule');

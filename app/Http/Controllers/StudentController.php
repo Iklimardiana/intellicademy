@@ -10,6 +10,7 @@ use App\Controllers\TeacherController;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Progres;
 use App\Models\Module;
 use App\Models\Transaction;
 
@@ -22,8 +23,9 @@ class StudentController extends Controller
         $transaction = Transaction::where('idUser', $id)
                         ->where('verification','1')->get();
         $courses = Course::get();
+        $progres = Progres::where('idUSer', $id)->get();
 
-        return view('students.dashboard', compact('transaction'));
+        return view('students.dashboard', compact('transaction', 'progres'));
 
         // return view('students.dashboard', compact('courses', 'modules'));
     }
@@ -92,14 +94,31 @@ class StudentController extends Controller
 
     public function learningPage(Request $request, $id)
     {
-        $user = Auth::user();
+        $user = Auth::user()->id;
         $sequence = $request->input('sequence', 1);
 
         $course = Course::findOrFail($id);
         $module = $course->Module()->where('sequence', $sequence)->first();
 
         $currentSequence = $module ? $module->sequence : null;
+
+        $currentProgres = Progres::where('idUser', $user)->where('idCourse', $id)->first();
+
+        if($currentProgres){
+            if($currentProgres->sequence < $currentSequence)
+            $currentProgres->sequence = $currentSequence;
+
+            $currentProgres->save();
+        }else{
+            $progres = new Progres;
     
-        return view('students.learningPage', compact('module', 'course', 'currentSequence'));
+            $progres->idUSer = $user;
+            $progres->idCourse = $id;
+            $progres->sequence = 1;
+
+            $progres->save();
+        }
+    
+        return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence'));
     }
 }

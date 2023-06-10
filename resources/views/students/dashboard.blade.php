@@ -26,7 +26,17 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$t->Course->name}}</h5>
                             <p class="card-text">{{$t->Course->description}}</p>
-                            <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Lanjutkan Belajar</a>
+                            @php
+                            $currentProgres = $progres->where('idCourse', $t->Course->id)->first();
+                            @endphp
+                            @if ($t->course->Progres->isEmpty())
+                            <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
+                            @elseif ($currentProgres->sequence == $t->Course->Module->count())
+                            <a href="#" class="btn btn-success">Selesai</a>
+                            @else
+                            <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgres->sequence }}" class="btn btn-primary">Lanjutkan Belajar</a>
+                            @endif
+                            {{-- <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Lanjutkan Belajar</a> --}}
                         </div>
                     </div>
                 @empty

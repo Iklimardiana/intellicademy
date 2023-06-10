@@ -20,11 +20,6 @@ class Attachment extends Model
         'idUser',
     ];
 
-    public function Progres()
-    {
-        return $this->hasOne(Progres::class, 'idAttachment');
-    }
-
     public function Module()
     {
         return $this->belongsTo(Module::class, 'idModule'); 

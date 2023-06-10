@@ -12,26 +12,14 @@ class Progres extends Model
 
     protected $fillable = [
         'status',
-        'score',
-        'idAttachment',
+        'sequence',
         'idUser',
-        'idModule',
         'idCourse',
     ];
-
-    public function Attachment()
-    {
-        return $this->belongsTo(Attachment::class, 'idAttachment'); 
-    }
 
     public function Module()
     {
         return $this->belongsTo(Module::class, 'idModule'); 
-    }
-
-    public function Course()
-    {
-        return $this->belongsTo(Course::class, 'idCourse'); 
     }
 
     public function User()

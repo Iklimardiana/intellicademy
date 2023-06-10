@@ -14,14 +14,14 @@ class ProgresSeeder extends Seeder
      */
     public function run()
     {
-        $progres = [
-            ['idUser' => 1, 'idCourse' => 1, 'idModule' => 1, 'status' => '1'],
-            ['idUser' => 1, 'idCourse' => 1, 'idModule' => 2, 'status' => '1'],
-            ['idUser' => 1, 'idCourse' => 1, 'idModule' => 3, 'status' => '0'],
-            ['idUser' => 1, 'idCourse' => 2, 'idModule' => 4, 'status' => '1'],
-            ['idUser' => 1, 'idCourse' => 2, 'idModule' => 4, 'status' => '1'],
-        ];
+        // $progres = [
+        //     ['idUser' => 1, 'idCourse' => 1, 'idModule' => 1, 'status' => '1'],
+        //     ['idUser' => 1, 'idCourse' => 1, 'idModule' => 2, 'status' => '1'],
+        //     ['idUser' => 1, 'idCourse' => 1, 'idModule' => 3, 'status' => '0'],
+        //     ['idUser' => 1, 'idCourse' => 2, 'idModule' => 4, 'status' => '1'],
+        //     ['idUser' => 1, 'idCourse' => 2, 'idModule' => 4, 'status' => '1'],
+        // ];
 
-        DB::table('progres')->insert($progres);
+        // DB::table('progres')->insert($progres);
     }
 }
