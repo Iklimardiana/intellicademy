@@ -11,6 +11,7 @@ class Transaction extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'id',
         'verification',
         'idCourse',
         'idUser',

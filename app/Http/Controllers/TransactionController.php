@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 
 class TransactionController extends Controller
@@ -18,9 +19,11 @@ class TransactionController extends Controller
     }
     
     public function checkout($id){
+        $str = Str::random(10);
         $id_user = Auth::user()->id;
 
         $transaction = new Transaction;
+        $transaction->id = $str;
         $transaction->idCourse = $id;
         $transaction->idUSer = $id_user;
         $transaction->save();
