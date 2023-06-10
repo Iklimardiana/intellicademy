@@ -19,7 +19,8 @@ class StudentController extends Controller
     {
         $id = Auth::user()->id;
 
-        $transaction = Transaction::where('idUser', $id)->get();
+        $transaction = Transaction::where('idUser', $id)
+                        ->where('verification','1')->get();
         $courses = Course::get();
 
         return view('students.dashboard', compact('transaction'));
