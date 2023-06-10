@@ -11,7 +11,7 @@ class Attachment extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'link',
+        'assignment',
         'category',
         'type',
         'score',

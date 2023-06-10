@@ -11,7 +11,7 @@
 
     <div class="card p-4">
         <div class="col-md-4">
-            <a href="/teacher/modules/create/{{$course->id}}" class="btn btn-success">
+            <a href="/teacher/modules/create/{{ $course->id }}" class="btn btn-success">
                 <i data-feather="plus"></i>
                 <span>Add Modules</span>
             </a>
@@ -37,35 +37,45 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->name }}</td>
-                            @forelse ($item->attachment as  $a)
+                            <td>
+                                <a href="/attachment/create" class="badge bg-success">
+                                    <i data-feather="paperclip"></i>
+                                </a>
+                            </td>
+                            {{-- @forelse ($item->attachment as  $a)
                                 @if ($a->type == 0)
                                     <td>
-                                        @if ($a->category==0)
-                                        <a href="{{ $a->link }}" class="badge bg-danger">
-                                     <i data-feather="file"></i>
-                                     @elseif ($a->category==1)
-                                      <a href="{{ $a->link }}" class="badge bg-danger">
-                                     <i data-feather="youtube"></i>
-                                        @endif
+                                        <a href="/attachment/create" class="badge bg-success">
+                                            <i data-feather="paperclip"></i>
+                                        </a>
+                                        {{-- @if ($a->category == 0)
+                                            <a href="{{ $a->link }}" class="badge bg-danger">
+                                            <i data-feather="file"></i>
+                                        @elseif ($a->category == 1)
+                                            <a href="{{ $a->link }}" class="badge bg-danger">
+                                            <i data-feather="youtube"></i>
+                                        @endif --}
                                     </td>
                                 @break
-                            @endif
-                        @empty
-                            <td>
-                                 <a href="#" class="badge bg-success">
-                                <i data-feather="file-plus"></i>
-                            </a>
-                            </td>
-                        @endforelse
-                        <td>{{ $item->sequence}}</td>
+                                @endif
+                            @empty
+                                <td>
+                                    <a href="#" class="badge bg-success">
+                                        <i data-feather="paperclip"></i>
+                                    </a>
+                                </td>
+                            @endforelse --}}
+                        <td>{{ $item->sequence }}</td>
                         <td>
                             <a href="/teacher/modules/{{ $item->id }}/edit" class="badge bg-warning">
                                 <i data-feather="edit"></i>
                             </a>
-                            <form action="/teacher/modules/{{$item->id}}" method="POST" style="display: inline;">
+                            <form action="/teacher/modules/{{ $item->id }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="badge bg-danger p-1" onclick="deleteData(event, '/teacher/modules/{{$item->id}}')" style="border: none; background: none; padding: 0;">
+                                <button type="submit" class="badge bg-danger p-1"
+                                    onclick="deleteData(event, '/teacher/modules/{{ $item->id }}')"
+                                    style="border: none; background: none; padding: 0;">
                                     <i data-feather="trash"></i>
                                 </button>
                             </form>

@@ -61,6 +61,7 @@ Route::middleware('teacher')->group(function () {
     route::delete('/teacher/modules/{idCourse}', [TeacherController::class, 'destroyModule']);
 
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);
+    Route::resource('/teacher/attachment', AttachmentController::class);
     
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
     route::put('/teacher/profile/{id}', [TeacherController::class, 'updateProfile']);

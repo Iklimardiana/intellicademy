@@ -25,8 +25,9 @@ class AttachmentController extends Controller
      */
     public function create()
     {
-        $attachment = Attachment::all();
-        return response()->json($attachment);
+        $attachments = Attachment::all();
+
+        return view('teacher.attachment.create', compact('attachments'));
     }
 
     /**
@@ -38,23 +39,27 @@ class AttachmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'link' => 'required',
+            'assignment' => 'required',
+            'score',
             'category' => 'required',
             'type' => 'required',
             'idModule' => 'required',
             'idCourse' => 'required',
+            'idUser',
         ]);
 
         $attachment = new Attachment();
 
-        $attachment->link = $request->link;
+        $attachment->assignment = $request->assignment;
+        $attachment->score = $request->score;
         $attachment->category = $request->category;
         $attachment->type = $request->type;
         $attachment->idModule = $request->idModule;
         $attachment->idCourse = $request->idCourse;
+        $attachmant->idUser = $attachment->idUser;
 
         $attachment->save();
-        return redirect('/attachment');
+        return redirect('/teacher/modules/{id}');
     }
 
     /**
@@ -92,7 +97,7 @@ class AttachmentController extends Controller
     {
         $attachment = Attachment::findOrFail($id);
 
-        $attachment->link = $request->link;
+        $attachment->assignment = $request->assignment;
         $attachment->category = $request->category;
         $attachment->type = $request->type;
         $attachment->idModule = $request->idModule;

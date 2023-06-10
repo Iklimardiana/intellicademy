@@ -17,8 +17,8 @@ class AttachmentSeeder extends Seeder
     public function run()
     {
         $attachment = [
-            ['link' => 'notepad.com', 'idCourse' => 1, 'idModule' => 3, 'category' => '1', 'type' => '0', 'idUser' => '3', 'score' => null],
-            ['link' => 'notepad.com', 'idCourse' => 1, 'idModule' => 3, 'category' => '1', 'type' => '1', 'idUser' => '1', 'score' => '90'],
+            ['assignment' => 'notepad.com', 'idCourse' => 1, 'idModule' => 3, 'category' => '1', 'type' => '0', 'idUser' => '3', 'score' => null],
+            ['assignment' => 'notepad.com', 'idCourse' => 1, 'idModule' => 3, 'category' => '1', 'type' => '1', 'idUser' => '1', 'score' => '90'],
         ];
 
         DB::table('attachments')->insert($attachment);

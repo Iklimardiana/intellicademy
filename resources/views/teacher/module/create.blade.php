@@ -6,16 +6,6 @@
     <div class="col mt-3 mt-lg-0">
         <div aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="/teacher-dashboard/teacher-dashboard-courses.html">
-                        Courses
-                    </a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="/teacher-dashboard/teacher-dashboard-course-detail.html">
-                        Course Name
-                    </a>
-                </li>
                 <li class="breadcrumb-item active">
                     Add module
                 </li>

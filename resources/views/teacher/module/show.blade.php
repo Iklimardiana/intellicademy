@@ -19,19 +19,5 @@
                 @endif
             @endforeach
         </div>
-
-
-        <div class="card-footer">
-            <div class="container-fluid">
-                <div class="row justify-content-between">
-                    <div class="col">
-                        <a href="" class="btn-footer-course">Kembali</a>
-                    </div>
-                    <div class="col" style="text-align:right">
-                        <a href="" class="btn-footer-course">Selanjutnya</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
