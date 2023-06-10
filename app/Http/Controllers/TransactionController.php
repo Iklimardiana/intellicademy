@@ -19,7 +19,7 @@ class TransactionController extends Controller
     }
     
     public function checkout($id){
-        $str = Str::random(10);
+        $str = mt_rand(1000000000, 9999999999);
         $id_user = Auth::user()->id;
 
         $transaction = new Transaction;
