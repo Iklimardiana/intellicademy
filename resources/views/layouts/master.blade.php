@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module"></script>
 
     <script defer src="{{ asset('js/main.js') }}"></script>
-
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
     <script type="text/javascript"
