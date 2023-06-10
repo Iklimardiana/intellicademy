@@ -136,7 +136,6 @@ class TeacherController extends Controller
 
         $module->name = $request->name;
         $module->body = $request->input('body');
-        // $module->name = Helper::processBase64Images($request->input('body'));
         $module->sequence = $request->sequence;
         $module->idCourse = $idCourse;
 

@@ -42,29 +42,6 @@
                                     <i data-feather="paperclip"></i>
                                 </a>
                             </td>
-                            {{-- @forelse ($item->attachment as  $a)
-                                @if ($a->type == 0)
-                                    <td>
-                                        <a href="/attachment/create" class="badge bg-success">
-                                            <i data-feather="paperclip"></i>
-                                        </a>
-                                        {{-- @if ($a->category == 0)
-                                            <a href="{{ $a->link }}" class="badge bg-danger">
-                                            <i data-feather="file"></i>
-                                        @elseif ($a->category == 1)
-                                            <a href="{{ $a->link }}" class="badge bg-danger">
-                                            <i data-feather="youtube"></i>
-                                        @endif --}
-                                    </td>
-                                @break
-                                @endif
-                            @empty
-                                <td>
-                                    <a href="#" class="badge bg-success">
-                                        <i data-feather="paperclip"></i>
-                                    </a>
-                                </td>
-                            @endforelse --}}
                         <td>{{ $item->sequence }}</td>
                         <td>
                             <a href="/teacher/modules/{{ $item->id }}/edit" class="badge bg-warning">
