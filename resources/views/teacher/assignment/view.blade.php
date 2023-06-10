@@ -5,7 +5,7 @@
 @section('content')
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">List Students</li>
+            <li class="breadcrumb-item active">List Assignment Students</li>
         </ol>
     </div>
 
@@ -16,23 +16,25 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
-                        <th>E-Mail</th>
-                        <th>Phone</th>
-                        <th>Status</th>
+                        <th>Assignment</th>
+                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($transaction as $key => $item)
+                    @forelse($attachments as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->User->username }}</td>
-                            <td>{{ $item->User->email }}</td>
-                            <td>{{ $item->User->phone }}</td>
-                            <td>Complete</td>
+                            <td>
+                                <a href="{{ $item->assignment }}" class="badge bg-danger">
+                                    <i data-feather="paperclip"></i>
+                                </a>
+                            </td>
+                            <td>{{ $item->score }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Students are Empty</td>
+                            <td>Assignment are Empty</td>
                         </tr>
                     @endforelse
                 </tbody>
