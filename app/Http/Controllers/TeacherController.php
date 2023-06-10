@@ -9,6 +9,7 @@ use App\Helpers\Helper;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Transaction;
 
 class TeacherController extends Controller
 {
@@ -21,11 +22,11 @@ class TeacherController extends Controller
         return view('teacher.dashboard', compact('courseCount', 'studentCount'));
     }
 
-    public function students()
+    public function students($id)
     {
         $students = User::where('role','2')->get();
-
-        return view('teacher.student.view', compact('students'));
+        $transaction = Transaction::where('idCourse', $id)->get();
+        return view('teacher.student.view', compact('transaction'));
     }
 
     public function courses($id)
