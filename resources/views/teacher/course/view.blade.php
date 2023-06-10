@@ -20,7 +20,7 @@
                             <h5 class="card-title">{{ $item->name }}</h5>
                             <p class="card-text">{{ $item->description }}</p>
                             <div class="text-center">
-                                <a href="#" class="btn btn-info">Students</a>
+                                <a href="/teacher/students/{{ $item->id }}" class="btn btn-info">Students</a>
                                 <a href="/teacher/modules/{{  $item->id }}" class="btn btn-primary">Modul</a>
                             </div>
                         </div>
