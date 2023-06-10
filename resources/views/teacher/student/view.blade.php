@@ -22,12 +22,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($students as $key => $item)
+                    @forelse($transaction as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->username }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->phone }}</td>
+                            <td>{{ $item->User->username }}</td>
+                            <td>{{ $item->User->email }}</td>
+                            <td>{{ $item->User->phone }}</td>
                             <td>Complete</td>
                         </tr>
                     @empty
