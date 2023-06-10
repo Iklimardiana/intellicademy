@@ -29,13 +29,15 @@
                             @php
                             $currentProgres = $progres->where('idCourse', $t->Course->id)->first();
                             @endphp
-                            @if ($t->course->Progres->isEmpty())
+
+                            @if (!$t->Course->Module)
                             <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
-                            @elseif ($currentProgres->sequence == $t->Course->Module->count())
+                            @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count())
                             <a href="#" class="btn btn-success">Selesai</a>
                             @else
-                            <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgres->sequence }}" class="btn btn-primary">Lanjutkan Belajar</a>
+                            <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgres ? $currentProgres->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
                             @endif
+                            
                             {{-- <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Lanjutkan Belajar</a> --}}
                         </div>
                     </div>
