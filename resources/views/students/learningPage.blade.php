@@ -44,15 +44,34 @@
                                             </a>
                                         </td>
                                         <td class="col-6">
-                                            <form action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}" method="POST" style="display: inline;" enctype="multipart/form-data">
+                                            <form
+                                                action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
+                                                id="uploadForm" method="POST" style="display: inline;"
+                                                enctype="multipart/form-data">
                                                 @csrf
-                                                <label for="assignment" class="badge bg-warning p-1" style="cursor: pointer;">
-                                                    <i data-feather="upload"></i>
-                                                    <input type="file" name="assignment" id="assignment" style="display: none;"
-                                                        onchange="confirmUpload(event)">
+                                                @if ($submission->where('idModule', $currentModuleId)->where('type', 1)->where('idUser', Auth::user()->id)->isEmpty())
+                                                    <form
+                                                        action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
+                                                        id="uploadForm" method="POST" style="display: inline;"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <label for="assignment" id="uploadLabel"
+                                                            class="badge bg-warning p-1" style="cursor: pointer;">
+                                                            <i data-feather="upload"></i>
+                                                            <input type="file" name="assignment" id="assignment"
+                                                                style="display: none;" onchange="confirmUpload(event)">
+                                                        </label>
+                                                    </form>
+                                                @else
+                                                    <label for="assignment" id="uploadLabel" class="badge bg-secondary p-1"
+                                                        style="cursor: pointer;">
+                                                        <i data-feather="upload"></i>
+                                                        <input type="file" name="assignment" id="assignment"
+                                                            style="display: none;" disabled>
+                                                    </label>
+                                                @endif
                                                 </label>
-                                            </form>
-                                            <span id="uploadConfirmation" style="display: none;">File uploaded</span>
+                                                <span id="uploadConfirmation" style="display: none;">File uploaded</span>
                                         </td>
                                     </tr>
                                 @endif
@@ -62,41 +81,42 @@
                 </div>
             </div>
             @if ($submission->where('idModule', $currentModuleId)->where('type', 1)->where('idUser', Auth::user()->id)->isNotEmpty())
-    <div class="d-flex justify-content-center">
-        <table class="table table-bordered text-center m-2">
-            <thead>
-                <tr>
-                    <th colspan="2">Your Submission</th>
-                </tr>
-            </thead>
-            <thead>
-                <tr>
-                    <th>Your File</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($submission as $item)
-                    @if ($item->idModule == $currentModuleId)
-                        <tr>
-                            <td class="col-6">
-                                <a href="{{ asset ('attachment/submission/' . $item->assignment) }}" class="badge bg-primary" download>
-                                    <i data-feather="file"></i>
-                                </a>
-                            </td>
-                            <td class="col-6">
-                                <p>90</p>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    @endif
+                <div class="d-flex justify-content-center">
+                    <table class="table table-bordered text-center m-2">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Your Submission</th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>Your File</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($submission as $item)
+                                @if ($item->idModule == $currentModuleId)
+                                    <tr>
+                                        <td class="col-6">
+                                            <a href="{{ asset('attachment/submission/' . $item->assignment) }}"
+                                                class="badge bg-primary" download>
+                                                <i data-feather="file"></i>
+                                            </a>
+                                        </td>
+                                        <td class="col-6">
+                                            <p>90</p>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     @endif
-    
+
     <div class="card">
         <div class="card-body">
             @php

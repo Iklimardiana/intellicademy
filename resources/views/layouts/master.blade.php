@@ -115,6 +115,7 @@
                 if (confirm) {
                     document.getElementById("uploadConfirmation").style.display = "inline";
                     event.target.closest("form").submit();
+                    document.getElementById("assignment");
                 }
             });
         }
