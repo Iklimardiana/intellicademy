@@ -13,6 +13,7 @@ use App\Models\Course;
 use App\Models\Progres;
 use App\Models\Module;
 use App\Models\Transaction;
+use App\Models\Attachment;
 
 class StudentController extends Controller
 {
@@ -100,6 +101,8 @@ class StudentController extends Controller
         $course = Course::findOrFail($id);
         $module = $course->Module()->where('sequence', $sequence)->first();
 
+        $attachment = Attachment::where('idModule', $module->id)->get();
+
         $currentSequence = $module ? $module->sequence : null;
 
         $currentProgres = Progres::where('idUser', $user)->where('idCourse', $id)->first();
@@ -119,6 +122,6 @@ class StudentController extends Controller
             $progres->save();
         }
     
-        return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence'));
+        return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence', 'attachment'));
     }
 }
