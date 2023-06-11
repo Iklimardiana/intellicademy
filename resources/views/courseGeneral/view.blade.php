@@ -10,7 +10,7 @@
                     <img src="{{asset('/images/thumbnail/'. $item->thumbnail)}}" class="card-img-top" alt="course image">
                     <div class="card-body">
                         <h5 class="card-title">{{$item->name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{$item->price}}</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{Str::rupiah($item->price)}}</h6>
                         <p class="card-text">{{$item->description}}</p>
                         @auth
                             @if (Auth::user()->role == '2')

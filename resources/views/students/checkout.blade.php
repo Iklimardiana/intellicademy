@@ -12,7 +12,7 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{$transaction->Course->name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{$transaction->Course->price}}</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{Str::rupiah($transaction->Course->price)}}</h6>
                         <p class="card-text">{{$transaction->Course->description}}</p>
                         <button class="btn btn-primary" id="pay-button">Pay!</button>
                     </div>
