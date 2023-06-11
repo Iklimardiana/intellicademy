@@ -56,7 +56,7 @@ class AttachmentController extends Controller
         $attachment->type = $request->type;
         $attachment->idModule = $request->idModule;
         $attachment->idCourse = $request->idCourse;
-        $attachmant->idUser = $attachment->idUser;
+        $attachment->idUser = $attachment->idUser;
 
         $attachment->save();
         return redirect('/teacher/modules/{id}');
