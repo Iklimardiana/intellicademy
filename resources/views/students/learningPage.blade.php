@@ -147,8 +147,16 @@
                     </div>
                     <div class="col" style="text-align:right">
                         @if ($currentSequence < $course->module->count())
-                            <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
-                                class="btn-footer-course">Selanjutnya</a>
+                            @if ($attachment->where('idModule', $currentModuleId)->isEmpty())
+                                <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
+                                    class="btn-footer-course">Selanjutnya</a>
+                            @elseif($attachment->where('idModule', $currentModuleId)->isNotEmpty() && $submission->where('idModule', 
+                                $currentModuleId)->where('type', 1)->where('idUser', Auth::user()->id)->isNotEmpty())
+                                    <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
+                                        class="btn-footer-course">Selanjutnya</a>
+                            @else
+                                <a href="" class="btn-footer-course" disabled>Selanjutnya</a>
+                            @endif
                         @elseif($currentSequence == $course->module->count())
                             <a href="/student" class="btn-footer-course">Kembali ke Dashboard</a>
                         @endif
