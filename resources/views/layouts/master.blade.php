@@ -69,7 +69,7 @@
         feather.replace()
 
         const deleteData = (event, url) => {
-        event.preventDefault(); // Menghentikan aksi default form
+        event.preventDefault();
 
         swal({
                 title: "Are you sure?",
@@ -99,6 +99,22 @@
 
                 } else {
                     swal("Your data is safe!");
+                }
+            });
+        }
+
+        function confirmUpload(event) {
+            event.preventDefault();
+            swal({
+                title: "Konfirmasi",
+                text: "Are you sure you want to upload the file? Uploading the file can only be done once. Please double-check.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((confirm) => {
+                if (confirm) {
+                    document.getElementById("uploadConfirmation").style.display = "inline";
+                    event.target.closest("form").submit();
                 }
             });
         }

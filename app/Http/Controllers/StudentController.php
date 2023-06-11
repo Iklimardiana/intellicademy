@@ -101,7 +101,9 @@ class StudentController extends Controller
         $course = Course::findOrFail($id);
         $module = $course->Module()->where('sequence', $sequence)->first();
 
-        $attachment = Attachment::where('idModule', $module->id)->get();
+        $attachment = Attachment::where('idModule', $module->id)
+                    ->where('type', '0')
+                    ->get();
 
         $currentSequence = $module ? $module->sequence : null;
 
@@ -124,4 +126,38 @@ class StudentController extends Controller
     
         return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence', 'attachment'));
     }
+
+    public function storeAssignment(Request $request)
+    {
+        $request->validate([
+            'assignment' => 'required|file|mimes:pdf,zip,rar|max:5048',
+        ]);
+    
+        $fileName = time().'.'.$request->assignment->extension();
+        $request->assignment->move(public_path('assignment/file/'), $fileName);
+    
+        $user = $request->user();
+        $transaction = Transaction::where('idUser', $user->id)->first();
+    
+        if ($transaction) {
+            $course = $transaction->Course()->first();
+            // $module = $course->Module()->first();
+            $module = $course->Module()->where('sequence', $request->input('sequence'))->first();
+            
+            $currentSequence = $module->sequence;
+    
+            $attachment = new Attachment;
+    
+            $attachment->assignment = $fileName;
+            $attachment->score = $request->score;
+            $attachment->type = '1';
+            $attachment->idModule = $module->id;
+            $attachment->idCourse = $course->id;
+            $attachment->idUser = $user->id;
+    
+            $attachment->save();
+    
+            return redirect('student/learning-page/' . $course->id . '?sequence=' . $currentSequence);
+        }
+    }        
 }

@@ -76,6 +76,7 @@ Route::middleware('student')->group(function () {
     Route::get('/student/transaction', [TransactionController::class, 'index']);
     Route::post('/checkout/{id}', [TransactionController::class, 'checkout']);
     Route::get('student/learning-page/{id}', [StudentController::class, 'learningPage'])->name('learning-page');
+    Route::post('student/learning-page/{id}', [StudentController::class, 'storeAssignment']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);

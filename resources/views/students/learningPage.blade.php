@@ -20,7 +20,7 @@
     @endphp
     @if ($attachment->where('idModule', $currentModuleId)->isNotEmpty())
         <div class="card mb-2">
-            <div class="col mt-3 table-responsive">
+            <div class="col table-responsive">
                 <div class="d-flex justify-content-center">
                     <table class="table table-bordered text-center m-2">
                         <thead>
@@ -40,20 +40,20 @@
                                 @if ($item->idModule == $currentModuleId)
                                     <tr>
                                         <td class="col-4">
-                                            <a href="{{ $item->link }}" class="badge bg-success">
+                                            <a href="{{ $item->assignment }}" class="badge bg-success">
                                                 <i data-feather="file"></i>
                                             </a>
                                         </td>
                                         <td class="col-6">
-                                            <form action="" method="POST" style="display: inline;">
+                                            <form action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}" method="POST" style="display: inline;" enctype="multipart/form-data">
                                                 @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="badge bg-warning p-1"
-                                                    onclick="deleteData(event, '')"
-                                                    style="border: none; background: none; padding: 0;">
+                                                <label for="assignment" class="badge bg-warning p-1" style="cursor: pointer;">
                                                     <i data-feather="upload"></i>
-                                                </button>
+                                                    <input type="file" name="assignment" id="assignment" style="display: none;"
+                                                        onchange="confirmUpload(event)">
+                                                </label>
                                             </form>
+                                            <span id="uploadConfirmation" style="display: none;">File uploaded</span>
                                         </td>
                                         <td class="col-6">
                                             90
