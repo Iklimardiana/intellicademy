@@ -16,9 +16,12 @@
 @endsection
 @section('content')
     @php
-        $currentModuleId = $module ? $module->id : null;
+        // $currentModuleId = $module ? $module->id : null;
+        $currentModule = $course->Module()->where('sequence', $currentSequence)->first();
+        $currentModuleId = $currentModule ? $currentModule->id : null;
     @endphp
-    @if ($attachment->where('idModule', $currentModuleId)->isNotEmpty())
+
+    @if ($attachment->where('idModule', $currentModuleId)->where('type', '0')->isNotEmpty())
         <div class="card mb-2">
             <div class="col table-responsive">
                 <div class="d-flex justify-content-center">
@@ -49,7 +52,7 @@
                                                 id="uploadForm" method="POST" style="display: inline;"
                                                 enctype="multipart/form-data">
                                                 @csrf
-                                                @if ($submission->where('idModule', $currentModuleId)->where('type', 1)->where('idUser', Auth::user()->id)->isEmpty())
+                                                @if ($submission->where('idModule', $currentModuleId)->where('type', '1')->where('idUser', Auth::user()->id)->isEmpty())
                                                     <form
                                                         action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
                                                         id="uploadForm" method="POST" style="display: inline;"
@@ -134,8 +137,6 @@
                 @endif
             @endforeach
         </div>
-
-
         <div class="card-footer">
             <div class="container-fluid">
                 <div class="row justify-content-between">

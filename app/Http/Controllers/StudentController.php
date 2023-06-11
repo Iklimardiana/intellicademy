@@ -23,12 +23,11 @@ class StudentController extends Controller
 
         $transaction = Transaction::where('idUser', $id)
                         ->where('verification','1')->get();
+
         $courses = Course::get();
         $progres = Progres::where('idUSer', $id)->get();
 
         return view('students.dashboard', compact('transaction', 'progres'));
-
-        // return view('students.dashboard', compact('courses', 'modules'));
     }
 
     public function indexProfile($id)
