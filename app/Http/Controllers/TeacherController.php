@@ -9,6 +9,7 @@ use App\Helpers\Helper;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
+use App\Models\Progres;
 use App\Models\Transaction;
 
 class TeacherController extends Controller
@@ -24,9 +25,10 @@ class TeacherController extends Controller
 
     public function students($id)
     {
-        $students = User::where('role','2')->get();
+        $progres = Progres::where('idCourse',$id)->get();
+        $course = Course::where('id',$id)->first();
         $transaction = Transaction::where('idCourse', $id)->get();
-        return view('teacher.student.view', compact('transaction'));
+        return view('teacher.student.view', compact('transaction', 'course', 'progres'));
     }
 
     public function courses($id)

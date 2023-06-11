@@ -28,7 +28,22 @@
                             <td>{{ $item->User->username }}</td>
                             <td>{{ $item->User->email }}</td>
                             <td>{{ $item->User->phone }}</td>
-                            <td>Complete</td>
+                            <td>
+                                @php
+                                    $progresUser = $progres->where('idUser', $item->User->id)->first();
+                                @endphp
+                                {{-- {{ dd($course) }} --}}
+                                @if ( $progresUser ? $progresUser->sequence : '')
+                                    @if ( $progresUser->sequence / $course->Module->count() == 1)
+                                    Complete
+                                    @else
+                                    {{ round($progresUser->sequence / $course->Module->count() * 100) }} %
+                                    @endif
+                                @else
+                                0 %
+                                @endif
+                                
+                            </td>
                         </tr>
                     @empty
                         <tr>
