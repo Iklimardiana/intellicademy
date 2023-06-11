@@ -25,21 +25,20 @@
                     <table class="table table-bordered text-center m-2">
                         <thead>
                             <tr>
-                                <th colspan="3">Your Assignment</th>
+                                <th colspan="4">Attachment</th>
                             </tr>
                         </thead>
                         <thead>
                             <tr>
                                 <th>Assignment</th>
                                 <th>Upload</th>
-                                <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($attachment as $item)
                                 @if ($item->idModule == $currentModuleId)
                                     <tr>
-                                        <td class="col-4">
+                                        <td class="col-6">
                                             <a href="{{ $item->assignment }}" class="badge bg-success">
                                                 <i data-feather="file"></i>
                                             </a>
@@ -55,9 +54,6 @@
                                             </form>
                                             <span id="uploadConfirmation" style="display: none;">File uploaded</span>
                                         </td>
-                                        <td class="col-6">
-                                            90
-                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -65,8 +61,42 @@
                     </table>
                 </div>
             </div>
+            @if ($submission->where('idModule', $currentModuleId)->where('type', 1)->where('idUser', Auth::user()->id)->isNotEmpty())
+    <div class="d-flex justify-content-center">
+        <table class="table table-bordered text-center m-2">
+            <thead>
+                <tr>
+                    <th colspan="2">Your Submission</th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>Your File</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($submission as $item)
+                    @if ($item->idModule == $currentModuleId)
+                        <tr>
+                            <td class="col-6">
+                                <a href="{{ asset ('attachment/submission/' . $item->assignment) }}" class="badge bg-primary" download>
+                                    <i data-feather="file"></i>
+                                </a>
+                            </td>
+                            <td class="col-6">
+                                <p>90</p>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
         </div>
     @endif
+    
     <div class="card">
         <div class="card-body">
             @php

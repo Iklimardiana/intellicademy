@@ -105,6 +105,10 @@ class StudentController extends Controller
                     ->where('type', '0')
                     ->get();
 
+        $submission = Attachment::where('idUser', $user)
+                    ->where('type', '1')
+                    ->get();
+
         $currentSequence = $module ? $module->sequence : null;
 
         $currentProgres = Progres::where('idUser', $user)->where('idCourse', $id)->first();
@@ -124,7 +128,7 @@ class StudentController extends Controller
             $progres->save();
         }
     
-        return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence', 'attachment'));
+        return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));
     }
 
     public function storeAssignment(Request $request)
@@ -134,16 +138,15 @@ class StudentController extends Controller
         ]);
     
         $fileName = time().'.'.$request->assignment->extension();
-        $request->assignment->move(public_path('assignment/file/'), $fileName);
+        $request->assignment->move(public_path('attachment/submission/'), $fileName);
     
         $user = $request->user();
         $transaction = Transaction::where('idUser', $user->id)->first();
     
         if ($transaction) {
             $course = $transaction->Course()->first();
-            // $module = $course->Module()->first();
             $module = $course->Module()->where('sequence', $request->input('sequence'))->first();
-            
+
             $currentSequence = $module->sequence;
     
             $attachment = new Attachment;
@@ -159,5 +162,18 @@ class StudentController extends Controller
     
             return redirect('student/learning-page/' . $course->id . '?sequence=' . $currentSequence);
         }
-    }        
+
+    } 
+    
+    public function downloadAssignment($attachmentId)
+    {
+        $attachment = Attachment::find($attachmentId);
+
+        if ($attachment && $attachment->type == '1' && $attachment->idUser == auth()->user()->id) {
+            return response()->download($attachment->assignment);
+        } else {
+            return redirect()->back()->with('error', 'Anda belum mengupload tugas');
+        }
+    }
+
 }
