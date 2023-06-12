@@ -20,6 +20,7 @@ class ModuleSeeder extends Seeder
             ['name' => 'Skenario AI', 'body' => 'lorem', 'idCourse' => 1, 'sequence' => 3],
             ['name' => 'AI Lebih Jauh', 'body' => 'lorem', 'idCourse' => 2, 'sequence' => 1],
             ['name' => 'Cara Merancang AI AI', 'body' => 'lorem', 'idCourse' => 2, 'sequence' =>2],
+            ['name' => 'Cara Merancang AI menggunkan Tool', 'body' => 'lorem', 'idCourse' => 2, 'sequence' =>3],
         ];
 
         DB::table('modules')->insert($module);
