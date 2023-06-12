@@ -210,4 +210,19 @@ class TeacherController extends Controller
 
         return view('teacher.assignment.view', compact('attachments'));
     }
+
+    public function score(Request $request, $id)
+    {
+        $attachments = Attachment::where('id', $id)->first();
+
+        $progres = Progres::where('idUSer', $attachments->idUser)
+                    ->where('idCourse', $attachments->idUser)->first();
+
+        $attachments->score = $request->score;
+        $attachments->save();
+
+        $progres->status = '1';
+        $progres->save();
+        return redirect('/teacher/assigment/' . $attachments->idModule);
+    }
 }
