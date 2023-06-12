@@ -116,15 +116,42 @@ class StudentController extends Controller
             if($currentProgres->sequence < $currentSequence)
             $currentProgres->sequence = $currentSequence;
 
+            $progres = Progres::where('idUser', $user)
+                        ->where('idCourse', $id)->first();
+
+            $currentAttachment = Attachment::where('idModule', $module->id)
+            ->where('idCourse', $id)
+            ->where('type', '0')
+            ->first();
+
+            if($currentAttachment == null){
+                $progres->status = '1';
+                $progres->save();
+            }else{
+                $progres->status = '0';
+                $progres->save();
+            }
+
             $currentProgres->save();
         }else{
-            $progres = new Progres;
+            $currentAttachment = Attachment::where('idModule', 1)
+                    ->where('idCourse', $id)
+                    ->where('type', '0')
+                    ->first();
+            $currentProgres = new Progres;
     
-            $progres->idUSer = $user;
-            $progres->idCourse = $id;
-            $progres->sequence = 1;
+            $currentProgres->idUSer = $user;
+            $currentProgres->idCourse = $id;
+            $currentProgres->sequence = 1;
+            if($currentAttachment == null){
+                $currentProgres->status = '1';
+                $currentProgres->save();
+            }else{
+                $currentProgres->status = '0';
+                $currentProgres->save();
+            }
 
-            $progres->save();
+            $currentProgres->save();
         }
     
         return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));

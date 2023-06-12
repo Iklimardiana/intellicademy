@@ -34,8 +34,8 @@
                                 <p class="card-text">{{ $t->Course->description }}</p>
                                 @if ($t->course->Progres->isEmpty())
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
-                                @elseif ( $currentProgres && $currentProgres->sequence == $t->Course->Module->count())
-                                    <a href="#" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Selesai</a>
+                                {{-- @elseif ( $currentProgres && $currentProgres->sequence == $t->Course->Module->count())
+                                    <a href="#" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Selesai</a> --}}
                                 @else
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
                                 @endif

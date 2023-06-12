@@ -108,7 +108,11 @@
                                             </a>
                                         </td>
                                         <td class="col-6">
-                                            <p>90</p>
+                                            <p>
+                                                @if ($item->score)
+                                                    {{ $item->score }}
+                                                @endif
+                                            </p>
                                         </td>
                                     </tr>
                                 @endif
@@ -148,13 +152,18 @@
                     </div>
                     <div class="col" style="text-align:right">
                         @if ($currentSequence < $course->module->count())
-                            @if ($attachment->where('idModule', $currentModuleId)->isEmpty())
+                            {{-- @if ($attachment->where('idModule', $currentModuleId)->isEmpty())
                                 <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
                                     class="btn-footer-course" >Selanjutnya</a>
                             @elseif($attachment->where('idModule', $currentModuleId)->isNotEmpty() && $submission->where('idModule', 
                                 $currentModuleId)->where('type', 1)->where('idUser', Auth::user()->id)->isNotEmpty())
                                     <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
-                                        class="btn-footer-course" >Selanjutnya</a>
+                                        class="btn-footer-course" >Selanjutnya</a> --}}
+                            {{-- {{ dd($currentProgres) }} --}}
+
+                            @if ($currentProgres->status == '1')
+                                <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
+                                    class="btn-footer-course" >Selanjutnya</a>
                             @else
                                 <a href="" class="btn-footer-course btn disabled" style="border: none;">Selanjutnya</a>
                             @endif
