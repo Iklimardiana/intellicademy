@@ -105,8 +105,10 @@ class TeacherController extends Controller
         $modules = Module::where('idCourse', $id)
                 ->orderBy('sequence', 'ASC')->get();
         $course = Course::find($id);
+        $attachment = Attachment::where('idCourse', $id)
+                        ->where('type', '0')->get();
 
-        return view('teacher.module.view', compact('modules', 'course'));
+        return view('teacher.module.view', compact('modules', 'course', 'attachment'));
     }
 
     public function createModule($idCourse)
