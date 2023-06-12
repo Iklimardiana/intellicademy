@@ -74,6 +74,9 @@ Route::middleware('teacher')->group(function () {
     route::delete('/teacher/modules/{idCourse}', [TeacherController::class, 'destroyModule']);
 
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);
+    route::get('/teacher/{id}/assignment/create', [TeacherController::class, 'createAssigment']);
+    route::post('/teacher/modules/{idCourse}', [TeacherController::class, 'storeAssignment']);
+    route::post('/teacher/assigment/score/{id}', [TeacherController::class, 'score']);
     Route::resource('/teacher/attachment', AttachmentController::class);
     
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
@@ -89,6 +92,7 @@ Route::middleware('student')->group(function () {
     Route::get('/student/transaction', [TransactionController::class, 'index']);
     Route::post('/checkout/{id}', [TransactionController::class, 'checkout']);
     Route::get('student/learning-page/{id}', [StudentController::class, 'learningPage'])->name('learning-page');
+    Route::get('student/learning-pages/{id}', [StudentController::class, 'learningPages'])->name('learning-page-next');
     Route::post('student/learning-page/{id}', [StudentController::class, 'storeAssignment']);
 });
 

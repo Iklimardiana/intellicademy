@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Course;
+use App\Models\Module;
+use App\Models\Progres;
+use App\Models\Attachment;
+
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Controllers\CourseController;
 use App\Controllers\TeacherController;
-
-use App\Models\User;
-use App\Models\Course;
-use App\Models\Progres;
-use App\Models\Module;
-use App\Models\Transaction;
-use App\Models\Attachment;
 
 class StudentController extends Controller
 {
@@ -134,7 +134,7 @@ class StudentController extends Controller
 
             $currentProgres->save();
         }else{
-            $currentAttachment = Attachment::where('idModule', 1)
+            $currentAttachment = Attachment::where('idModule', $module->id)
                     ->where('idCourse', $id)
                     ->where('type', '0')
                     ->first();
@@ -155,6 +155,71 @@ class StudentController extends Controller
         }
     
         return view('students.learningPage', compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));
+    }
+
+    public function learningPages(Request $request, $id)
+    {
+        $user = Auth::user()->id;
+        $sequence = $request->input('sequence', 1);
+
+        $course = Course::findOrFail($id);
+        $module = $course->Module()->where('sequence', $sequence)->first();
+
+        $attachment = Attachment::where('idModule', $module->id)
+                    ->where('type', '0')
+                    ->get();
+
+        $submission = Attachment::where('idUser', $user)
+                    ->where('type', '1')
+                    ->get();
+
+        $currentSequence = $module ? $module->sequence : null;
+
+        $currentProgres = Progres::where('idUser', $user)->where('idCourse', $id)->first();
+
+        if($currentProgres){
+            if($currentProgres->sequence < $currentSequence)
+            $currentProgres->sequence = $currentSequence;
+
+            $progres = Progres::where('idUser', $user)
+                        ->where('idCourse', $id)->first();
+
+            $currentAttachment = Attachment::where('idModule', $module->id)
+            ->where('idCourse', $id)
+            ->where('type', '0')
+            ->first();
+
+            if($currentAttachment == null){
+                $progres->status = '1';
+                $progres->save();
+            }else{
+                $progres->status = '0';
+                $progres->save();
+            }
+
+            $currentProgres->save();
+        }else{
+            $currentAttachment = Attachment::where('idModule', $module->id)
+                    ->where('idCourse', $id)
+                    ->where('type', '0')
+                    ->first();
+            $currentProgres = new Progres;
+    
+            $currentProgres->idUSer = $user;
+            $currentProgres->idCourse = $id;
+            $currentProgres->sequence = 1;
+            if($currentAttachment == null){
+                $currentProgres->status = '1';
+                $currentProgres->save();
+            }else{
+                $currentProgres->status = '0';
+                $currentProgres->save();
+            }
+
+            $currentProgres->save();
+        }
+    
+        return redirect('/student/learning-page/' . $id  . '?sequence= ' .  $currentSequence)->with(compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));
     }
 
     public function storeAssignment(Request $request)

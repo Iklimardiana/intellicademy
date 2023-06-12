@@ -16,7 +16,7 @@
             <div class="col mt-3">
                 <h3>Add an attachment on {module name}</h3>
 
-                <form id="FormId" action="/teacher/attachment" method="POST" class="col-md-6">
+                <form id="FormId" action="/teacher/modules/{{$idCourse}}" method="POST" class="col-md-6" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="idUser" class="form-label">Type</label>
@@ -37,7 +37,7 @@
                     
                     <div class="mb-3" id="linkForm" style="display: none;">
                         <label for="assignment" class="form-label">Assignment</label>
-                        <input class="form-control" type="text" id="link" name="assignment" disabled>
+                        <input class="form-control" type="url" id="link" name="assignment" disabled>
                         @error('assignment')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
