@@ -8,7 +8,6 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ResetPasswordController;
 
@@ -33,7 +32,6 @@ Route::get('/', function () {
 
 
 Route::resource('/module', ModuleController::class);
-Route::resource('/attachment', AttachmentController::class);
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard']);
@@ -65,8 +63,9 @@ Route::middleware('teacher')->group(function () {
     route::delete('/teacher/modules/{idCourse}', [TeacherController::class, 'destroyModule']);
 
     route::get('/teacher/assigment/{id}', [TeacherController::class, 'assigments']);
+    route::get('/teacher/{id}/assignment/create', [TeacherController::class, 'createAssigment']);
+    route::post('/teacher/modules/{idCourse}', [TeacherController::class, 'storeAssignment']);
     route::post('/teacher/assigment/score/{id}', [TeacherController::class, 'score']);
-    Route::resource('/teacher/attachment', AttachmentController::class);
     
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
     route::put('/teacher/profile/{id}', [TeacherController::class, 'updateProfile']);
