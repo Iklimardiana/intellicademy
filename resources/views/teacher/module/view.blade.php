@@ -46,7 +46,7 @@
                                         <i data-feather="file-plus"></i>
                                     </a>
                                 @else
-                                    <a href="/teacher/{{ $item->id }}/assignment/edit" class="badge bg-success">
+                                    <a href="/teacher/assignment/{{ $currentAttachment->id }}/edit" class="badge bg-success">
                                         <i data-feather="paperclip"></i>
                                     </a>
                                 @endif

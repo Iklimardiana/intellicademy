@@ -17,19 +17,21 @@
                 <h3>Add an attachment on {module name}</h3>
 
                 <form id="FormId" action="/teacher/modules/{{$idCourse}}" method="POST" class="col-md-6" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="mb-3">
                         <label for="idUser" class="form-label">Type</label>
                         <select class="form-control" name="category" id="category">
                             <option value="">--Please Select The Category--</option>
-                            <option value="0">Upload Pdf</option>
-                            <option value="1">Insert link</option>
+                            <option value="0" {{ $attachment->category === '0' ? 'selected' : '' }}>Upload Pdf</option>
+                            <option value="1" {{ $attachment->category === '1' ? 'selected' : '' }}>Insert link</option>
                         </select>
                     </div>
 
                     <div class="mb-3" id="pdfForm" style="display: none;">
                         <label for="assignment" class="form-label">Assignment</label>
                         <input class="form-control" type="file" id="uploadPdf" name="assignment" disabled>
+                        <span>{{ $attachment->assignment ?: 'No file chosen' }}</span>
                         @error('assignment')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -37,7 +39,7 @@
                     
                     <div class="mb-3" id="linkForm" style="display: none;">
                         <label for="assignment" class="form-label">Assignment</label>
-                        <input class="form-control" type="url" id="link" name="assignment" disabled>
+                        <input class="form-control" type="url" id="link" name="assignment" value="{{ $attachment->assignment }}" disabled>
                         @error('assignment')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -49,7 +51,7 @@
                         </a>
                         <button type="submit" class="btn btn-primary">
                             <i data-feather="save"></i>
-                            <span>Save</span>
+                            <span>Update</span>
                         </button>
                     </div>
                 </form>
@@ -84,8 +86,6 @@
             pdfForm.querySelector('#uploadPdf').setAttribute('disabled', true);
         }
 
-        
-        
     });
 </script>
 @endsection

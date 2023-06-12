@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 use App\Helpers\Helper;
 use App\Models\User;
 use App\Models\Course;
@@ -210,6 +212,7 @@ class TeacherController extends Controller
 
         return view('teacher.assignment.view', compact('attachments'));
     }
+
     public function createAssigment($id)
     {
         $module = Module::findOrFail($id);
@@ -254,6 +257,70 @@ class TeacherController extends Controller
         $module = Module::findOrFail($id);
 
         $attachment = new Attachment();
+
+        $attachment->assignment = $request->assignment;
+        $attachment->score = $request->score;
+        $attachment->category = $request->category;
+        $attachment->type = '0';
+        $attachment->idModule = $module->id;
+        $attachment->idCourse = $course->id;
+        $attachment->idUser = Auth::user()->id;
+        $attachment->save();
+
+        return redirect('/teacher/modules/'.$course->id);
+    }
+
+    public function editAssigment($id)
+    {
+        $attachment = Attachment::findOrFail($id);
+
+        // $module = $attachment->idModule;
+
+        $idCourse = $attachment->idCourse;
+
+        return view('teacher.attachment.edit', compact('idCourse', 'attachment'));
+    }
+
+    public function updateAssignment(Request $request, $id)
+    {
+        $request->validate([
+            'category' => 'required',
+            'assignment' => 'required',
+        ]);
+
+        if ($request->has('assignment')) {
+            $assignment = $request->assignment;
+        
+            if (filter_var($assignment, FILTER_VALIDATE_URL)) {
+                $request->validate([
+                    'assignment' => 'url',
+                ], [
+                    'assignment.url' => 'The assignment must be a valid URL.',
+                ]);
+            } else {
+                $request->validate([
+                    'assignment' => 'file|mimes:pdf|max:3048',
+                ]);
+
+                $path = "attachment/task/";
+
+                File::delete($path . $request->assignment);
+
+                $fileName = time().'.'.$request->assignment->extension();
+                $request->assignment->move(public_path('attachment/task/'), $fileName);
+
+                $request->assignment = $fileName;
+            }
+        } else {
+            return redirect()->back()->withErrors(['assignment' => 'The assignment field is required.']);
+        }
+
+        $course = Course::findOrFail($id);
+
+        $module = Module::findOrFail($id);
+
+        $attachment = Attachment::findOrFail($id);
+
 
         $attachment->assignment = $request->assignment;
         $attachment->score = $request->score;
