@@ -60,3 +60,35 @@
         </div>
     </div>
 @endsection
+
+
+@section('script')
+<script>
+    const categoryInput = document.querySelector('#category');
+    const linkForm = document.querySelector('#linkForm');
+    const pdfForm = document.querySelector('#pdfForm');
+
+
+    categoryInput.addEventListener('change', function() {
+        if(this.value === '0') {
+            pdfForm.style.display ='block';
+            linkForm.style.display ='none';
+
+            
+            pdfForm.querySelector('#uploadPdf').removeAttribute('disabled');
+            linkForm.querySelector('#link').setAttribute('disabled', true);
+        } 
+        
+        if (this.value === '1') {
+            linkForm.style.display ='block';
+            pdfForm.style.display ='none';
+
+            linkForm.querySelector('#link').removeAttribute('disabled');
+            pdfForm.querySelector('#uploadPdf').setAttribute('disabled', true);
+        }
+
+        
+        
+    });
+</script>
+@endsection
