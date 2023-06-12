@@ -23,8 +23,17 @@ use App\Http\Controllers\ResetPasswordController;
 |
 */
 
-Route::get('/test', function() {
-    return 'oke';
+// reference the Dompdf namespace
+Route::get('/pdf', function () {
+
+    $data = ['data' => 'halo'];
+
+    $pdf = PDF::loadView('sertifikat', $data)->setPaper('a4', 'landscape');
+    
+    return $pdf->download('sertifikat.pdf');
+
+    // return view('sertifikat');
+
 });
 
 Route::get('/', function () {
