@@ -210,7 +210,6 @@ class TeacherController extends Controller
 
         return view('teacher.assignment.view', compact('attachments'));
     }
-
     public function createAssigment($id)
     {
         $module = Module::findOrFail($id);
