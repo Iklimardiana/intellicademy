@@ -162,17 +162,31 @@
                             {{-- {{ dd($currentProgres) }} --}}
 
                             @if ($currentProgres->status == '1')
-                                <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
+                                <a href="{{ route('learning-page-next', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
                                     class="btn-footer-course" >Selanjutnya</a>
-                            @else
+                            @elseif($currentProgres->status == '0')
                                 <a href="" class="btn-footer-course btn disabled" style="border: none;">Selanjutnya</a>
                             @endif
                         @elseif($currentSequence == $course->module->count())
+                            @if ($currentProgres->status == '1')
                             <a href="/student" class="btn-footer-course">Kembali ke Dashboard</a>
+                            @elseif($currentProgres->status == '0')
+                            <a href="" class="btn-footer-course btn disabled" style="border: none;">Kembali ke Dashboard</a>
+                            @endif
+                            
                         @endif
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            MyFunction();
+        </script>
+        
     </div>
+    <script>
+        $(document).load(function() {
+            MyFunction(); 
+        });
+    </script>
 @endsection

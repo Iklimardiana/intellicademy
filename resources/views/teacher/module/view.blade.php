@@ -39,8 +39,18 @@
                             <td>{{ $item->name }}</td>
                             <td>
                                 <a href="/teacher/{{ $item->id }}/assignment/create" class="badge bg-success">
+                                @php
+                                    $currentAttachment = $attachment->where('idModule', $item->id)->first();
+                                @endphp
+                                @if ($currentAttachment == null)
+                                <a href="/attachment/create" class="badge bg-success">
+                                    <i data-feather="file-plus"></i>
+                                </a>
+                                @else
+                                <a href="/attachment/create" class="badge bg-primary">
                                     <i data-feather="paperclip"></i>
                                 </a>
+                                @endif
                             </td>
                         <td>{{ $item->sequence }}</td>
                         <td>

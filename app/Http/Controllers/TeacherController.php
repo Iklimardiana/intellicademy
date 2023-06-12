@@ -105,8 +105,10 @@ class TeacherController extends Controller
         $modules = Module::where('idCourse', $id)
                 ->orderBy('sequence', 'ASC')->get();
         $course = Course::find($id);
+        $attachment = Attachment::where('idCourse', $id)
+                        ->where('type', '0')->get();
 
-        return view('teacher.module.view', compact('modules', 'course'));
+        return view('teacher.module.view', compact('modules', 'course', 'attachment'));
     }
 
     public function createModule($idCourse)
@@ -264,5 +266,20 @@ class TeacherController extends Controller
         $attachment->save();
 
         return redirect('/teacher/modules/'.$course->id);
+    }
+
+    public function score(Request $request, $id)
+    {
+        $attachments = Attachment::where('id', $id)->first();
+
+        $progres = Progres::where('idUSer', $attachments->idUser)
+                    ->where('idCourse', $attachments->idUser)->first();
+
+        $attachments->score = $request->score;
+        $attachments->save();
+
+        $progres->status = '1';
+        $progres->save();
+        return redirect('/teacher/assigment/' . $attachments->idModule);
     }
 }
