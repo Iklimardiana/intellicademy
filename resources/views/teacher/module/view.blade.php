@@ -38,7 +38,7 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->name }}</td>
                             <td>
-                                <a href="/attachment/create" class="badge bg-success">
+                                <a href="/teacher/{{ $item->id }}/assignment/create" class="badge bg-success">
                                     <i data-feather="paperclip"></i>
                                 </a>
                             </td>

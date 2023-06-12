@@ -208,4 +208,61 @@ class TeacherController extends Controller
 
         return view('teacher.assignment.view', compact('attachments'));
     }
+
+    public function createAssigment($id)
+    {
+        $module = Module::findOrFail($id);
+
+        $idCourse = $module->idCourse;
+
+        return view('teacher.attachment.create', compact('module', 'idCourse'));
+    }
+
+    public function storeAssignment(Request $request, $id)
+    {
+        $request->validate([
+            'category' => 'required',
+            'assignment' => 'required',
+        ]);
+
+        if ($request->has('assignment')) {
+            $assignment = $request->assignment;
+        
+            if (filter_var($assignment, FILTER_VALIDATE_URL)) {
+                $request->validate([
+                    'assignment' => 'url',
+                ], [
+                    'assignment.url' => 'The assignment must be a valid URL.',
+                ]);
+            } else {
+                $request->validate([
+                    'assignment' => 'file|mimes:pdf|max:3048',
+                ]);
+
+                $fileName = time().'.'.$request->assignment->extension();
+                $request->assignment->move(public_path('attachment/task/'), $fileName);
+
+                $request->assignment = $fileName;
+            }
+        } else {
+            return redirect()->back()->withErrors(['assignment' => 'The assignment field is required.']);
+        }
+
+        $course = Course::findOrFail($id);
+
+        $module = Module::findOrFail($id);
+
+        $attachment = new Attachment();
+
+        $attachment->assignment = $request->assignment;
+        $attachment->score = $request->score;
+        $attachment->category = $request->category;
+        $attachment->type = '0';
+        $attachment->idModule = $module->id;
+        $attachment->idCourse = $course->id;
+        $attachment->idUser = Auth::user()->id;
+        $attachment->save();
+
+        return redirect('/teacher/modules/'.$course->id);
+    }
 }

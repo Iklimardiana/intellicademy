@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Attachment;
+use App\Models\User;
+use App\Models\Module;
+use App\Models\Course;
+
 
 class AttachmentController extends Controller
 {
@@ -25,9 +31,8 @@ class AttachmentController extends Controller
      */
     public function create()
     {
-        $attachments = Attachment::all();
 
-        return view('teacher.attachment.create', compact('attachments'));
+        return view('teacher.attachment.create');
     }
 
     /**
@@ -36,17 +41,34 @@ class AttachmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
-            'assignment' => 'required',
-            'score',
             'category' => 'required',
-            'type' => 'required',
-            'idModule' => 'required',
-            'idCourse' => 'required',
-            'idUser',
+            'assignment' => 'required',
         ]);
+        
+        if ($request->has('assignment')) {
+            $assignment = $request->file('assignment');
+        
+            if ($assignment->isValid()) {
+                if ($assignment->getClientOriginalExtension() === 'pdf') {
+                    $request->validate([
+                        'assignment' => 'mimes:pdf|max:3048',
+                    ]);
+                } else { 
+                    $request->validate([
+                        'assignment' => 'url',
+                    ], [
+                        'assignment.url' => 'The assignment must be a valid URL.',
+                    ]);
+                }
+            } else {
+                return redirect()->back()->withErrors(['assignment' => 'The assignment field must be a file.']);
+            }
+        }
+
+        $module = Module::findOrFail($id);
 
         $attachment = new Attachment();
 
@@ -54,12 +76,12 @@ class AttachmentController extends Controller
         $attachment->score = $request->score;
         $attachment->category = $request->category;
         $attachment->type = $request->type;
-        $attachment->idModule = $request->idModule;
+        $attachment->idModule = $module->id;
         $attachment->idCourse = $request->idCourse;
         $attachment->idUser = $attachment->idUser;
 
         $attachment->save();
-        return redirect('/teacher/modules/{id}');
+        return redirect('/teacher/modules/{id}', compact('module'));
     }
 
     /**
