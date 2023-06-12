@@ -217,9 +217,7 @@ class TeacherController extends Controller
     {
         $module = Module::findOrFail($id);
 
-        $idCourse = $module->idCourse;
-
-        return view('teacher.attachment.create', compact('module', 'idCourse'));
+        return view('teacher.attachment.create', compact('module'));
     }
 
     public function storeAssignment(Request $request, $id)
@@ -252,9 +250,9 @@ class TeacherController extends Controller
             return redirect()->back()->withErrors(['assignment' => 'The assignment field is required.']);
         }
 
-        $course = Course::findOrFail($id);
-
         $module = Module::findOrFail($id);
+
+        $course = $module->course;
 
         $attachment = new Attachment();
 
@@ -265,6 +263,7 @@ class TeacherController extends Controller
         $attachment->idModule = $module->id;
         $attachment->idCourse = $course->id;
         $attachment->idUser = Auth::user()->id;
+
         $attachment->save();
 
         return redirect('/teacher/modules/'.$course->id);
@@ -321,7 +320,6 @@ class TeacherController extends Controller
 
         $attachment = Attachment::findOrFail($id);
 
-
         $attachment->assignment = $request->assignment;
         $attachment->score = $request->score;
         $attachment->category = $request->category;
@@ -329,8 +327,9 @@ class TeacherController extends Controller
         $attachment->idModule = $module->id;
         $attachment->idCourse = $course->id;
         $attachment->idUser = Auth::user()->id;
-        $attachment->save();
 
+        $attachment->save();
+        
         return redirect('/teacher/modules/'.$course->id);
     }
     
