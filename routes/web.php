@@ -23,6 +23,10 @@ use App\Http\Controllers\ResetPasswordController;
 |
 */
 
+Route::get('/test', function() {
+    return 'oke';
+});
+
 Route::get('/', function () {
     return view('index');
 });
