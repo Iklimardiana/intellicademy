@@ -16,7 +16,7 @@
             <div class="col mt-3">
                 <h3>Add an attachment on {module name}</h3>
 
-                <form id="FormId" action="/teacher/modules/{{$idCourse}}" method="POST" class="col-md-6" enctype="multipart/form-data">
+                <form id="FormId" action="/teacher/assignment/{{$attachment->id}}" method="POST" class="col-md-6" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="mb-3">

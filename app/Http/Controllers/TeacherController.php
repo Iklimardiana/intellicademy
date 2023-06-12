@@ -282,6 +282,11 @@ class TeacherController extends Controller
 
     public function updateAssignment(Request $request, $id)
     {
+
+        $attachment = Attachment::findOrFail($id);
+        $idModule = $attachment->idModule;
+        $idCourse = $attachment->idCourse;
+        
         $request->validate([
             'category' => 'required',
             'assignment' => 'required',
@@ -314,23 +319,17 @@ class TeacherController extends Controller
             return redirect()->back()->withErrors(['assignment' => 'The assignment field is required.']);
         }
 
-        $course = Course::findOrFail($id);
-
-        $module = Module::findOrFail($id);
-
-        $attachment = Attachment::findOrFail($id);
-
         $attachment->assignment = $request->assignment;
         $attachment->score = $request->score;
         $attachment->category = $request->category;
         $attachment->type = '0';
-        $attachment->idModule = $module->id;
-        $attachment->idCourse = $course->id;
+        $attachment->idModule = $idModule;
+        $attachment->idCourse = $idCourse;
         $attachment->idUser = Auth::user()->id;
 
         $attachment->save();
         
-        return redirect('/teacher/modules/'.$course->id);
+        return redirect('/teacher/modules/'.$idCourse);
     }
     
     public function score(Request $request, $id)
