@@ -7,14 +7,14 @@
         <div aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">
-                    Add Attachment of {module name}
+                    Add Attachment of {{ $module->name }}
                 </li>
             </ol>
         </div>
 
         <div class="card p-4">
             <div class="col mt-3">
-                <h3>Add an attachment on {module name}</h3>
+                <h3>Add an attachment on {{ $module->name }}</h3>
 
                 <form id="FormId" action="/teacher/assignment/{{$module->id}}" method="POST" class="col-md-6" enctype="multipart/form-data">
                     @csrf
@@ -43,7 +43,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <a href="/teacher/modules" class="btn btn-warning">
+                        <a href="/teacher/modules/{{ $idCourse }}" class="btn btn-warning">
                             <i data-feather="corner-down-left"></i>
                             <span>Back</span>
                         </a>

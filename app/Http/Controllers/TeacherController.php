@@ -216,8 +216,9 @@ class TeacherController extends Controller
     public function createAssigment($id)
     {
         $module = Module::findOrFail($id);
+        $idCourse = $module->idCourse;
 
-        return view('teacher.attachment.create', compact('module'));
+        return view('teacher.attachment.create', compact('module', 'idCourse'));
     }
 
     public function storeAssignment(Request $request, $id)
@@ -277,7 +278,9 @@ class TeacherController extends Controller
 
         $idCourse = $attachment->idCourse;
 
-        return view('teacher.attachment.edit', compact('idCourse', 'attachment'));
+        $module = Module::where('id', $attachment->idModule )->first();
+
+        return view('teacher.attachment.edit', compact('idCourse', 'attachment', 'module'));
     }
 
     public function updateAssignment(Request $request, $id)
