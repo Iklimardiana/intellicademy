@@ -14,20 +14,9 @@
 
         <div class="card p-4">
             <div class="col">
-                <div class="d-flex justify-content-between">
-                    <h3>Add an attachment on {{ $module->name }}</h3>
-                    <form action="/teacher/assignment/{{ $attachment->id }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="badge bg-danger p-2"
-                            onclick="deleteAssignment(event, '/teacher/assignment/{{ $attachment->id }}')" 
-                            style="border: none; background: none; padding: 0;">
-                            <i data-feather="trash"></i>
-                        </button>
-                    </form>
-                </div>
+                <h3>Add an attachment on {{ $module->name }}</h3>
 
-                <form id="FormId" action="/teacher/assignment/{{ $attachment->id }}" method="POST" class="col-md-6"
+                <form id="editForm" action="/teacher/assignment/{{ $attachment->id }}" method="POST" class="col-md-6"
                     enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -58,16 +47,25 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <a href="/teacher/modules/{{ $idCourse }}" class="btn btn-warning" id="backButton">
-                            <i data-feather="corner-down-left"></i>
-                            <span>Back</span>
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            <i data-feather="save"></i>
-                        </button>
-                    </div>
                 </form>
+                <div class="mb-3" style="display: flex; gap: 5px;">
+                    <a href="/teacher/modules/{{ $idCourse }}" class="btn btn-warning" id="backButton">
+                        <i data-feather="corner-down-left"></i>
+                        <span>Back</span>
+                    </a>
+                    <button type="submit" form="editForm" class="btn btn-primary">
+                        <i data-feather="save"></i>
+                    </button>
+                    <form id="deleteForm" action="/teacher/assignment/{{ $attachment->id }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="badge bg-danger p-2"
+                            onclick="deleteAssignment(event, '/teacher/assignment/{{ $attachment->id }}')" 
+                            style="border: none; background: none; padding: 0;">
+                            <i data-feather="trash"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
