@@ -176,10 +176,10 @@
                 </div>
             </div>
         </div>
-        {{-- <script>
+        <script>
             MyFunction();
         </script>
-         --}}
+        
     </div>
     <script>
         $(document).load(function() {

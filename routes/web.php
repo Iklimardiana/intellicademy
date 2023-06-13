@@ -82,6 +82,8 @@ Route::middleware('teacher')->group(function () {
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
     route::put('/teacher/profile/{id}', [TeacherController::class, 'updateProfile']);
     route::get('/teacher/profile/{id}', [TeacherController::class, 'indexProfile']);
+
+    route::get('/submission/{idUser}/{idModul}', [TeacherController::class, 'openSubmissionPdf']);
 });
 
 Route::middleware('student')->group(function () {

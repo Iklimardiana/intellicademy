@@ -362,4 +362,30 @@ class TeacherController extends Controller
         $progres->save();
         return redirect('/teacher/assigment/' . $attachments->idModule);
     }
+    
+    public function openSubmissionPdf($idUser, $idModule)
+    {
+        $attachment = Attachment::where('idUser', $idUser)
+            ->where('idModule', $idModule)
+            ->first();
+    
+        if ($attachment) {
+            $pdfPath = public_path('attachment/submission/'.$attachment->assignment);
+    
+            if (File::exists($pdfPath)) {
+                $headers = [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="' . $attachment->assignment . '"',
+                ];
+    
+                return response()->file($pdfPath, $headers);
+            } else {
+                abort(404, 'File PDF tidak ditemukan.');
+            }
+        } else {
+            abort(404, 'Attachment tidak ditemukan.');
+        }
+    }
+    
+
 }
