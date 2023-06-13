@@ -339,6 +339,14 @@ class TeacherController extends Controller
         return redirect('/teacher/modules/'.$idCourse);
     }
 
+    public function destroyAssignment($id)
+    {
+        $attachment = Attachment::findOrFail($id);
+
+        $attachment->delete();
+
+    }
+
     public function score(Request $request, $id)
     {
         $attachments = Attachment::where('id', $id)->first();

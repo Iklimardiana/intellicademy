@@ -76,6 +76,7 @@ Route::middleware('teacher')->group(function () {
     route::post('/teacher/assignment/{id}', [TeacherController::class, 'storeAssignment']);
     route::get('/teacher/assignment/{id}/edit', [TeacherController::class, 'editAssigment']);
     route::put('/teacher/assignment/{id}', [TeacherController::class, 'updateAssignment']);
+    route::delete('/teacher/assignment/{id}', [TeacherController::class, 'destroyAssignment']);
     route::post('/teacher/assigment/score/{id}', [TeacherController::class, 'score']);
     
     route::get('/teacher/profile/{id}/edit', [TeacherController::class, 'editProfile']);
