@@ -34,10 +34,19 @@
                                 @endphp
                                 {{-- {{ dd($course) }} --}}
                                 @if ( $progresUser ? $progresUser->sequence : '')
-                                    @if ( $progresUser->sequence / $course->Module->count() == 1)
-                                    Complete
+                                    @if ( $progresUser->sequence == $course->Module->count())
+                                        @if ($progresUser->status == 0)
+                                        {{ round($progresUser->sequence / $course->Module->count() * 100) - 1 }} %
+                                        @else
+                                        Complete
+                                        @endif
                                     @else
-                                    {{ round($progresUser->sequence / $course->Module->count() * 100) }} %
+                                        @if ($progresUser->status == 0)
+                                        {{ round($progresUser->sequence / $course->Module->count() * 100) - 1 }} %
+                                        @else
+                                        {{ round($progresUser->sequence / $course->Module->count() * 100) }} %
+                                        @endif
+                                    
                                     @endif
                                 @else
                                 0 %
