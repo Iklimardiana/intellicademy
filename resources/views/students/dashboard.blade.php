@@ -24,8 +24,8 @@
                     @php
                         $currentProgress = $progres->where('idCourse', $t->Course->id)->first();
                     @endphp
-
-                    @if (!$currentProgress || $currentProgress->sequence != $t->Course->Module->count())
+                   
+                    @if (!$currentProgress || $currentProgress->sequence != $t->Course->Module->count() || $currentProgress->status == '0' )
                         <div class="card col-12 col-md-5 pt-2">
                             <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top"
                                 alt="thumbnail {{ $t->Course->name }}">
@@ -59,8 +59,7 @@
                     @php
                         $currentProgres = $progres->where('idCourse', $t->Course->id)->first();
                     @endphp
-
-                    @if ($currentProgres && $currentProgres->sequence == $t->Course->Module->count())
+                    @if ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
                         <div class="card col-12 col-md-5 pt-2">
                             <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top"
                                 alt="thumbnail {{ $t->Course->name }}">
@@ -69,7 +68,7 @@
                                 <p class="card-text">{{ $t->Course->description }}</p>
                                 @if ($t->course->Progres->isEmpty())
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
-                                @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count())
+                                @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Belajar kembali</a>
                                 @else
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
