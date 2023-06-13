@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
@@ -19,6 +20,15 @@ class Attachment extends Model
         'idCourse',
         'idUser',
     ];
+
+    public function hasFile($attribute)
+    {
+        $file = $this->{$attribute};
+        if (!empty($file) && Storage::exists($file)) {
+            return true;
+        }
+        return false;
+    }
 
     public function Module()
     {
