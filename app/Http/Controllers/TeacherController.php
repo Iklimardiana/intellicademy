@@ -274,8 +274,6 @@ class TeacherController extends Controller
     {
         $attachment = Attachment::findOrFail($id);
 
-        // $module = $attachment->idModule;
-
         $idCourse = $attachment->idCourse;
 
         $module = Module::where('id', $attachment->idModule )->first();
@@ -307,6 +305,8 @@ class TeacherController extends Controller
                 if ($attachment->assignment && File::exists(public_path('attachment/task/' . $attachment->assignment))) {
                     File::delete(public_path('attachment/task/' . $attachment->assignment));
                 }
+
+                $attachment->assignment = $request->assignment;
             } else {
                 $request->validate([
                     'assignment' => 'file|mimes:pdf|max:3048',
@@ -343,8 +343,9 @@ class TeacherController extends Controller
     {
         $attachment = Attachment::findOrFail($id);
 
-        $attachment->delete();
+        File::delete(public_path('attachment/task/' . $attachment->assignment));
 
+        $attachment->delete();
     }
 
     public function score(Request $request, $id)

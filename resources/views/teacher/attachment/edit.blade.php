@@ -13,8 +13,19 @@
         </div>
 
         <div class="card p-4">
-            <div class="col mt-3">
-                <h3>Add an attachment on {{ $module->name }}</h3>
+            <div class="col">
+                <div class="d-flex justify-content-between">
+                    <h3>Add an attachment on {{ $module->name }}</h3>
+                    <form action="/teacher/assignment/{{ $attachment->id }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="badge bg-danger p-2"
+                            onclick="deleteAssignment(event, '/teacher/assignment/{{ $attachment->id }}')" 
+                            style="border: none; background: none; padding: 0;">
+                            <i data-feather="trash"></i>
+                        </button>
+                    </form>
+                </div>
 
                 <form id="FormId" action="/teacher/assignment/{{ $attachment->id }}" method="POST" class="col-md-6"
                     enctype="multipart/form-data">
@@ -55,15 +66,6 @@
                         <button type="submit" class="btn btn-primary">
                             <i data-feather="save"></i>
                         </button>
-                        <form action="/teacher/assignment/{{ $attachment->id }}">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="badge bg-danger p-2"
-                                onclick="deleteAssignment(event, '/teacher/assignment/{{ $attachment->id }}')" 
-                                style="border: none; background: none; padding: 0;">
-                                <i data-feather="trash"></i>
-                            </button>
-                        </form>
                     </div>
                 </form>
             </div>
