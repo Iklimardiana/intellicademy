@@ -26,7 +26,7 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->User->username }}</td>
                             <td>
-                                <a href="{{ $item->assignment }}" class="badge bg-danger">
+                                <a href="{{ $item->assignment }}" class="badge bg-success">
                                     <i data-feather="paperclip"></i>
                                 </a>
                             </td>

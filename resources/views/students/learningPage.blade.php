@@ -42,9 +42,15 @@
                                 @if ($item->idModule == $currentModuleId)
                                     <tr>
                                         <td class="col-6">
-                                            <a href="{{ $item->assignment }}" class="badge bg-success">
-                                                <i data-feather="file"></i>
-                                            </a>
+                                            @if ($item->type == '0' && $item->category == '1')
+                                                <a href="{{ $item->assignment }}" target="_blank" class="badge bg-danger">
+                                                    <i data-feather="link"></i>
+                                                </a>
+                                            @elseif($item->type == '0' && $item->category == '0')
+                                                <a href="{{ asset('attachment/task/' . $item->assignment) }}" class="badge bg-success" download>
+                                                    <i data-feather="file"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                         <td class="col-6">
                                             <form
@@ -170,10 +176,10 @@
                 </div>
             </div>
         </div>
-        <script>
+        {{-- <script>
             MyFunction();
         </script>
-        
+         --}}
     </div>
     <script>
         $(document).load(function() {

@@ -267,4 +267,15 @@ class StudentController extends Controller
         }
     }
 
+    public function downloadTask($attachmentId)
+    {
+        $attachment = Attachment::find($attachmentId);
+
+        if ($attachment && $attachment->type == '0' && $attachment->idUser == auth()->user()->id) {
+            return response()->download($attachment->assignment);
+        } else {
+            return redirect()->back()->with('error', 'Tidak ada file');
+        }
+    }
+
 }
