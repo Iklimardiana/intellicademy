@@ -219,7 +219,7 @@ class StudentController extends Controller
             $currentProgres->save();
         }
     
-        return redirect('/student/learning-page/' . $id  . '?sequence= ' .  $currentSequence)->with(compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));
+        return redirect('/student/learning-page/' . $id  . '?sequence=' .  $currentSequence)->with(compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));
     }
 
     public function storeAssignment(Request $request)
