@@ -128,8 +128,16 @@ class StudentController extends Controller
                 $progres->status = '1';
                 $progres->save();
             }else{
-                $progres->status = '0';
-                $progres->save();
+                $currentSubmission = Attachment::where('idUser', $user)
+                            ->where('idCourse', $id)
+                            ->where('idModule', $module->id)->first();
+                if($currentSubmission && $currentSubmission->score){
+                    $currentProgres->status = '1';
+                    $currentProgres->save();
+                }else{
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }
             }
 
             $currentProgres->save();
@@ -147,8 +155,16 @@ class StudentController extends Controller
                 $currentProgres->status = '1';
                 $currentProgres->save();
             }else{
-                $currentProgres->status = '0';
-                $currentProgres->save();
+                $currentSubmission = Attachment::where('idUser', $user)
+                            ->where('idCourse', $id)
+                            ->where('idModule', $module->id)->first();
+                if($currentSubmission && $currentSubmission->score == null){
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }else{
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }
             }
 
             $currentProgres->save();
@@ -193,8 +209,16 @@ class StudentController extends Controller
                 $progres->status = '1';
                 $progres->save();
             }else{
-                $progres->status = '0';
-                $progres->save();
+                $currentSubmission = Attachment::where('idUser', $user)
+                            ->where('idCourse', $id)
+                            ->where('idModule', $module->id)->first();
+                if($currentSubmission && $currentSubmission->score == null){
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }else{
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }
             }
 
             $currentProgres->save();
@@ -212,8 +236,16 @@ class StudentController extends Controller
                 $currentProgres->status = '1';
                 $currentProgres->save();
             }else{
-                $currentProgres->status = '0';
-                $currentProgres->save();
+                $currentSubmission = Attachment::where('idUser', $user)
+                            ->where('idCourse', $id)
+                            ->where('idModule', $module->id)->first();
+                if($currentSubmission && $currentSubmission->score == null){
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }else{
+                    $currentProgres->status = '0';
+                    $currentProgres->save();
+                }
             }
 
             $currentProgres->save();
