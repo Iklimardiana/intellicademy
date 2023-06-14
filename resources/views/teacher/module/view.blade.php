@@ -35,7 +35,7 @@
                 <tbody>
                     @forelse($modules as $item)
                         <tr>
-                            <td>{{ $iteration }}</td>
+                            <td>{{ $iteration++ }}</td>
                             <td>{{ $item->name }}</td>
                             <td>
                                 @php
