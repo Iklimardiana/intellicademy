@@ -10,11 +10,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/" style="{{ request()->is('/') ? 'font-weight: bold;' : '' }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/courses">Courses</a>
+                    <a class="nav-link" href="/courses" style="{{ request()->is('courses') ? 'font-weight: bold;' : '' }}">Courses</a>
                 </li>
+                @auth
+                    <li class="nav-item">
+                        @if (Auth::user()->role == '1')
+                                <a class="nav-link" href="/teacher" style="{{ request()->is('teacher') ? 'font-weight: bold;' : '' }}">
+                                    Dashboard
+                                </a>
+                        @elseif (Auth::user()->role == '2')
+                            <a class="nav-link" href="/student" style="{{ request()->is('student') ? 'font-weight: bold;' : '' }}">
+                                Dashboard
+                            </a>
+                        @else
+                            <a class="nav-link" href="/admin" style="{{ request()->is('admin') ? 'font-weight: bold;' : '' }}">
+                                Dashboard
+                            </a>
+                        @endif
+                    </li>
+                @endauth
             </ul>
             @auth
                 <div class="nav-item dropdown d-flex me-4">
