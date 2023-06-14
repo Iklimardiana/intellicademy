@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <h1><span>Intelli</span>Cademy</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -29,38 +29,38 @@
                         <li>
                             @if (Auth::user()->role == '1')
                                 <form action="/teacher">
-                                <button class="dropdown-item">
-                                    Dashboard
-                                </button>
-                            </form>
+                                    <button class="dropdown-item">
+                                        Dashboard
+                                    </button>
+                                </form>
                             @elseif (Auth::user()->role == '2')
                                 <form action="/student">
-                                <button class="dropdown-item">
-                                    Dashboard
-                                </button>
-                            </form>
+                                    <button class="dropdown-item">
+                                        Dashboard
+                                    </button>
+                                </form>
                             @else
                                 <form action="/admin">
-                                <button class="dropdown-item">
-                                    Dashboard
-                                </button>
-                            </form>
+                                    <button class="dropdown-item">
+                                        Dashboard
+                                    </button>
+                                </form>
                             @endif
                         </li>
                         <li>
                             @if (Auth::user()->role == '1')
-                            <form action="/teacher/profile/{{ Auth::user()->id }}">
-                                <button class="dropdown-item">
-                                    Profile
-                                </button>
-                            </form>
-                        @elseif (Auth::user()->role == '2')
-                            <form action="/student/profile/{{ Auth::user()->id }}">
-                                <button class="dropdown-item">
-                                    Profile
-                                </button>
-                            </form>
-                        @endif
+                                <form action="/teacher/profile/{{ Auth::user()->id }}">
+                                    <button class="dropdown-item">
+                                        Profile
+                                    </button>
+                                </form>
+                            @elseif (Auth::user()->role == '2')
+                                <form action="/student/profile/{{ Auth::user()->id }}">
+                                    <button class="dropdown-item">
+                                        Profile
+                                    </button>
+                                </form>
+                            @endif
                         </li>
                         @if (Auth::user()->role == '2')
                             <li>
@@ -85,11 +85,13 @@
             @endauth
             @guest
                 <div class="nav-item dropdown d-flex">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="login" href="/login">Login</a>
-                        </li>
-                    </ul>
+                    @unless (Request::is('login') || Request::is('register'))
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="login" href="/login">Login</a>
+                            </li>
+                        </ul>
+                    @endunless
                 </div>
             @endguest
         </div>
