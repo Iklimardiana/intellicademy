@@ -40,6 +40,9 @@ use App\Http\Controllers\ResetPasswordController;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/invoice', function () {
+    return view('pdf.invoice');
+});
 
 
 Route::resource('/module', ModuleController::class);
