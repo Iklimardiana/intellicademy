@@ -54,21 +54,21 @@
 
         <div style="margin-top: 11rem">
             <h1 class="title py-1 px-2 d-inline-block">Sertifikat Kompetensi Kelulusan</h1>
-            <h4>VI/2023/OKF234</h4>
+            <h4>{{ $transaction->id }}/23/I-CADEMY/{{ strtoupper(substr($month, 0, 3)) }}/{{ $year }}</h4>
         </div>
 
         <div style="margin-top:3rem">
             <p class="m-0 for d-inline-block py-1 px-2">Diberikan Kepada</p>
-            <h2 class="name">Fajar Sidik Setiawan</h2>
+            <h2 class="name">{{ ucfirst(strtolower($user->firstName)) }} {{ ucfirst(strtolower($user->lastName)) }}</h2>
 
         </div>
 
         
         <p class="m-0 mt-3">Atas Kelulusannya Pada Kelas</p>
-        <h3 class="kelas">Mengenal Artificial Intelligence</h3>
+        <h3 class="kelas">{{ $course->name }}</h3>
 
         <div style="margin-top: 5rem">
-            <p class="m-0 mb-2">12 Juni, 2023</p>
+            <p class="m-0 mb-2">{{ $date }} {{ $month }}, {{ $year }}</p>
                 <img class="ttd mb-2" src="./images/ttd.png" alt="ttd">
             <p>Joko Widodo</p>
         </div>

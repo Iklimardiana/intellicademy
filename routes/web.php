@@ -1,6 +1,8 @@
 <?php
 
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
@@ -23,17 +25,17 @@ use App\Http\Controllers\ResetPasswordController;
 */
 
 // reference the Dompdf namespace
-Route::get('/pdf', function () {
+// Route::get('/pdf', function () {
 
-    $data = ['data' => 'halo'];
+//     $data = ['data' => 'halo'];
 
-    $pdf = PDF::loadView('sertifikat', $data)->setPaper('a4', 'landscape');
+//     $pdf = PDF::loadView('sertifikat', $data)->setPaper('a4', 'landscape');
     
-    return $pdf->download('sertifikat.pdf');
+//     return $pdf->download('sertifikat.pdf');
 
-    // return view('sertifikat');
+//     // return view('sertifikat');
 
-});
+// });
 
 Route::get('/', function () {
     return view('index');
@@ -96,6 +98,7 @@ Route::middleware('student')->group(function () {
     Route::get('student/learning-page/{id}', [StudentController::class, 'learningPage'])->name('learning-page');
     Route::get('student/learning-pages/{id}', [StudentController::class, 'learningPages'])->name('learning-page-next');
     Route::post('student/learning-page/{id}', [StudentController::class, 'storeAssignment']);
+    Route::get('student/sertifikat/{id}', [PdfController::class, 'sertifikat']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);

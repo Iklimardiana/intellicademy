@@ -68,6 +68,7 @@
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
                                 @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Belajar kembali</a>
+                                    <a href="/student/sertifikat/{{ $t->Course->id }}" class="btn btn-primary">Cetak Sertifikat</a>
                                 @else
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
                                 @endif
