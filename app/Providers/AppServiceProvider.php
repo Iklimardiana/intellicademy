@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
         Str::macro('rupiah', function($value){
             return 'Rp. ' . number_format($value, 0, '.', '.');
         });
+        Paginator::useBootstrap();
     }
 }
