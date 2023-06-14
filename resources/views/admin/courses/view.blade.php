@@ -29,9 +29,9 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($course as $key => $item)
+                @forelse ($course as $item)
                     <tr>
-                        <td>{{$key+1}}</td>
+                        <td>{{$iteration++}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->price}}</td>
                         <td>{{$item->description}}</td>
@@ -43,6 +43,7 @@
                             <a href="/admin/course/{{$item->id}}/edit" class="badge bg-warning p-1">
                                 <i data-feather="edit"></i>
                             </a>
+                            
                             <form action="/admin/course/{{$item->id}}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
@@ -60,7 +61,7 @@
             </tbody>
         </table>
 
-        <nav aria-label="...">
+        {{-- <nav aria-label="...">
             <ul class="pagination">
                 <li class="page-item disabled">
                     <a class="page-link">Previous</a>
@@ -80,7 +81,10 @@
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
-        </nav>
+        </nav> --}}
+        <div>
+            {{ $course->links() }}
+        </div>
     </div>
     
 </div>

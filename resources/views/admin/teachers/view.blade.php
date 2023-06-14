@@ -30,9 +30,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($teachers as $key => $item)
+                    @forelse($teachers as $item)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $iteration++ }}</td>
                             <td>{{ $item->firstName . ' ' . $item->lastName }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
@@ -61,27 +61,9 @@
                 </tbody>
             </table>
 
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                    </li>
-
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item" aria-current="page">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+            <div>
+                {{ $teachers->links() }}
+            </div>
         </div>
 
     </div>

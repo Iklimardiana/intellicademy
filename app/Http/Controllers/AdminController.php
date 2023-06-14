@@ -21,9 +21,10 @@ class AdminController extends Controller
 
     public function teachers()
     {
-        $teachers = User::where('role', '1')->get();
+        $teachers = User::where('role', '1')->paginate(8);
+        $iteration = $teachers->firstItem();
 
-        return view('admin.teachers.view', compact('teachers'));
+        return view('admin.teachers.view', compact('teachers', 'iteration'));
     }
 
     public function createTeacher()
@@ -74,9 +75,10 @@ class AdminController extends Controller
 
     public function students()
     {
-        $students = User::where('role','2')->get();
+        $students = User::where('role','2')->paginate(8);
+        $iteration = $students->firstItem();
 
-        return view('admin.students.view', compact('students'));
+        return view('admin.students.view', compact('students', 'iteration'));
     }
 
     public function destroyStudent($id)

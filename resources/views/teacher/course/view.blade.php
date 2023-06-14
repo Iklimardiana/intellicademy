@@ -31,4 +31,7 @@
             @endforelse
         @endauth
     </div>
+    <div class="pagination justify-content-center mt-5">
+        {{ $courses->links() }}
+    </div>
 @endsection

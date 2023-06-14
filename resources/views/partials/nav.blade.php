@@ -17,6 +17,9 @@
                 </li>
             </ul>
             @auth
+                <div class="nav-item dropdown d-flex me-4">
+                    Hello, <b class="ms-1">{{ Auth::user()->username }}</b>
+                </div>
                 <div class="nav-item dropdown d-flex">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">

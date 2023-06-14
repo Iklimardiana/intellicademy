@@ -29,13 +29,14 @@ class TeacherController extends Controller
     {
         $progres = Progres::where('idCourse',$id)->get();
         $course = Course::where('id',$id)->first();
-        $transaction = Transaction::where('idCourse', $id)->get();
-        return view('teacher.student.view', compact('transaction', 'course', 'progres'));
+        $transaction = Transaction::where('idCourse', $id)->paginate(8);
+        $iteration = $transaction->firstItem();
+        return view('teacher.student.view', compact('transaction', 'course', 'progres', 'iteration'));
     }
 
     public function courses($id)
     {
-        $courses = Course::where('idUser', $id)->get();
+        $courses = Course::where('idUser', $id)->paginate(4);
 
         return view('teacher.course.view', compact('courses'));
     }
@@ -105,12 +106,13 @@ class TeacherController extends Controller
     public function modules($id)
     {
         $modules = Module::where('idCourse', $id)
-                ->orderBy('sequence', 'ASC')->get();
+                ->orderBy('sequence', 'ASC')->paginate(7);
+        $iteration = $modules->firstItem();
         $course = Course::find($id);
         $attachment = Attachment::where('idCourse', $id)
                         ->where('type', '0')->get();
 
-        return view('teacher.module.view', compact('modules', 'course', 'attachment'));
+        return view('teacher.module.view', compact('modules', 'course', 'attachment', 'iteration'));
     }
 
     public function createModule($idCourse)
@@ -208,9 +210,10 @@ class TeacherController extends Controller
 
     public function assigments($id)
     {
-        $attachments = Attachment::where('idModule', $id)->where('type', '1')->get();
+        $attachments = Attachment::where('idModule', $id)->where('type', '1')->paginate(8);
+        $iteration = $attachments->firstItem();
 
-        return view('teacher.assignment.view', compact('attachments'));
+        return view('teacher.assignment.view', compact('attachments', 'iteration'));
     }
 
     public function createAssigment($id)

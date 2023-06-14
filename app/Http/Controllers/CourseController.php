@@ -18,9 +18,13 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::get();
+        $course = Course::paginate(5);
+        $iteration = $course->firstItem();
         // return response()->json($course);
-        return view('admin.courses.view', ['course' => $course]);
+        return view('admin.courses.view', [
+            'course' => $course,
+            'iteration' => $iteration,
+        ]);
     }
 
     public function indexGeneral()
