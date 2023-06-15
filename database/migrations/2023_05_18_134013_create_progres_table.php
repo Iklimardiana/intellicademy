@@ -16,6 +16,7 @@ class CreateProgresTable extends Migration
         Schema::create('progres', function (Blueprint $table) {
             $table->id();
             $table->enum('status', [0, 1])->default('0');
+            $table->enum('complete', [0, 1])->default('0');
             $table->integer('sequence')->default(1);
             $table->unsignedBigInteger('idUser');
             $table->unsignedBigInteger('idCourse');

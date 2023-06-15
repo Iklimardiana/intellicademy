@@ -13,6 +13,7 @@ class Progres extends Model
     protected $fillable = [
         'status',
         'sequence',
+        'complete',
         'idUser',
         'idCourse',
     ];

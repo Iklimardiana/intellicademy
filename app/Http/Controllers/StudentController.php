@@ -193,6 +193,7 @@ class StudentController extends Controller
 
         $currentProgres = Progres::where('idUser', $user)->where('idCourse', $id)->first();
 
+
         if($currentProgres){
             if($currentProgres->sequence < $currentSequence)
             $currentProgres->sequence = $currentSequence;
@@ -219,6 +220,11 @@ class StudentController extends Controller
                     $currentProgres->status = '0';
                     $currentProgres->save();
                 }
+            }
+
+            if($currentProgres->sequence == $course->Module->count()){
+                $currentProgres->complete = '1';
+                $currentProgres->save();
             }
 
             $currentProgres->save();

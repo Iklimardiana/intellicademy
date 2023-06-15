@@ -3,10 +3,24 @@
     <aside class="sidebar-course text-center hide">
         <h3 class="py-4 m-0 sidebar-title">Course Name</h3>
         @foreach ($course->module->sortBy('sequence') as $module)
-            <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $module->sequence]) }}"
-                class="sidebar-course-link {{ $module->sequence == $currentSequence ? 'active' : '' }}">
-                Modul {{ $module->sequence }} {{ $module->name }}
-            </a>
+            @if ($currentProgres == '1')
+                <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $module->sequence]) }}"
+                    class="sidebar-course-link {{ $module->sequence == $currentSequence ? 'active' : '' }}">
+                    Modul {{ $module->sequence }} {{ $module->name }}
+                </a>
+            @else
+                @if ($module->sequence <= $currentProgres->sequence)
+                    <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $module->sequence]) }}"
+                        class="sidebar-course-link {{ $module->sequence == $currentSequence ? 'active' : '' }}">
+                        Modul {{ $module->sequence }} {{ $module->name }}
+                    </a>
+                @else
+                    <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $module->sequence]) }}"
+                        class="sidebar-course-link {{ $module->sequence == $currentSequence ? 'active' : '' }} btn disabled">
+                        Modul {{ $module->sequence }} {{ $module->name }}
+                    </a>
+                @endif
+            @endif
         @endforeach
 
         <button class="btn btn-dark sidebar-course-drawer">
@@ -17,7 +31,10 @@
 @section('content')
     @php
         // $currentModuleId = $module ? $module->id : null;
-        $currentModule = $course->Module()->where('sequence', $currentSequence)->first();
+        $currentModule = $course
+            ->Module()
+            ->where('sequence', $currentSequence)
+            ->first();
         $currentModuleId = $currentModule ? $currentModule->id : null;
     @endphp
 
@@ -47,7 +64,8 @@
                                                     <i data-feather="link"></i>
                                                 </a>
                                             @elseif($item->type == '0' && $item->category == '0')
-                                                <a href="{{ asset('attachment/task/' . $item->assignment) }}" class="badge bg-success" download>
+                                                <a href="{{ asset('attachment/task/' . $item->assignment) }}"
+                                                    class="badge bg-success" download>
                                                     <i data-feather="file"></i>
                                                 </a>
                                             @endif
@@ -160,17 +178,18 @@
                         @if ($currentSequence < $course->module->count())
                             @if ($currentProgres->status == '1')
                                 <a href="{{ route('learning-page-next', ['id' => $course->id, 'sequence' => $currentSequence + 1]) }}"
-                                    class="btn-footer-course" >Selanjutnya</a>
+                                    class="btn-footer-course">Selanjutnya</a>
                             @elseif($currentProgres->status == '0')
-                                <a href="" class="btn-footer-course btn disabled" style="border: none;">Selanjutnya</a>
+                                <a href="" class="btn-footer-course btn disabled"
+                                    style="border: none;">Selanjutnya</a>
                             @endif
                         @elseif($currentSequence == $course->module->count())
                             @if ($currentProgres->status == '1')
-                            <a href="/student" class="btn-footer-course">Kembali ke Dashboard</a>
+                                <a href="/student" class="btn-footer-course">Kembali ke Dashboard</a>
                             @elseif($currentProgres->status == '0')
-                            <a href="" class="btn-footer-course btn disabled" style="border: none;">Kembali ke Dashboard</a>
+                                <a href="" class="btn-footer-course btn disabled" style="border: none;">Kembali ke
+                                    Dashboard</a>
                             @endif
-                            
                         @endif
                     </div>
                 </div>
@@ -179,11 +198,11 @@
         <script>
             MyFunction();
         </script>
-        
+
     </div>
     <script>
         $(document).load(function() {
-            MyFunction(); 
+            MyFunction();
         });
     </script>
 @endsection

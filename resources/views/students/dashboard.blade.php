@@ -58,6 +58,7 @@
                         </div> --}}
                     @endif
                 @empty
+                
                     <h2>The Courses Are Empty</h2>
                 @endforelse
 
