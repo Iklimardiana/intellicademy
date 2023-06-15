@@ -14,13 +14,6 @@
             margin-right: 20px;
         }
 
-<<<<<<< HEAD
-=======
-        /* .navbar{
-            background-color: white;
-        } */
-
->>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
         .logo {
             height: 50px;
         }
@@ -30,9 +23,11 @@
             opacity: 75%;
         }
 
-        .ttd {
+        .ttd{
             height: 70px;
         }
+
+
     </style>
 </head>
 
@@ -45,13 +40,8 @@
                 <col span="1" style="width: 30%;">
                 <col span="1" style="width: 30%;">
                 <col span="1" style="width: 25%;">
-<<<<<<< HEAD
-            </colgroup>
-            <tbody>
-=======
              </colgroup>
              <tbody>
->>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
                 <tr>
                     <td style="vertical-align: middle; ">
                         <h2>IntelliCademy</h2>
@@ -65,19 +55,11 @@
                         <img class="logo ms-3" src="./images/logo.png" alt="logo">
                     </td>
                 </tr>
-<<<<<<< HEAD
-            </tbody>
-
-        </table>
-
-
-=======
              </tbody>
 
         </table>
         
         
->>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
     </div>
     <hr>
     <div>
@@ -89,15 +71,6 @@
         <div>
             <h5 class="mb-0 mt-2">Tanggal : </h5>
             <p class="my-0">{{ $date }}, {{ $month }} {{ $year }}</p>
-<<<<<<< HEAD
-        </div>
-        <div>
-            <h5 class="mb-0 mt-2">Nomer Invoice</h5>
-            <p class="my-0">
-                0{{ $transaction->id }}/0{{ $transaction->User->id }}/{{ $date }}{{ $monthNum }}{{ $year }}
-            </p>
-=======
->>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
         </div>
         <div>
             <h5 class="mb-0 mt-2">Nomer Invoice</h5>
@@ -105,59 +78,26 @@
         </div>
     </div>
 
-    <div class="my-4">
-        <table style=" margin-left: auto; margin-right: auto; width: 50%;  text-align: center">
-            <thead>
-                <tr>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Deskripsi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Course</th>
-                    <td>{{ $transaction->Course->name }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Jumla Modul</th>
-                    <td>{{ $transaction->Course->Module->count() }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Harga</th>
-                    <td>{{ Str::rupiah($transaction->Course->price) }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
     <div style="margin-top: 100px; margin-bottom: 100px">
         <table class="desc" style=" margin-left: auto; margin-right: auto; width: 50%;  text-align: center">
             <thead>
                 <tr>
-                    <th scope="col"
-                        style="height: 40px; background-color: rgba(176, 176, 176, 0.668); border: 1px solid rgba(176, 176, 176, 0.668);">
-                        Keterangan</th>
-                    <th scope="col"
-                        style="height: 40px; background-color: rgba(176, 176, 176, 0.668); border: 1px solid rgba(176, 176, 176, 0.668);">
-                        Deskripsi</th>
+                    <th scope="col" style="height: 40px; background-color: rgba(176, 176, 176, 0.668); border: 1px solid rgba(176, 176, 176, 0.668);">Keterangan</th>
+                    <th scope="col" style="height: 40px; background-color: rgba(176, 176, 176, 0.668); border: 1px solid rgba(176, 176, 176, 0.668);">Deskripsi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Course</th>
-                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">
-                        {{ $transaction->Course->name }}</td>
+                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">{{ $transaction->Course->name }}</td>
                 </tr>
                 <tr>
-                    <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Jumlah Modul
-                    </th>
-                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">
-                        {{ $transaction->Course->Module->count() }}</td>
+                    <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Jumlah Modul</th>
+                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">{{ $transaction->Course->Module->count() }}</td>
                 </tr>
                 <tr>
                     <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Harga</th>
-                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">
-                        {{ Str::rupiah($transaction->Course->price) }}</td>
+                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">{{ Str::rupiah($transaction->Course->price) }}</td>
                 </tr>
             </tbody>
         </table>
@@ -173,8 +113,8 @@
             </tr>
             <tr>
                 <td style="text-align: left vertical-align: middle; ">
-                    <h5><b>Terimakasih Atas <br>
-                            Pembayaran Course Anda</b></h5>
+                    <h5><b>Terimakasih Atas  <br>
+                        Pembayaran Course Anda</b></h5>
                 </td>
                 <td style="text-align: right">
                     <img class="ttd"src="./images/ttd.jpeg" alt="ttd">
