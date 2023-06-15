@@ -17,7 +17,11 @@
                         <h5 class="card-title">{{$t->Course->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{Str::rupiah($t->Course->price)}}</h6>
                         <p class="card-text flex-grow-1">{{$t->Course->description}}</p>
-                        <a href="/student/invoice/{{ $t->id }}" class="btn btn-success">Print Invoice</a>
+                        @if ( $t->verification == 0 )
+                            <a href="/student/invoice/{{ $t->id }}" class="btn btn-success disabled">Print Invoice</a>
+                        @elseif( $t->verification == 1)
+                            <a href="/student/invoice/{{ $t->id }}" class="btn btn-success">Print Invoice</a>
+                        @endif
                     </div>
                 </div>
             @endforeach
