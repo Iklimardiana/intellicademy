@@ -14,10 +14,6 @@
             margin-right: 20px;
         }
 
-        /* .navbar{
-            background-color: white;
-        } */
-
         .logo {
             height: 50px;
         }
@@ -27,12 +23,11 @@
             opacity: 75%;
         }
 
-        .rightInvoice {
-            float: right;
-        }
         .ttd{
             height: 70px;
         }
+
+
     </style>
 </head>
 
@@ -83,44 +78,57 @@
         </div>
     </div>
 
-    <div class="my-4">
-        <table style=" margin-left: auto; margin-right: auto; width: 50%;  text-align: center">
+    <div style="margin-top: 100px; margin-bottom: 100px">
+        <table class="desc" style=" margin-left: auto; margin-right: auto; width: 50%;  text-align: center">
             <thead>
                 <tr>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Deskripsi</th>
+                    <th scope="col" style="height: 40px; background-color: rgba(176, 176, 176, 0.668); border: 1px solid rgba(176, 176, 176, 0.668);">Keterangan</th>
+                    <th scope="col" style="height: 40px; background-color: rgba(176, 176, 176, 0.668); border: 1px solid rgba(176, 176, 176, 0.668);">Deskripsi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">Course</th>
-                    <td>{{ $transaction->Course->name }}</td>
+                    <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Course</th>
+                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">{{ $transaction->Course->name }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Jumla Modul</th>
-                    <td>{{ $transaction->Course->Module->count() }}</td>
+                    <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Jumlah Modul</th>
+                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">{{ $transaction->Course->Module->count() }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Harga</th>
-                    <td>{{ Str::rupiah($transaction->Course->price) }}</td>
+                    <th scope="row" style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">Harga</th>
+                    <td style="height: 40px; border: 1px solid rgba(176, 176, 176, 0.668);">{{ Str::rupiah($transaction->Course->price) }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <nav class="navbar mt-3 mx-3">
-        <div class="container-fluid">
-            <div>
-                <h5><b>Terimakasih Atas  <br>
-                    Pembayaran Course Anda</b></h5>
-            </div>
-            <div class="rightNavbar">
-                <h5 class="mb-0 mt-2">Hormat Kami</h5>
-                <img class="ttd"src="./images/ttd.jpeg" alt="ttd">
-                <p class="my-0">IntelliCademy</p>
-            </div>
-        </div>
-    </nav>
+    <div>
+        <table style="width: 100%;">
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    <h5 class="mb-0 mt-2">Hormat Kami</h5>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left vertical-align: middle; ">
+                    <h5><b>Terimakasih Atas  <br>
+                        Pembayaran Course Anda</b></h5>
+                </td>
+                <td style="text-align: right">
+                    <img class="ttd"src="./images/ttd.jpeg" alt="ttd">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    <p class="my-0">IntelliCademy</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
