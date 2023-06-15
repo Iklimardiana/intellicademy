@@ -23,4 +23,17 @@ class PdfController extends Controller
         $pdf = PDF::loadView('pdf.sertifikat', compact('user', 'course', 'transaction', 'date', 'year', 'month'))->setPaper('a4', 'landscape');
         return $pdf->stream("sertifikat" . $user->id . $course->id . $transaction->id . ".pdf");
     }
+
+    public function invoice($id){
+        $transaction = Transaction::where('id' , $id)->first();
+        $date = date('d');
+        $year = date('Y');
+        $monthNum  = date('m');
+        $month = date('F', mktime(0, 0, 0, (int)$monthNum, 10));
+
+        $pdf = PDF::loadView('pdf.invoice', compact('transaction', 'date', 'year', 'month', 'monthNum'))->setPaper('a4', 'potrait');
+        return $pdf->stream("invoice-0" . $transaction->id . $date . $monthNum . $year . ".pdf");
+
+        // return view('pdf.invoice', compact('transaction', 'date', 'year', 'month', 'monthNum'));
+    }
 }

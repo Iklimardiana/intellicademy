@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,6 +13,10 @@
             margin-left: 20px;
             margin-right: 20px;
         }
+
+        /* .navbar{
+            background-color: white;
+        } */
 
         .rightNavbar {
             left: auto !important;
@@ -38,7 +42,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mt-3">
+    <nav class="navbar mt-3">
         <div class="container-fluid">
             <h2>Invoice</h2>
             <div class="rightNavbar">
@@ -47,18 +51,18 @@
         </div>
     </nav>
     <hr>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mt-3 mx-3">
+    <nav class="navbar mt-3 mx-3">
         <div class="container-fluid">
             <div>
                 <h5><b>Kepada :</b></h5>
-                <p class="my-0">dsc</p>
-                <p class="my-0">email</p>
+                <p class="my-0">{{ $transaction->User->firstName }} {{ $transaction->User->lastName }}</p>
+                <p class="my-0">{{ $transaction->User->email }}</p>
             </div>
             <div class="rightNavbar">
                 <h5 class="mb-0">Tanggal : </h5>
-                <p class="my-0">14/06/2023</p>
+                <p class="my-0">{{ $date }}, {{ $month }} {{ $year }}</p>
                 <h5 class="mb-0 mt-2">Nomer Invoice</h5>
-                <p class="my-0">123/11/1111</p>
+                <p class="my-0">0{{ $transaction->id }}/0{{ $transaction->User->id }}/{{ $date }}{{ $monthNum }}{{ $year }}</p>
             </div>
         </div>
     </nav>
@@ -74,22 +78,22 @@
                 <tbody>
                     <tr>
                         <th scope="row">Course</th>
-                        <td>AI</td>
+                        <td>{{ $transaction->Course->name }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Jumla Modul</th>
-                        <td>2</td>
+                        <td>{{ $transaction->Course->Module->count() }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Harga</th>
-                        <td>222</td>
+                        <td>{{ Str::rupiah($transaction->Course->price) }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mt-3 mx-3">
+    <nav class="navbar mt-3 mx-3">
         <div class="container-fluid">
             <div>
                 <h5><b>Terimakasih Atas  <br>
@@ -107,4 +111,64 @@
     </script>
 </body>
 
+</html> --}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
+</style>
+
+</head>
+<body>
+
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <div class="topnav-right">
+    <a href="#search">Search</a>
+    <a href="#about">About</a>
+  </div>
+</div>
+
+<div style="padding-left:16px">
+  <h2>Top Navigation with Right Aligned Links</h2>
+  <p>Some content..</p>
+</div>
+
+</body>
 </html>
