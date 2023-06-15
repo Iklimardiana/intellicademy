@@ -58,11 +58,14 @@
                         </div> --}}
                     @endif
                 @empty
-                
                     <h2>The Courses Are Empty</h2>
                 @endforelse
 
-                @if ($transaction->count() > 0 && $transaction->count() == $progres->count())
+                @php
+                $complete = $progres->where('status', '1')
+                            ->where('complete', '1')->count();
+                @endphp 
+                @if ($transaction->count() > 0 && $complete == $progres->count())
                     <div class="col-12">
                         <h2>Your courses have been completed.</h2>
                     </div>
