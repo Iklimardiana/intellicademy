@@ -17,42 +17,119 @@ class TransactionController extends Controller
         // dd($transaction);
         return view('students.transaction', compact('transaction'));
     }
-    
-    public function checkout($id){
-        $str = mt_rand(1000000000, 9999999999);
-        $id_user = Auth::user()->id;
 
-        $transaction = new Transaction;
-        $transaction->id = $str;
-        $transaction->idCourse = $id;
-        $transaction->idUSer = $id_user;
-        $transaction->save();
+    public function checkout($id)
+    {
+        if (request()->isMethod('get')) {
+            $id_user = Auth::user()->id;
 
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+            $existingTransaction = Transaction::where('idCourse', $id)
+                ->where('idUser', $id_user)
+                ->where('verification', '0')
+                ->first();
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => $transaction->id,
-                'gross_amount' => $transaction->Course->price,
-            ),
-            'customer_details' => array(
-                'first_name' => Auth::user()->firstName,
-                'last_name' => Auth::user()->lastName,
-                'email' => Auth::user()->email,
-                'phone' => Auth::user()->phone,
-            ),
-        );
+            if ($existingTransaction) {
+                $transaction = $existingTransaction;
 
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('students.checkout', compact('transaction', 'snapToken'));
+                // Set your Merchant Server Key
+                \Midtrans\Config::$serverKey = config('midtrans.server_key');
+                // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+                \Midtrans\Config::$isProduction = false;
+                // Set sanitization on (default)
+                \Midtrans\Config::$isSanitized = true;
+                // Set 3DS transaction for credit card to true
+                \Midtrans\Config::$is3ds = true;
+
+                $params = array(
+                    'transaction_details' => array(
+                        'order_id' => $transaction->id,
+                        'gross_amount' => $transaction->Course->price,
+                    ),
+                    'customer_details' => array(
+                        'first_name' => Auth::user()->firstName,
+                        'last_name' => Auth::user()->lastName,
+                        'email' => Auth::user()->email,
+                        'phone' => Auth::user()->phone,
+                    ),
+                );
+
+                $snapToken = \Midtrans\Snap::getSnapToken($params);
+            
+                return view('students.checkout', compact('transaction', 'snapToken'));
+            }
+        } else if (request()->isMethod('post')) {
+            $str = mt_rand(1000000000, 9999999999);
+            $id_user = Auth::user()->id;
+
+            $transaction = new Transaction;
+            $transaction->id = $str;
+            $transaction->idCourse = $id;
+            $transaction->idUSer = $id_user;
+            $transaction->save();
+
+            // Set your Merchant Server Key
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+            \Midtrans\Config::$isProduction = false;
+            // Set sanitization on (default)
+            \Midtrans\Config::$isSanitized = true;
+            // Set 3DS transaction for credit card to true
+            \Midtrans\Config::$is3ds = true;
+
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $transaction->id,
+                    'gross_amount' => $transaction->Course->price,
+                ),
+                'customer_details' => array(
+                    'first_name' => Auth::user()->firstName,
+                    'last_name' => Auth::user()->lastName,
+                    'email' => Auth::user()->email,
+                    'phone' => Auth::user()->phone,
+                ),
+            );
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            return view('students.checkout', compact('transaction', 'snapToken'));
+        }
     }
+
+    
+    // public function checkout($id){
+    //     $str = mt_rand(1000000000, 9999999999);
+    //     $id_user = Auth::user()->id;
+
+    //     $transaction = new Transaction;
+    //     $transaction->id = $str;
+    //     $transaction->idCourse = $id;
+    //     $transaction->idUSer = $id_user;
+    //     $transaction->save();
+
+    //     // Set your Merchant Server Key
+    //     \Midtrans\Config::$serverKey = config('midtrans.server_key');
+    //     // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+    //     \Midtrans\Config::$isProduction = false;
+    //     // Set sanitization on (default)
+    //     \Midtrans\Config::$isSanitized = true;
+    //     // Set 3DS transaction for credit card to true
+    //     \Midtrans\Config::$is3ds = true;
+
+    //     $params = array(
+    //         'transaction_details' => array(
+    //             'order_id' => $transaction->id,
+    //             'gross_amount' => $transaction->Course->price,
+    //         ),
+    //         'customer_details' => array(
+    //             'first_name' => Auth::user()->firstName,
+    //             'last_name' => Auth::user()->lastName,
+    //             'email' => Auth::user()->email,
+    //             'phone' => Auth::user()->phone,
+    //         ),
+    //     );
+
+    //     $snapToken = \Midtrans\Snap::getSnapToken($params);
+    //     return view('students.checkout', compact('transaction', 'snapToken'));
+    // }
 
     public function callback(Request $request){
         $serverKey = config('midtrans.server_key');
