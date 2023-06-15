@@ -13,7 +13,7 @@ class TransactionController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $transaction = Transaction::where('idUser', $id)->get();
+        $transaction = Transaction::where('idUser', $id)->paginate(1);
         // dd($transaction);
         return view('students.transaction', compact('transaction'));
     }
