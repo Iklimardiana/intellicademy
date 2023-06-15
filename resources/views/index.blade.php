@@ -1,17 +1,18 @@
 @extends('layouts.master')
 @section('aside')
      <aside class="col-lg-5 align-self-center">
-         <h1 class="text-center">
-             Lorem ipsum dolor sit amet.
-         </h1>
-         <p class="text-center">
-             Lorem ipsum dolor sit amet.
-         </p>
+         <h2 class="text-center">
+            Ignite Your Potential in the World of Artificial Intelligence!
+         </h2>
          <div class="text-center">
-             <button class="btn btn-info">
+            <img src="{{ asset('/images/logo.png')}}" alt="Intellicademy Logo" class="img-fluid w-25 mt-3 mb-3">
+             {{-- <button class="btn btn-info">
                  learn now!
-             </button>
+             </button> --}}
          </div>
+         <p class="text-center">
+            Enhance Your AI Expertise with Intellicademy's Premier E-Course!
+         </p>
      </aside>
 @endsection
 @section('content')
