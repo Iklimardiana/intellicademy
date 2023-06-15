@@ -4,20 +4,15 @@
 @endsection
 @section('content')
     <div class="col mt-3 mt-lg-0">
-        <div aria-label="breadcrumb">
+        <div aria-label="breadcrumb" class="mt-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="/teacher-dashboard/teacher-dashboard-courses.html">
+                    <a href="/teacher/courses/{{ Auth::user()->id }}">
                         Courses
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a href="/teacher-dashboard/teacher-dashboard-course-detail.html">
-                        Course Name
-                    </a>
-                </li>
                 <li class="breadcrumb-item active">
-                    Add module
+                    Edit module {{ $course->name }}
                 </li>
             </ol>
         </div>

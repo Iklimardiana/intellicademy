@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row gap-4">
-            <h1 class="mt-4">Transaction</h1>
+            <h1 class="mt-3 text-center">Transaction</h1>
             @foreach ( $transaction as $t )
                 <div class="card col-12 col-md-5 col-lg-3 pt-2">
                     <div class="card-img-container">

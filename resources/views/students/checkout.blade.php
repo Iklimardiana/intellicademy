@@ -2,9 +2,8 @@
 @section('content')
     <div class="container">
         <div class="row gap-4">
-            <h1 class="mt-4">Checkout</h1>
+            <h2 class="mt-4 text-center">Checkout</h2>
                 <div class="card col-12 col-md-5 col-lg-3 pt-2">
-                    {{-- {{ dd($transaction->Course) }} --}}
                     @if($transaction->Course->thumbnail == null)
                         <img src="{{asset('/images/landingpage.png')}}" class="card-img-top" alt="course image">
                     @else

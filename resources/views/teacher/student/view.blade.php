@@ -3,8 +3,11 @@
     @include('partials.aside')
 @endsection
 @section('content')
-    <div aria-label="breadcrumb">
+    <div aria-label="breadcrumb" class="mt-4">
         <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/teacher/courses/{{ Auth::user()->id }}">Courses</a>
+            </li>
             <li class="breadcrumb-item active">List Students</li>
         </ol>
     </div>
@@ -32,7 +35,6 @@
                                 @php
                                     $progresUser = $progres->where('idUser', $item->User->id)->first();
                                 @endphp
-                                {{-- {{ dd($course) }} --}}
                                 @if ( $progresUser ? $progresUser->sequence : '')
                                     @if ( $progresUser->sequence == $course->Module->count())
                                         @if ($progresUser->status == 0)

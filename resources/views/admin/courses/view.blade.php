@@ -3,7 +3,7 @@
 @include('partials.aside')
 @endsection
 @section('content')
-<div aria-label="breadcrumb">
+<div aria-label="breadcrumb" class="mt-4">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">Courses</li>
     </ol>
@@ -19,8 +19,8 @@
     <div class="col mt-3 table-responsive">
         <table class="table table-bordered">
             <thead>
-                <tr>
-                    <th>#</th>
+                <tr class="text-center">
+                    <th>No.</th>
                     <th>Course Name</th>
                     <th>Price</th>
                     <th>Description</th>
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 @forelse ($course as $item)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{$iteration++}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->price}}</td>
@@ -60,28 +60,6 @@
                 @endforelse
             </tbody>
         </table>
-
-        {{-- <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                </li>
-
-                <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav> --}}
         <div>
             {{ $course->links() }}
         </div>

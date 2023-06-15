@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="card">
+<div class="card mt-4">
     <div class="card-header">
         <h4>Profile</h4>
     </div>
@@ -76,10 +76,17 @@
                           </button>
                         </div>
                         <div class="col">
-                            <a href="/teacher/profile/{{$profile->id}}" class="btn btn-warning custom-button">
-                                <i data-feather="x-circle"></i>
-                                <span>Cancel</span>
-                            </a>
+                            @if (Auth::user()->role == '1')
+                                <a href="/teacher/profile/{{$profile->id}}" class="btn btn-warning custom-button">
+                                    <i data-feather="x-circle"></i>
+                                    <span>Cancel</span>
+                                </a>
+                            @elseif (Auth::user()->role == '2')
+                                <a href="/student/profile/{{$profile->id}}" class="btn btn-warning custom-button">
+                                    <i data-feather="x-circle"></i>
+                                    <span>Cancel</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </form>

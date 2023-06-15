@@ -3,7 +3,7 @@
     @include('partials.aside')
 @endsection
 @section('content')
-    <div aria-label="breadcrumb">
+    <div aria-label="breadcrumb" class="mt-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">List Assignment Students</li>
         </ol>

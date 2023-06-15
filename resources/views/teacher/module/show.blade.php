@@ -5,7 +5,7 @@
     @include('partials.aside')
 @endsection
 @section('content')
-    <div class="card">
+    <div class="card mt-4">
         <div class="card-body">
             <h4 class="course-title">{{ $module->name }}</h4>
             @foreach (preg_split('/<\/?p>/', $module->body) as $paragraph)

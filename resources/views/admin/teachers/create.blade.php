@@ -4,10 +4,10 @@
 @endsection
 
 @section('content')
-    <div aria-label="breadcrumb">
+    <div aria-label="breadcrumb" class="mt-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="/admin-dashboard/admin-dashboard-teachers.html">Teachers</a>
+                <a href="/admin/teachers">Teachers</a>
             </li>
             <li class="breadcrumb-item active">add</li>
         </ol>
@@ -68,7 +68,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <div class="mb-3">
-                <a href="/admin-dashboard/admin-dashboard-teachers.html" class="btn btn-warning">
+                <a href="/admin/teachers" class="btn btn-warning">
                     <i data-feather="corner-down-left"></i>
                     <span>Back</span>
                 </a>

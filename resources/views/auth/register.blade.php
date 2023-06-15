@@ -6,7 +6,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-    <aside class="col-lg-5 align-self-center">
+    <aside class="col-lg-5 align-self-center mt-4">
         <div class="row justify-content-center">
             <div class="card col-11 col-md-6 col-lg-10 pb-2 pt-2">
                 <div class="card-header d-flex justify-content-center gap-1">

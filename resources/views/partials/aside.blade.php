@@ -1,5 +1,5 @@
  @auth
-     <aside class="col-lg-3">
+     <aside class="col-lg-3 mt-4">
          <div class="card">
              @if (auth()->user()->role == 0)
                  <div class="card-header">

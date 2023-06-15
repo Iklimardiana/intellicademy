@@ -3,7 +3,7 @@
 @include('partials.aside')
 @endsection
 @section('content')
-    <div aria-label="breadcrumb">
+    <div aria-label="breadcrumb" class="mt-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Students</li>
         </ol>
@@ -13,19 +13,19 @@
         <div class="col mt-3 table-responsive">
             <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <th>#</th>
+                    <tr class="text-center">
+                        <th>No.</th>
                         <th>Full Name</th>
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>Phone</th>
                         <th>Avatar</th>
-                        <th>#</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($students as $item)
-                        <tr>
+                        <tr class="text-center">
                             <td>{{ $iteration++ }}</td>
                             <td>{{ $item->firstName . ' ' . $item->lastName }}</td>
                             <td>{{ $item->username }}</td>

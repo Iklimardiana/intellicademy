@@ -1,12 +1,18 @@
 @extends('layouts.master')
 @section('content')
-<div class="card">
+<div class="card mt-4">
     <div class="card-header">
         <div class="row align-items-center">
             <div class="col-auto">
-                <a href="/teacher/courses/{{$profile->id}}" class="btn">
-                    <i data-feather="arrow-left"></i>
-                </a>
+                @if (Auth::user()->role == '1')
+                    <a href="/teacher" class="btn">
+                        <i data-feather="arrow-left"></i>
+                    </a>
+                @elseif(Auth::user()->role == '2')
+                    <a href="/student" class="btn">
+                        <i data-feather="arrow-left"></i>
+                    </a>
+                @endif
             </div>
             <div class="col text-center">
                 <h4 class="mb-0">Profile</h4>

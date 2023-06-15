@@ -3,12 +3,12 @@
 @include('partials.aside')
 @endsection
 @section('content')
-    <div aria-label="breadcrumb">
+    <div aria-label="breadcrumb" class="mt-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="/admin-dashboard-courses.html">Courses</a>
+                <a href="/admin/course">Courses</a>
             </li>
-            <li class="breadcrumb-item active">add</li>
+            <li class="breadcrumb-item active">Edit</li>
         </ol>
     </div>
 
