@@ -20,7 +20,6 @@ class CourseController extends Controller
     {
         $course = Course::paginate(5);
         $iteration = $course->firstItem();
-        // return response()->json($course);
         return view('admin.courses.view', [
             'course' => $course,
             'iteration' => $iteration,
@@ -32,7 +31,7 @@ class CourseController extends Controller
         
         if(Auth::check()){
             $id = Auth::user()->id;
-            $course = Course::get();
+            $course = Course::paginate(8);
             $transaction = Transaction::where('idUser', $id)->get();
 
             return view('courseGeneral.view', [
@@ -40,7 +39,7 @@ class CourseController extends Controller
                 'transaction' => $transaction,
             ]);
         }
-        $course = Course::get();
+        $course = Course::paginate();
 
         return view('courseGeneral.view', ['course' => $course]);
     }

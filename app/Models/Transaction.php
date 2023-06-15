@@ -27,4 +27,9 @@ class Transaction extends Model
         return $this->belongsTo(Course::class, 'idCourse');
     }
 
+    public function Certificate()
+    {
+        return $this->HasOne(Certificate::class, 'idTransaction');
+    }
+
 }

@@ -24,26 +24,9 @@ use App\Http\Controllers\ResetPasswordController;
 |
 */
 
-// reference the Dompdf namespace
-// Route::get('/pdf', function () {
-
-//     $data = ['data' => 'halo'];
-
-//     $pdf = PDF::loadView('sertifikat', $data)->setPaper('a4', 'landscape');
-    
-//     return $pdf->download('sertifikat.pdf');
-
-//     // return view('sertifikat');
-
-// });
-
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/invoice', function () {
-    return view('pdf.invoice');
-});
-
 
 Route::resource('/module', ModuleController::class);
 
@@ -102,6 +85,7 @@ Route::middleware('student')->group(function () {
     Route::get('student/learning-pages/{id}', [StudentController::class, 'learningPages'])->name('learning-page-next');
     Route::post('student/learning-page/{id}', [StudentController::class, 'storeAssignment']);
     Route::get('student/sertifikat/{id}', [PdfController::class, 'sertifikat']);
+    Route::get('student/invoice/{id}', [PdfController::class, 'invoice']);
 });
 
 Route::get('/register', [RegisterController::class, 'create']);

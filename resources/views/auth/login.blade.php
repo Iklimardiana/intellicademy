@@ -1,15 +1,16 @@
     @extends('layouts.master')
-    @section('content')
+    @section('aside')
     @if (session()->has('message'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ session('message') }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-    <div class="container mt-4">
+    <aside class="col-lg-5 align-self-center">
         <div class="row justify-content-center">
-            <div class="card col-11 col-md-6 col-lg-4 pb-4">
-                <div class="card-header">
+            <div class="card col-11 col-md-6 col-lg-10 pb-2 pt-2">
+                <div class="card-header d-flex justify-content-center gap-1">
+                    <img src="{{asset('/images/logo.png')}}" alt="Logo Intellicademy" class="img-fluid" style="width: 35px">
                     <h2 class="text-center">Login</h2>
                 </div>
                 <form action="/login" method="POST">
@@ -61,5 +62,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </aside>
+    @endsection
+    @section('content')
+        <div class="text-center">
+            <img src="/images/landingpage.png" alt="landing page" class="w-75">
+        </div>
     @endsection

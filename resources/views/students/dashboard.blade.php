@@ -27,18 +27,35 @@
                    
                     @if (!$currentProgress || $currentProgress->sequence != $t->Course->Module->count() || $currentProgress->status == '0' )
                         <div class="card col-12 col-md-5 pt-2">
+                            <div class="card-img-container">
+                                <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top" alt="thumbnail {{ $t->Course->name }}">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ $t->Course->name }}</h5>
+                                <p class="card-text flex-grow-1">{{ $t->Course->description }}</p>
+                                <div class="mt-auto">
+                                    @if ($t->course->Progres->isEmpty())
+                                        <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
+                                    @else
+                                        <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        
+                    {{-- <div class="card col-12 col-md-5 pt-2">
                             <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top"
                                 alt="thumbnail {{ $t->Course->name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $t->Course->name }}</h5>
-                                <p class="card-text">{{ $t->Course->description }}</p>
+                                <p class="card-text flex-grow-1">{{ $t->Course->description }}</p>
                                 @if ($t->course->Progres->isEmpty())
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
                                 @else
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
                     @endif
                 @empty
                     <h2>The Courses Are Empty</h2>
@@ -59,11 +76,12 @@
                     @endphp
                     @if ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
                         <div class="card col-12 col-md-5 pt-2">
-                            <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top"
-                                alt="thumbnail {{ $t->Course->name }}">
+                            <div class="card-img-container">
+                                <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top" alt="thumbnail {{ $t->Course->name }}">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $t->Course->name }}</h5>
-                                <p class="card-text">{{ $t->Course->description }}</p>
+                                <p class="card-text flex-grow-1">{{ $t->Course->description }}</p>
                                 @if ($t->course->Progres->isEmpty())
                                     <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
                                 @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
