@@ -14,6 +14,13 @@
             margin-right: 20px;
         }
 
+<<<<<<< HEAD
+=======
+        /* .navbar{
+            background-color: white;
+        } */
+
+>>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
         .logo {
             height: 50px;
         }
@@ -38,8 +45,13 @@
                 <col span="1" style="width: 30%;">
                 <col span="1" style="width: 30%;">
                 <col span="1" style="width: 25%;">
+<<<<<<< HEAD
             </colgroup>
             <tbody>
+=======
+             </colgroup>
+             <tbody>
+>>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
                 <tr>
                     <td style="vertical-align: middle; ">
                         <h2>IntelliCademy</h2>
@@ -53,11 +65,19 @@
                         <img class="logo ms-3" src="./images/logo.png" alt="logo">
                     </td>
                 </tr>
+<<<<<<< HEAD
             </tbody>
 
         </table>
 
 
+=======
+             </tbody>
+
+        </table>
+        
+        
+>>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
     </div>
     <hr>
     <div>
@@ -69,13 +89,45 @@
         <div>
             <h5 class="mb-0 mt-2">Tanggal : </h5>
             <p class="my-0">{{ $date }}, {{ $month }} {{ $year }}</p>
+<<<<<<< HEAD
         </div>
         <div>
             <h5 class="mb-0 mt-2">Nomer Invoice</h5>
             <p class="my-0">
                 0{{ $transaction->id }}/0{{ $transaction->User->id }}/{{ $date }}{{ $monthNum }}{{ $year }}
             </p>
+=======
+>>>>>>> add70ebf65d9ed8110b969b81cd1c0fb6c6cbf58
         </div>
+        <div>
+            <h5 class="mb-0 mt-2">Nomer Invoice</h5>
+            <p class="my-0">0{{ $transaction->id }}/0{{ $transaction->User->id }}/{{ $date }}{{ $monthNum }}{{ $year }}</p>
+        </div>
+    </div>
+
+    <div class="my-4">
+        <table style=" margin-left: auto; margin-right: auto; width: 50%;  text-align: center">
+            <thead>
+                <tr>
+                    <th scope="col">Keterangan</th>
+                    <th scope="col">Deskripsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Course</th>
+                    <td>{{ $transaction->Course->name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Jumla Modul</th>
+                    <td>{{ $transaction->Course->Module->count() }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Harga</th>
+                    <td>{{ Str::rupiah($transaction->Course->price) }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div style="margin-top: 100px; margin-bottom: 100px">
