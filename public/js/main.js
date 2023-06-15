@@ -37,10 +37,27 @@ const main = () => {
 
   const sidebarDrawer = document.querySelector(".sidebar-course-drawer");
   sidebarDrawer.addEventListener("click", () => {
+      const button = document.querySelector(".sidebar-course-drawer");
       const sidebar = document.querySelector(".sidebar-course");
       const main = document.querySelector("main");
       main.classList.toggle("sidebar-opened");
       sidebar.classList.toggle("hide");
+
+      button.classList.add("hidden");
+  });
+
+  const closeSidebar = document.querySelector(".sidebar-drawer-close");
+  closeSidebar.addEventListener("click", () => {
+    const button = document.querySelector(".sidebar-course-drawer");
+    const sidebar = document.querySelector(".sidebar-course");
+    const main = document.querySelector("main");
+
+    main.classList.toggle("sidebar-opened");
+    sidebar.classList.toggle("hide");
+
+    setTimeout(() => {
+      button.classList.remove("hidden");
+    }, 400);
   });
 };
 

@@ -113,6 +113,10 @@ main.sidebar-opened {
   right: -2rem;
 }
 
+.sidebar-course-drawer.hidden {
+  display: none; 
+}
+
 .btn-footer-course {
   text-decoration: none;
   color: black;

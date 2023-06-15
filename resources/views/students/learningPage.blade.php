@@ -1,7 +1,12 @@
 @extends('layouts.master')
 @section('aside')
     <aside class="sidebar-course text-center hide">
-        <h3 class="py-4 m-0 sidebar-title">Course Name</h3>
+        <div class="d-flex justify-content-around sidebar-title">
+            <button class="btn btn-dark rounded mb-4 mt-4 p-1 sidebar-drawer-close"> 
+                <i data-feather="arrow-left"></i>
+            </button>
+            <h3 class="py-4 ml-2">{{ $course->name }}</h3>
+        </div>
         @foreach ($course->module->sortBy('sequence') as $module)
             @if ($currentProgres == '1')
                 <a href="{{ route('learning-page', ['id' => $course->id, 'sequence' => $module->sequence]) }}"
@@ -30,7 +35,6 @@
 @endsection
 @section('content')
     @php
-        // $currentModuleId = $module ? $module->id : null;
         $currentModule = $course
             ->Module()
             ->where('sequence', $currentSequence)
@@ -71,14 +75,12 @@
                                             @endif
                                         </td>
                                         <td class="col-6">
-                                            <form
-                                                action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
+                                            <form action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
                                                 id="uploadForm" method="POST" style="display: inline;"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @if ($submission->where('idModule', $currentModuleId)->where('type', '1')->where('idUser', Auth::user()->id)->isEmpty())
-                                                    <form
-                                                        action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
+                                                    <form action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
                                                         id="uploadForm" method="POST" style="display: inline;"
                                                         enctype="multipart/form-data">
                                                         @csrf
@@ -99,6 +101,7 @@
                                                 @endif
                                                 </label>
                                                 <span id="uploadConfirmation" style="display: none;">File uploaded</span>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endif
