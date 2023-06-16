@@ -7,7 +7,7 @@
         <div aria-label="breadcrumb" class="mt-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="/teacher/courses/{{ Auth::user()->id }}">
+                    <a href="/teacher/modules/{{ $module->idCourse }}">
                         Courses
                     </a>
                 </li>
