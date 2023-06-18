@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="dicoding:email" content="iklimardiana911@gmail.com">
     <title>IntelliCademy</title>
     <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
 
