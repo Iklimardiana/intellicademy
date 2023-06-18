@@ -34,7 +34,7 @@
                                 <h5 class="card-title">{{ $t->Course->name }}</h5>
                                 <p class="card-text flex-grow-1">{{ $t->Course->description }}</p>
                                 <div class="mt-auto">
-                                    @if ($t->course->Progres->isEmpty())
+                                    @if ($currentProgress == null)
                                         <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
                                     @else
                                         <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>

@@ -25,7 +25,7 @@ class StudentController extends Controller
                         ->where('verification','1')->get();
 
         $courses = Course::get();
-        $progres = Progres::where('idUSer', $id)->get();
+        $progres = Progres::where('idUser', $id)->get();
 
         return view('students.dashboard', compact('transaction', 'progres'));
     }
@@ -260,7 +260,7 @@ class StudentController extends Controller
         return redirect('/student/learning-page/' . $id  . '?sequence=' .  $currentSequence)->with(compact('currentProgres','module', 'course', 'currentSequence', 'attachment', 'submission'));
     }
 
-    public function storeAssignment(Request $request)
+    public function storeAssignment(Request $request, $id)
     {
         $request->validate([
             'assignment' => 'required|file|mimes:pdf,zip,rar|max:5048',
@@ -273,7 +273,7 @@ class StudentController extends Controller
         $transaction = Transaction::where('idUser', $user->id)->first();
     
         if ($transaction) {
-            $course = $transaction->Course()->first();
+            $course = Course::where('id', $id)->first();
             $module = $course->Module()->where('sequence', $request->input('sequence'))->first();
 
             $currentSequence = $module->sequence;
@@ -284,12 +284,12 @@ class StudentController extends Controller
             $attachment->score = $request->score;
             $attachment->type = '1';
             $attachment->idModule = $module->id;
-            $attachment->idCourse = $course->id;
+            $attachment->idCourse = $id;
             $attachment->idUser = $user->id;
     
             $attachment->save();
     
-            return redirect('student/learning-page/' . $course->id . '?sequence=' . $currentSequence);
+            return redirect('student/learning-page/' . $id . '?sequence=' . $currentSequence);
         }
 
     } 
