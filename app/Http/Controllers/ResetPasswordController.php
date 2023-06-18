@@ -28,6 +28,12 @@ class ResetPasswordController extends Controller
 
         $user = User::where('email', $request->email)->exists();
 
+        $resetPassword = new ResetPassword();
+        $resetPassword ->email = $request->email;
+        $resetPassword->key = $str;
+
+        $resetPassword->save();  
+        
         if($user)
         {
             Mail::to($request->email)->send(new MailResetPassword($details));
@@ -36,12 +42,7 @@ class ResetPasswordController extends Controller
         else{
             return redirect('/forgot')->with('error','Email tidak ditemukan');
         }
-    
-        $resetPassword = new ResetPassword();
-            $resetPassword ->email = $request->email;
-            $resetPassword->key = $str;
-
-            $resetPassword->save();   
+     
     }
 
     public function verify($key){
