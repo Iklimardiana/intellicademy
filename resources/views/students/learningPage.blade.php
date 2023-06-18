@@ -2,7 +2,7 @@
 @section('aside')
     <aside class="sidebar-course text-center hide">
         <div class="d-flex justify-content-around sidebar-title">
-            <button class="btn btn-dark rounded mb-4 mt-4 p-1 sidebar-drawer-close"> 
+            <button class="btn btn-dark btn-fixed-height rounded mb-4 mt-4 p-1 sidebar-drawer-close"> 
                 <i data-feather="arrow-left"></i>
             </button>
             <h3 class="py-4 ml-2">{{ $course->name }}</h3>

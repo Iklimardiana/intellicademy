@@ -139,3 +139,14 @@ main.sidebar-opened {
   object-fit: cover;
   height: 200px;
 }
+
+.btn-fixed-height {
+  height: 40px; 
+}
+
+
+
+
+
+
+

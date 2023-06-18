@@ -51,7 +51,7 @@
                 $complete = $progres->where('status', '1')
                             ->where('complete', '1')->count();
                 @endphp 
-                @if ($transaction->count() > 0 && $complete == $progres->count() && $progres->count() > 0)
+                @if ($transaction->count() > 0 && $complete == $progres->count() && $progres->count() > 0 && $complete == $transaction->count())
                     <div class="col-12">
                         <h2>Your courses have been completed.</h2>
                     </div>
@@ -69,20 +69,22 @@
                             <div class="card-img-container">
                                 <img src="{{ asset('/images/thumbnail/' . $t->Course->thumbnail) }}" class="card-img-top" alt="thumbnail {{ $t->Course->name }}">
                             </div>
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">{{ $t->Course->name }}</h5>
                                 <p class="card-text flex-grow-1">{{ $t->Course->description }}</p>
-                                @if ($t->course->Progres->isEmpty())
-                                    <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
-                                @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
-                                    <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Belajar kembali</a>
-                                    <a href="/student/sertifikat/{{ $t->Course->id }}" class="btn btn-primary">Cetak Sertifikat</a>
-                                @else
-                                    <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
-                                @endif
+                                <div class="mt-auto">
+                                    @if ($t->course->Progres->isEmpty())
+                                        <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
+                                    @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
+                                        <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Belajar kembali</a>
+                                        <a href="/student/sertifikat/{{ $t->Course->id }}" class="btn btn-primary">Cetak Sertifikat</a>
+                                    @else
+                                        <a href="/student/learning-page/{{ $t->Course->id }}?sequence={{ $currentProgress ? $currentProgress->sequence : 1 }}" class="btn btn-primary">Lanjutkan Belajar</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    @endif
+                    @endif                
                 @empty
                     <h2>The Courses Are Empty</h2>
                 @endforelse
