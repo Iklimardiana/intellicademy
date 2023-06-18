@@ -2,7 +2,7 @@
 @section('aside')
     <aside class="sidebar-course text-center hide">
         <div class="d-flex justify-content-around sidebar-title">
-            <button class="btn btn-dark btn-fixed-height rounded mb-4 mt-4 p-1 sidebar-drawer-close"> 
+            <button class="btn btn-dark btn-fixed-height rounded mb-4 mt-4 p-1 sidebar-drawer-close">
                 <i data-feather="arrow-left"></i>
             </button>
             <h3 class="py-4 ml-2">{{ $course->name }}</h3>
@@ -75,12 +75,14 @@
                                             @endif
                                         </td>
                                         <td class="col-6">
-                                            <form action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
+                                            <form
+                                                action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
                                                 id="uploadForm" method="POST" style="display: inline;"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @if ($submission->where('idModule', $currentModuleId)->where('type', '1')->where('idUser', Auth::user()->id)->isEmpty())
-                                                    <form action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
+                                                    <form
+                                                        action="{{ url('student/learning-page/' . $item->idCourse . '?sequence=' . $currentSequence) }}"
                                                         id="uploadForm" method="POST" style="display: inline;"
                                                         enctype="multipart/form-data">
                                                         @csrf
@@ -90,6 +92,11 @@
                                                             <input type="file" name="assignment" id="assignment"
                                                                 style="display: none;" onchange="confirmUpload(event)">
                                                         </label>
+                                                        @error('assignment')
+                                                            <div class="text-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </form>
                                                 @else
                                                     <label for="assignment" id="uploadLabel" class="badge bg-secondary p-1"
