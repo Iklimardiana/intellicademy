@@ -26,14 +26,22 @@ class ResetPasswordController extends Controller
             'key' => $str
         ];
 
-        Mail::to($request->email)->send(new MailResetPassword($details));
+        $user = User::where('email', $request->email)->exists();
 
+        if($user)
+        {
+            Mail::to($request->email)->send(new MailResetPassword($details));
+            return redirect('/forgot')->with('message','Silahkan buka Email anda untuk mereset Password');
+        }
+        else{
+            return redirect('/forgot')->with('error','Email tidak ditemukan');
+        }
+    
         $resetPassword = new ResetPassword();
             $resetPassword ->email = $request->email;
             $resetPassword->key = $str;
 
-            $resetPassword->save();
-            return redirect('/forgot')->with('message','Silahkan buka Email anda untuk mereset Password');
+            $resetPassword->save();   
     }
 
     public function verify($key){
