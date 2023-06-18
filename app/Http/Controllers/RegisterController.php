@@ -33,8 +33,6 @@ class RegisterController extends Controller
 
         $url = request()->getHttpHost() . '/register/' . $str;
 
-        Mail::to($request->email)->send(new MailSend($details, $url));
-
         if(Mail::failures()){
             return back()->with('eror', 'Terjadi kesalahan silahkan coba lagi');
         }else{
@@ -57,6 +55,7 @@ class RegisterController extends Controller
             $user->key = $str;
     
             $user->save();
+            Mail::to($request->email)->send(new MailSend($details, $url));
             return redirect('/register')->with('message', 'Link verifikasi telah dikirim ke email Anda. Silahkan cek email untuk memverifikasi');
         }
         

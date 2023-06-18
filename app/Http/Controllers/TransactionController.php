@@ -58,7 +58,7 @@ class TransactionController extends Controller
                 return view('students.checkout', compact('transaction', 'snapToken'));
             }
         } else if (request()->isMethod('post')) {
-            $str = mt_rand(1000000000, 9999999999);
+            $str = mt_rand(10000, 99999);
             $id_user = Auth::user()->id;
 
             $transaction = new Transaction;
