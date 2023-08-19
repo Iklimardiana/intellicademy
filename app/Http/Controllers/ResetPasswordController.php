@@ -28,6 +28,12 @@ class ResetPasswordController extends Controller
 
         $user = User::where('email', $request->email)->exists();
 
+        $resetPassword = new ResetPassword();
+        $resetPassword ->email = $request->email;
+        $resetPassword->key = $str;
+
+        $resetPassword->save();  
+        
         if($user)
         {
             Mail::to($request->email)->send(new MailResetPassword($details));
