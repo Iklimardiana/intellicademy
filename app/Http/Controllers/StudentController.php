@@ -100,10 +100,15 @@ class StudentController extends Controller
         $course = Course::findOrFail($id);
         $module = $course->Module()->where('sequence', $sequence)->first();
 
-        $attachment = Attachment::where('idModule', $module->id)
-                    ->where('type', '0')
-                    ->get();
-
+        if($module) {
+            $attachment = Attachment::where('idModule', $module->id)
+            ->where('type', '0')
+            ->get();
+        }
+        else {
+            return redirect('/student')->with('error','Belum ada modul. Mohon untuk menunggu, Anda dapat mengerjakan course lain terlebih dahulu');
+        }
+        
         $submission = Attachment::where('idUser', $user)
                     ->where('type', '1')
                     ->get();

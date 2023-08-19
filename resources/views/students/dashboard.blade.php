@@ -17,6 +17,17 @@
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
+        @if (session()->has('message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="tab-pane fade show active" id="on-going-tab-pane" role="tabpanel" aria-labelledby="on-going-tab"
             tabindex="0">
             <div class="row gap-2 mt-3 " style="margin-left: 2rem!important">
@@ -73,7 +84,7 @@
                                 <h5 class="card-title">{{ $t->Course->name }}</h5>
                                 <p class="card-text flex-grow-1">{{ $t->Course->description }}</p>
                                 <div class="mt-auto">
-                                    @if ($t->course->Progres->isEmpty())
+                                    @if ($currentProgress == null)
                                         <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-primary">Mulai Belajar</a>
                                     @elseif ($currentProgres && $currentProgres->sequence == $t->Course->Module->count() && $currentProgres->status == '1')
                                         <a href="/student/learning-page/{{ $t->Course->id }}?sequence=1" class="btn btn-success" data-course-id="{{ $t->Course->id }}">Belajar kembali</a>
